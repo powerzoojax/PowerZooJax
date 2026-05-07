@@ -1,0 +1,6 @@
+split: load_stress
+role: iid
+gb_split: iid
+load_scale: 1.15
+line_rating_scale: 1.0
+notes: 'OOD: IID demand profiles scaled up by 1.15 (load stress test)'

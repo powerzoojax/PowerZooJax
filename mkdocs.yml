@@ -1,0 +1,154 @@
+site_name: PowerZooJax
+site_description: Pure-JAX power system benchmark environments for GPU-accelerated RL research
+site_author: PowerZooJax Contributors
+repo_url: https://github.com/powerzoojax/PowerZooJax
+repo_name: powerzoojax/PowerZooJax
+docs_dir: docs
+
+theme:
+  name: material
+  language: en
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - .
+          options:
+            allow_inspection: false
+            show_source: false
+            show_root_heading: true
+            show_symbol_type_heading: true
+            members_order: source
+            docstring_style: google
+            docstring_options:
+              warnings: false
+              warn_unknown_params: false
+              warn_missing_types: false
+            merge_init_into_class: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+
+nav:
+  - Home: en/index.md
+  - Getting Started:
+    - en/getting-started.md
+    - Running on Windows: en/setup/windows.md
+  - Concepts:
+    - Overview: en/concepts/overview.md
+    - JAX + RL Environment Rules: en/concepts/jax-contract.md
+    - MDP / CMDP: en/concepts/reward-cost-split.md
+    - Power Systems Primer: en/concepts/power-systems-primer.md
+  - Architecture:
+    - Repository Map: en/architecture/repo-map.md
+    - Environment Stack: en/architecture/env-stack.md
+    - Data Pipeline: en/architecture/data-pipeline.md
+    - JAX Parallelization Architecture: en/architecture/gpu-pipeline.md
+  - Physics:
+    - Overview: en/physics/overview.md
+    - Transmission: en/physics/transmission.md
+    - Distribution: en/physics/distribution.md
+    - Resources: en/physics/resources.md
+    - Markets: en/physics/markets.md
+    - Microgrid: en/physics/microgrid.md
+  - Benchmarks:
+    - Overview: en/benchmarks/overview.md
+    - "Benchmark workflow glossary": en/glossary.md
+    - TSO: en/benchmarks/tso.md
+    - DSO: en/benchmarks/dso.md
+    - DERs: en/benchmarks/ders.md
+    - DC microgrid: en/benchmarks/dc-microgrid.md
+    - GenCos: en/benchmarks/gencos.md
+  - Training:
+    - Wrappers: en/training/wrappers.md
+    - Trainers: en/training/trainers.md
+    - Presets: en/training/presets.md
+    - Custom Loops: en/training/custom-loops.md
+  - Examples:
+    - Overview: en/examples/index.md
+    - "01 - Single Step": en/examples/01_single_step.md
+    - "02 - Batched Rollout": en/examples/02_batched_rollout.md
+    - "03 - Train PPO": en/examples/03_train_ppo.md
+    - "04 - Train Safe PPO": en/examples/04_train_safe_ppo.md
+    - "05 - Train MARL": en/examples/05_train_marl.md
+  - API Reference:
+    - Grid Environments: en/api/grid.md
+    - Distribution Environments: en/api/distribution.md
+    - Unit Commitment: en/api/grid-uc.md
+    - Resources: en/api/resource.md
+    - Microgrid: en/api/microgrid.md
+    - Market Lite: en/api/market.md
+    - Market SCED: en/api/market-sced.md
+    - Market MARL: en/api/market-marl.md
+    - Cases: en/api/case.md
+    - Data: en/api/data.md
+    - RL Wrappers and Trainers: en/api/rl.md
+    - RL Multi-Agent: en/api/rl-marl.md
+    - Spaces: en/api/spaces.md
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js
+  - javascripts/mermaid.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+
+# extra:
+#   social:
+#     - icon: fontawesome/brands/github
+#       link: https://github.com/powerzoojax/PowerZooJax

@@ -1,0 +1,67 @@
+{
+  "source_file": "google_dc_2019_300s.parquet",
+  "parquet_file": "google_dc_2019_300s.parquet",
+  "source_url": "https://github.com/google/cluster-data/blob/master/ClusterData2019.md",
+  "source_organization": "Google LLC",
+  "generated_at": "2026-03-25T18:32:50.169391",
+  "shape": {
+    "rows": 8064,
+    "columns": 5
+  },
+  "columns": [
+    "time_stamp",
+    "cpu_util",
+    "mem_util",
+    "assigned_mem",
+    "cycles_per_instruction"
+  ],
+  "dtypes": {
+    "time_stamp": "int64",
+    "cpu_util": "float64",
+    "mem_util": "float64",
+    "assigned_mem": "float64",
+    "cycles_per_instruction": "float64"
+  },
+  "numeric_statistics": {
+    "time_stamp": {
+      "count": 8064,
+      "mean": 4031.5,
+      "std": 2328.020618465395,
+      "min": 0.0,
+      "max": 8063.0,
+      "missing": 0
+    },
+    "cpu_util": {
+      "count": 8064,
+      "mean": 0.47282318454346245,
+      "std": 0.03991285651187808,
+      "min": 0.3202867061157718,
+      "max": 0.5924373024521205,
+      "missing": 0
+    },
+    "mem_util": {
+      "count": 8064,
+      "mean": 0.32715492839768506,
+      "std": 0.022817123485826107,
+      "min": 0.2449798751942896,
+      "max": 0.4022383946974674,
+      "missing": 0
+    },
+    "assigned_mem": {
+      "count": 8064,
+      "mean": 0.5974625439506724,
+      "std": 0.037009806749554564,
+      "min": 0.4953768611854249,
+      "max": 0.7190462882388798,
+      "missing": 0
+    },
+    "cycles_per_instruction": {
+      "count": 8064,
+      "mean": 166.1271898386057,
+      "std": 9.533894892593189,
+      "min": 119.71908041274574,
+      "max": 201.31324445163875,
+      "missing": 0
+    }
+  }
+}

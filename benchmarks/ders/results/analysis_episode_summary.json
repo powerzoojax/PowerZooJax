@@ -1,0 +1,91 @@
+{
+  "canonical_train_run_id": "ders_ippo_safe_train_s0_20260424_023832_610974",
+  "canonical_algo": "ippo_safe",
+  "candidate_rows": [
+    {
+      "algo": "ippo_safe",
+      "train_run_id": "ders_ippo_safe_train_s0_20260424_023832_610974",
+      "iid_run_id": "ders_ippo_safe_iid_s0_20260424_025111_313549",
+      "voltage_tightening_run_id": "ders_ippo_safe_voltage_tightening_s0_20260424_025239_670053",
+      "iid_mean_p_loss_mw": 0.20498353987932205,
+      "iid_voltage_violation_rate": 0.0,
+      "voltage_tightening_violation_steps": 5.433333333333334,
+      "passes_physics_gate": true
+    },
+    {
+      "algo": "ippo",
+      "train_run_id": "ders_ippo_train_s0_20260424_153555_211244",
+      "iid_run_id": "ders_ippo_iid_s0_20260424_161401_180994",
+      "voltage_tightening_run_id": "ders_ippo_voltage_tightening_s0_20260424_161610_171719",
+      "iid_mean_p_loss_mw": 0.20512733211119968,
+      "iid_voltage_violation_rate": 0.0,
+      "voltage_tightening_violation_steps": 5.4,
+      "passes_physics_gate": true
+    },
+    {
+      "algo": "ippo_lagrangian",
+      "train_run_id": "ders_ippo_lagrangian_train_s0_20260424_024017_051465",
+      "iid_run_id": "ders_ippo_lagrangian_iid_s0_20260424_025847_729875",
+      "voltage_tightening_run_id": "ders_ippo_lagrangian_voltage_tightening_s0_20260424_030017_430667",
+      "iid_mean_p_loss_mw": 0.20920432408650716,
+      "iid_voltage_violation_rate": 0.0,
+      "voltage_tightening_violation_steps": 5.633333333333334,
+      "passes_physics_gate": true
+    }
+  ],
+  "selected_episode": {
+    "total_reward": -17.528972625732422,
+    "total_cost": 0.0,
+    "mean_p_loss_mw": 0.3043224513530731,
+    "voltage_violation_steps": 0.0,
+    "loss_reduction_pct": 0.498842345492514,
+    "cost_reduction_pct": 0.0,
+    "voltage_safety_rate": 1.0,
+    "voltage_violation_rate": 0.0,
+    "undervoltage_steps": 0.0,
+    "overvoltage_steps": 0.0,
+    "max_undervoltage_dev": 0.0,
+    "max_overvoltage_dev": 0.0,
+    "mean_v_min": 0.9631748199462891,
+    "mean_v_max": 1.0,
+    "episode_idx": 7.0,
+    "episode_start": 609.0
+  },
+  "policy_behaviour": {
+    "no_control": {
+      "battery_soc_delta_max": 0.0,
+      "renewable_action_abs_max": 1.0,
+      "flexload_action_abs_max": 0.0,
+      "mean_p_loss_mw": 0.30584814803053934,
+      "voltage_violation_steps": 0.0
+    },
+    "volt_droop": {
+      "battery_soc_delta_max": 0.0,
+      "renewable_action_abs_max": 1.0,
+      "flexload_action_abs_max": 0.5,
+      "mean_p_loss_mw": 0.30022188400228816,
+      "voltage_violation_steps": 0.0
+    },
+    "ippo_safe": {
+      "battery_soc_delta_max": 0.3999999761581421,
+      "renewable_action_abs_max": 1.0,
+      "flexload_action_abs_max": 1.0,
+      "mean_p_loss_mw": 0.3043224321057399,
+      "voltage_violation_steps": 0.0
+    },
+    "ippo_lagrangian": {
+      "battery_soc_delta_max": 0.1923098862171173,
+      "renewable_action_abs_max": 1.0,
+      "flexload_action_abs_max": 1.0,
+      "mean_p_loss_mw": 0.31124449397126835,
+      "voltage_violation_steps": 0.0
+    },
+    "ippo": {
+      "battery_soc_delta_max": 0.3999999761581421,
+      "renewable_action_abs_max": 1.0,
+      "flexload_action_abs_max": 1.0,
+      "mean_p_loss_mw": 0.30450218574454385,
+      "voltage_violation_steps": 0.0
+    }
+  }
+}

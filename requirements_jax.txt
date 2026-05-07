@@ -1,0 +1,35 @@
+# PowerZooJAX Dependencies
+# Install with: pip install -r requirements_jax.txt
+
+# Core JAX (CPU version, for GPU see below)
+jax>=0.4.20
+jaxlib>=0.4.20
+
+# For GPU support, uncomment and modify based on your CUDA version:
+# pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+# Flax - NN library for JAX
+flax>=0.8.0
+
+# Chex - JAX testing and debugging utilities
+chex>=0.1.8
+
+# Optax - Gradient-based optimization in JAX
+optax>=0.1.7
+
+# NumPy (for data preprocessing)
+numpy>=1.24.0
+
+# Pandas (for case data loading)
+pandas>=2.0.0
+
+# Optional: For visualization
+# matplotlib>=3.7.0
+
+# Optional: For RL training
+# gymnax>=0.0.6  # JAX RL environments reference
+# distrax>=0.1.5  # Probability distributions in JAX
+
+# Development dependencies
+# pytest>=7.0.0
+# pytest-xdist>=3.0.0  # Parallel testing

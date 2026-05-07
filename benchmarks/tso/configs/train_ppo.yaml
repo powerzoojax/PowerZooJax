@@ -1,0 +1,15 @@
+# TSO unconstrained PPO baseline (rejax backend).
+algo: ppo
+total_timesteps: 20000000
+num_envs: 256                 # GPU parallelism for case118 (54 units, 410-dim obs)
+n_steps: 48                   # one episode per update
+eval_freq: 100000            # ~201 monitor points over 20M steps
+eval_episodes: 8             # lightweight in-training monitor only (benchmark eval still uses task.yaml::eval_episodes)
+record_eval_wall_time: true  # save exact per-eval walltime for cross-backend learning-curve plots
+hidden_dims: [256, 256]       # larger net for high-dim transmission obs
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0003
+normalize_observations: true
+wrapper: log
+notes: "TSO unconstrained PPO (LogWrapper): continuous-relaxation SCUC; 20M env steps, 256×48 rollouts, eval every 100k steps, 8 eval episodes, eval walltime logged."

@@ -1,0 +1,203 @@
+{
+  "train_config": {
+    "algo": "ippo_typed_lagrangian",
+    "total_timesteps": 10000000,
+    "num_envs": 128,
+    "n_steps": 48,
+    "n_epochs": 4,
+    "hidden_dims": [
+      128,
+      128
+    ],
+    "gamma": 0.995,
+    "gae_lambda": 0.95,
+    "lr": 0.0001,
+    "clip_eps": 0.2,
+    "ent_coef": 0.01,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "voltage_penalty": 0.0,
+    "cost_thresholds": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "lambda_lr": 5e-05,
+    "notes": "DERs typed IPPO-Lagrangian on case141. Type-specific decentralized actors share a team-level dual variable over the explicit voltage_violation / thermal_overload / resource CMDP costs. Reward/cost separation is restored here (voltage_penalty=0.0), unlike reward-shaped ippo_safe. Initial setting mirrors typed IPPO's 10M-step budget and uses a conservative lambda_lr=5e-5 to avoid early dual spikes."
+  },
+  "task_config": {
+    "task": "ders",
+    "case": "case141",
+    "n_agents": 12,
+    "agent_types": {
+      "battery": [
+        9,
+        55,
+        17,
+        122
+      ],
+      "pv": [
+        6,
+        73,
+        72,
+        82
+      ],
+      "flexload": [
+        41,
+        70,
+        135,
+        24
+      ]
+    },
+    "max_steps": 48,
+    "dt_hours": 0.5,
+    "v_min": 0.94,
+    "v_max": 1.06,
+    "voltage_penalty": 4.0,
+    "num_envs": 128,
+    "eval_splits": [
+      "train",
+      "iid",
+      "voltage_tightening",
+      "pv_penetration_shift",
+      "load_stress"
+    ],
+    "primary_split": "iid",
+    "baseline_set": [
+      "no_control",
+      "volt_droop"
+    ],
+    "baseline_algos": [
+      "no_control",
+      "volt_droop"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eval_episodes": 30,
+    "safety_thresholds": {
+      "voltage_violation_rate": 0.0
+    },
+    "benchmark_protocol": {
+      "protocol_formalization_pending": false,
+      "current_campaign_seed_budget": 5,
+      "submission_min_seeds": 5,
+      "required_statistics": [
+        "mean",
+        "std",
+        "iqm",
+        "bootstrap_ci95"
+      ],
+      "hypothesis_test": {
+        "name": "paired_primary_split_test",
+        "status": "implemented",
+        "implementation": "benchmarks/ders/summarize.py::_build_hypothesis_tests",
+        "metric": "mean_p_loss_mw",
+        "comparison_pairs": [
+          [
+            "ippo",
+            "no_control"
+          ],
+          [
+            "ippo",
+            "volt_droop"
+          ],
+          [
+            "ippo_safe",
+            "no_control"
+          ],
+          [
+            "ippo_safe",
+            "volt_droop"
+          ],
+          [
+            "ippo_lagrangian",
+            "no_control"
+          ],
+          [
+            "ippo_lagrangian",
+            "volt_droop"
+          ]
+        ],
+        "notes": "Paired sign-flip permutation tests on primary-split per_episode mean_p_loss_mw. Lower is better; negative left-minus-right favours the learned policy."
+      },
+      "leaderboard": {
+        "split": "iid",
+        "primary_metric": "mean_p_loss_mw",
+        "direction": "lower_is_better",
+        "include_baselines": true
+      }
+    },
+    "target_return_metric_key": "mean_p_loss_mw",
+    "target_metric_direction": "lower_is_better",
+    "notes": "Frozen task definition for DERs benchmark. baseline_set is the canonical key (P0-B rename); baseline_algos kept temporarily for backward-compat readers. seeds/eval_episodes define the submission-grade reporting budget; eval.py and baselines.py read eval_<split>.yaml where present, with eval_episodes as the canonical fallback. convergence_threshold_per_split / convergence_provenance / safety_thresholds populated by P0-E experiment_ops.py derive_target after the seed-0 pipeline.",
+    "convergence_threshold_per_split": {
+      "iid": {
+        "target_return": 0.20502185493707656,
+        "alpha": 0.8,
+        "status": "frozen",
+        "return_metric_key": "mean_p_loss_mw",
+        "metric_direction": "lower_is_better"
+      },
+      "train": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "voltage_tightening": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "pv_penetration_shift": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "load_stress": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      }
+    },
+    "convergence_provenance": {
+      "reference_run_id": "ders_ippo_safe_train_s0_20260424_023832_610974",
+      "reference_config_hash": "55fb25d19ad1",
+      "reference_train_split": "train",
+      "target_eval_split": "iid",
+      "reference_backend": "jax_rejax",
+      "reference_device": "gpu",
+      "reference_seed": 0,
+      "reference_total_timesteps": 10000000,
+      "reference_eval_run_id": "ders_ippo_safe_iid_s0_20260424_025111_313549",
+      "reference_metric_source": "primary_eval_record",
+      "baseline_algo": "no_control",
+      "baseline_iqm": 0.20517511516809464,
+      "return_metric_key": "mean_p_loss_mw"
+    }
+  },
+  "train_window_bank": {
+    "train_window_role": "train",
+    "train_window_selector": "uniform",
+    "train_window_count": 8,
+    "train_window_starts": [
+      0,
+      1093,
+      2186,
+      3279,
+      4372,
+      5465,
+      6558,
+      7652
+    ],
+    "train_load_scale": 1.0,
+    "train_pv_scale": 1.0,
+    "train_window_score_v_min": 0.94,
+    "train_window_score_v_max": 1.06,
+    "train_total_profile_len": 7700
+  }
+}

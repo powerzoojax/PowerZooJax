@@ -1,0 +1,95 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "powerzoojax"
+version = "0.1.0"
+description = "Pure-JAX power-system benchmark environments for ML/RL researchers"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = "MIT"
+keywords = ["reinforcement-learning", "power-systems", "benchmark", "jax"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    # JAX stack
+    "jax>=0.4.30",
+    "flax>=0.8.0",
+    "orbax-checkpoint<0.11.33; sys_platform == 'win32'",
+    "chex>=0.1.8",
+    "optax>=0.1.7",
+    "jaxopt>=0.8.0",
+    # numerics / data
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scipy>=1.10",
+    "pyarrow>=14.0",
+    "matplotlib>=3.10.8",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+viz = [
+    "networkx>=3.0",
+]
+rl = [
+    "rejax>=0.1.2",
+    "distrax>=0.1.5",
+]
+marl = [
+    "jaxmarl>=0.0.3",
+]
+benchmarks = [
+    "stable-baselines3>=2.8,<3",
+    "pettingzoo>=1.24",
+    "sbx-rl>=0.25,<0.26",
+]
+cuda12 = [
+    "jax[cuda12]>=0.4.30; sys_platform == 'linux'",
+]
+dev = [
+    "pytest>=7",
+    "pytest-xdist>=3.0",
+    "openpyxl>=3.1",
+]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9",
+    "mkdocs-static-i18n>=1.0",
+    "mkdocstrings[python]>=0.24",
+    "pymdown-extensions>=10",
+]
+
+[project.scripts]
+powerzoojax-train = "powerzoojax.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["powerzoojax*"]
+
+[tool.setuptools.package-data]
+"powerzoojax.data" = ["manifests/*.json", "parquet/*.parquet", "parquet/*.json"]
+"powerzoojax.case.raw_cases" = ["case14.json"]
+
+[tool.uv]
+conflicts = [
+    [
+        { extra = "rl" },
+        { extra = "marl" },
+    ],
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short -m 'not report and not external and not audit'"
+# Make the namespace package ``benchmarks/`` (no __init__.py at repo root)
+# importable as ``benchmarks.common.*`` from any test, regardless of which
+# subset of tests pytest happens to collect first.
+pythonpath = ["."]
+markers = [
+    "report: analysis/report-generation tests that are excluded from the default regression suite",
+    "external: cross-backend or real-data tests excluded from the default in-repo regression suite",
+    "audit: benchmark freeze or manifest audit checks excluded from the default regression suite",
+]

@@ -1,0 +1,78 @@
+# ============================================================================
+# GenCos benchmark task definition (frozen).
+#
+# 5 generation companies bidding into a rolling 30-min day-ahead market on
+# case5.  Per-agent profit reward, partial observations.  Competitive MARL
+# (IPPO) — reference outcome is oligopoly market power.
+#
+# Companion file: provenance.json — auto-written by
+# benchmarks/common/experiment_ops.py derive_target with the convergence target + reference
+# run metadata.  Do NOT hand-edit provenance.json.
+# ============================================================================
+
+task: gencos
+case: case5                   # 5-bus toy transmission case.
+n_agents: 5                   # One bidder per generator.
+
+# Bid curve = piecewise-linear, n_segments points.  max_markup caps the
+# multiplicative offer above marginal cost; 2.0 = up to 2× marginal cost.
+n_segments: 3
+max_markup: 2.0
+
+max_steps: 48                 # 48 half-hour intervals = 24 h horizon
+dt_hours: 0.5
+
+# Length of LMP history exposed in each agent's observation.
+lmp_history_len: 4
+
+data_source: gb               # GB net-load + wind trace.
+num_envs: 256                 # Frozen training parallelism (matches train_ippo.yaml).
+
+eval_splits: [train, iid, demand_shift, renewable_shock]
+primary_split: iid
+
+# Non-learning baselines.  baseline_set[0] (truthful) is the competitive-
+# equilibrium reference for derive_target IQM.  baseline_algos is a
+# deprecated alias kept for older readers.
+baseline_set:   [truthful, uniform_mid, max_markup]
+baseline_algos: [truthful, uniform_mid, max_markup]
+
+seeds: [0, 1, 2, 3, 4]
+eval_episodes: 30
+
+# market_HHI = 1.0 means perfect monopoly; threshold flagged in
+# variance_check for OOD market-power audit.
+safety_thresholds:
+  market_HHI: 1.0
+
+benchmark_protocol:
+  protocol_formalization_pending: false
+  current_campaign_seed_budget: 5
+  submission_min_seeds: 5
+  required_statistics: [mean, std, iqm, bootstrap_ci95]
+  hypothesis_test:
+    name: paired_primary_split_test
+    status: implemented
+    metric: total_profit
+    notes: "GenCos summary reports paired primary-split comparisons between IPPO and canonical market baselines on iid."
+  leaderboard:
+    split: iid
+    primary_metric: total_profit
+    direction: higher_is_better
+    include_baselines: true
+
+target_return_metric_key: total_profit
+target_metric_direction: higher_is_better
+
+# Cross-backend training-curve eval reward is intentionally not the leaderboard
+# metric.  The canonical curve reports each episode's average cumulative profit
+# per GenCo agent so JAX IPPO and PowerZoo frozen-self-play IL are not tied to
+# different concrete target agents.
+cross_backend_eval_metric:
+  name: mean_per_agent_cumulative_profit
+  source_metric: mean_profit_per_agent
+  artifact_key: learning_curve_eval_return
+  direction: higher_is_better
+  units: usd_per_episode_per_agent
+
+notes: "Frozen task definition for GenCos benchmark. baseline_set is the canonical key (P0-B rename); baseline_algos kept temporarily for backward-compat readers. seeds/eval_episodes preserve current driver defaults. convergence_threshold_per_split / convergence_provenance / safety_thresholds populated by P0-E experiment_ops.py derive_target after the seed-0 pipeline."

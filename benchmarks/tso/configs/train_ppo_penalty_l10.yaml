@@ -1,0 +1,25 @@
+# TSO Penalty PPO ablation — λ=10.
+#
+# Shaping: r' = r − penalty_lambda * reward_scale * Σ(costs)
+#   reward_scale = 1e-4 (from task.yaml); CMDP costs in physical MW.
+#   Effective coeff = 10 * 1e-4 = 1e-3.
+#   Typical step reward ≈ −7.5; max penalty per violated step ≈ 0.5 — UNDERFITTING regime:
+#   constraint signal much weaker than reward → agent behaves like unconstrained PPO.
+#
+# This is an ablation baseline demonstrating that static λ is insufficient.
+# See ppo_penalty_l100 / ppo_penalty_l1000 for stronger penalty regimes.
+algo: ppo
+total_timesteps: 10000000
+num_envs: 256
+n_steps: 48
+eval_freq: 100000
+eval_episodes: 8
+record_eval_wall_time: true
+hidden_dims: [256, 256]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0003
+normalize_observations: true
+wrapper: penalty
+penalty_lambda: 10.0
+notes: "Penalty PPO ablation λ=10 (TSO): r'=r−λ·reward_scale·Σ(c); effective coeff=1e-3; underfitting — constraint signal negligible vs reward."

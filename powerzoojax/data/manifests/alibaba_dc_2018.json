@@ -1,0 +1,33 @@
+{
+  "name": "alibaba_dc_2018",
+  "source": "alibaba",
+  "data_type": "actual_series",
+  "time_mode": "profile",
+  "resolution": "300s",
+  "parquet_file": "alibaba_dc_2018_300s.parquet",
+  "column_map": {
+    "cpu_util_percent": "datacenter.cpu_util",
+    "mem_util_percent": "datacenter.mem_util",
+    "net_in": "datacenter.net_in",
+    "net_out": "datacenter.net_out",
+    "disk_io_percent": "datacenter.disk_io"
+  },
+  "index_map": {
+    "time_stamp": "datetime"
+  },
+  "derived": {},
+  "normalize": {
+    "datacenter.cpu_util": 100,
+    "datacenter.mem_util": 100,
+    "datacenter.net_in": 100,
+    "datacenter.net_out": 100,
+    "datacenter.disk_io": 100
+  },
+  "data_epoch": "2018-01-06T00:00:00",
+  "cyclical": true,
+  "region_values": [],
+  "date_range": null,
+  "metadata_json": null,
+  "source_url": "https://github.com/alibaba/clusterdata/tree/master/cluster-trace-v2018",
+  "source_organization": "Alibaba Group"
+}

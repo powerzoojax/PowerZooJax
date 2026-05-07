@@ -1,0 +1,939 @@
+{
+  "generated_at": "2026-05-06T06:28:25.916865+00:00",
+  "global_claim": {
+    "any_point_leaderboard_eligible_safe": false,
+    "claim_status": "hard_negative_result",
+    "learned_policy_leaderboard_eligible_safe": false,
+    "paper_facing_interpretation": "Current TSO evidence is a hard safety frontier / negative result: PPO is cost efficient but unsafe, PPO-Lag removes reserve shortfall but retains thermal violations, and no learned policy satisfies the strict zero-violation hard gate."
+  },
+  "hard_safety_gate": {
+    "definition": "reserve_shortfall_rate <= threshold and thermal_violation_rate <= threshold",
+    "reserve_shortfall_rate": 0.0,
+    "thermal_violation_rate": 0.0
+  },
+  "phase": "phase3_cost_safety_frontier",
+  "source": {
+    "campaign_after": "2026-04-24T02:05:20+00:00",
+    "manifest": "benchmarks/tso/results/manifest.json",
+    "summary": "benchmarks/tso/results/summary/latest.json",
+    "summary_filters": {
+      "after": "2026-04-24T02:05:20+00:00",
+      "backend": "jax_rejax",
+      "device": "gpu"
+    },
+    "writes_algorithm_leaderboard": false,
+    "writes_manifest": false
+  },
+  "splits": {
+    "iid": {
+      "any_leaderboard_eligible_safe": false,
+      "n_points": 4,
+      "points": [
+        {
+          "algo": "all_on",
+          "algo_label": "All-On",
+          "claim_status": "conservative_safe_or_near_safe",
+          "claim_tags": [
+            "conservative_safe_or_near_safe"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.0,
+            "ci_lo": 0.0,
+            "iqm": 0.0,
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_iid_s0_20260424_020926_802337",
+              "seed": 0,
+              "thermal_violation_rate": 0.03458333333333333,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_iid_s1_20260424_025913_944665",
+              "seed": 1,
+              "thermal_violation_rate": 0.03458333333333333,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_iid_s2_20260424_030108_939944",
+              "seed": 2,
+              "thermal_violation_rate": 0.03458333333333333,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_iid_s3_20260424_030304_247477",
+              "seed": 3,
+              "thermal_violation_rate": 0.03458333333333333,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_iid_s4_20260424_030458_888287",
+              "seed": 4,
+              "thermal_violation_rate": 0.03458333333333333,
+              "total_operating_cost": 4336064.64
+            }
+          ],
+          "split": "iid",
+          "thermal_violation_rate": {
+            "ci_hi": 0.03458333333333333,
+            "ci_lo": 0.03458333333333333,
+            "iqm": 0.03458333333333333,
+            "mean": 0.03458333333333333,
+            "std": 0.0
+          },
+          "total_operating_cost": {
+            "ci_hi": 4336064.64,
+            "ci_lo": 4336064.64,
+            "iqm": 4336064.64,
+            "mean": 4336064.64,
+            "std": 0.0
+          }
+        },
+        {
+          "algo": "merit_order",
+          "algo_label": "Merit Order",
+          "claim_status": "cost_efficient_unsafe",
+          "claim_tags": [
+            "cost_efficient_unsafe"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.009583333333333333,
+            "ci_lo": 0.009583333333333333,
+            "iqm": 0.009583333333333333,
+            "mean": 0.009583333333333333,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_iid_s0_20260424_021123_454388",
+              "seed": 0,
+              "thermal_violation_rate": 0.12416666666666666,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_iid_s1_20260424_030650_676262",
+              "seed": 1,
+              "thermal_violation_rate": 0.12416666666666666,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_iid_s2_20260424_030843_669821",
+              "seed": 2,
+              "thermal_violation_rate": 0.12416666666666666,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_iid_s3_20260424_031035_525006",
+              "seed": 3,
+              "thermal_violation_rate": 0.12416666666666666,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_iid_s4_20260424_031232_574914",
+              "seed": 4,
+              "thermal_violation_rate": 0.12416666666666666,
+              "total_operating_cost": 2893244.4675
+            }
+          ],
+          "split": "iid",
+          "thermal_violation_rate": {
+            "ci_hi": 0.12416666666666668,
+            "ci_lo": 0.12416666666666668,
+            "iqm": 0.12416666666666668,
+            "mean": 0.12416666666666668,
+            "std": 1.3877787807814457e-17
+          },
+          "total_operating_cost": {
+            "ci_hi": 2893244.4675,
+            "ci_lo": 2893244.4675,
+            "iqm": 2893244.4675,
+            "mean": 2893244.4675,
+            "std": 0.0
+          }
+        },
+        {
+          "algo": "ppo",
+          "algo_label": "PPO",
+          "claim_status": "cost_efficient_unsafe",
+          "claim_tags": [
+            "cost_efficient_unsafe",
+            "hard_negative_result"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.09516666666666666,
+            "ci_lo": 0.05658333333333333,
+            "iqm": 0.06652777777777778,
+            "mean": 0.07283333333333333,
+            "std": 0.022412484120338923
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.049166666666666664,
+              "run_id": "tso_ppo_iid_s0_20260424_023413_263434",
+              "seed": 0,
+              "thermal_violation_rate": 0.3720833333333334,
+              "total_operating_cost": 1662309.98625
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.06416666666666666,
+              "run_id": "tso_ppo_iid_s1_20260424_043629_115580",
+              "seed": 1,
+              "thermal_violation_rate": 0.36291666666666667,
+              "total_operating_cost": 1632376.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.06541666666666666,
+              "run_id": "tso_ppo_iid_s2_20260424_044054_067604",
+              "seed": 2,
+              "thermal_violation_rate": 0.3808333333333334,
+              "total_operating_cost": 1456260.9925
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.07,
+              "run_id": "tso_ppo_iid_s3_20260424_044519_440374",
+              "seed": 3,
+              "thermal_violation_rate": 0.2754166666666667,
+              "total_operating_cost": 1778344.76
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.11541666666666667,
+              "run_id": "tso_ppo_iid_s4_20260424_044945_432633",
+              "seed": 4,
+              "thermal_violation_rate": 0.38583333333333336,
+              "total_operating_cost": 1374621.42375
+            }
+          ],
+          "split": "iid",
+          "thermal_violation_rate": {
+            "ci_hi": 0.38033333333333336,
+            "ci_lo": 0.3140833333333334,
+            "iqm": 0.37194444444444447,
+            "mean": 0.3554166666666667,
+            "std": 0.04075587892153311
+          },
+          "total_operating_cost": {
+            "ci_hi": 1702737.2265,
+            "ci_lo": 1458828.2944999998,
+            "iqm": 1583649.2062499998,
+            "mean": 1580782.7604999999,
+            "std": 145840.6857246514
+          }
+        },
+        {
+          "algo": "ppo_lagrangian",
+          "algo_label": "PPO-Lag",
+          "claim_status": "hard_negative_result",
+          "claim_tags": [
+            "hard_negative_result"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.0,
+            "ci_lo": 0.0,
+            "iqm": 0.0,
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_iid_s0_20260506_054621_983528",
+              "seed": 0,
+              "thermal_violation_rate": 0.08958333333333333,
+              "total_operating_cost": 3800377.09
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_iid_s1_20260506_060326_236906",
+              "seed": 1,
+              "thermal_violation_rate": 0.05541666666666666,
+              "total_operating_cost": 3300098.16
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_iid_s2_20260506_062033_911217",
+              "seed": 2,
+              "thermal_violation_rate": 0.09791666666666667,
+              "total_operating_cost": 3285534.895
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_iid_s3_20260506_054620_215806",
+              "seed": 3,
+              "thermal_violation_rate": 0.011666666666666665,
+              "total_operating_cost": 4045867.78
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_iid_s4_20260506_060324_707415",
+              "seed": 4,
+              "thermal_violation_rate": 0.04166666666666666,
+              "total_operating_cost": 3069544.94
+            }
+          ],
+          "split": "iid",
+          "thermal_violation_rate": {
+            "ci_hi": 0.08608333333333333,
+            "ci_lo": 0.029666666666666664,
+            "iqm": 0.062222222222222213,
+            "mean": 0.059250000000000004,
+            "std": 0.031633096240769376
+          },
+          "total_operating_cost": {
+            "ci_hi": 3844703.065,
+            "ci_lo": 3202051.566,
+            "iqm": 3462003.3816666664,
+            "mean": 3500284.573,
+            "std": 363165.30949629116
+          }
+        }
+      ]
+    },
+    "line_tightening": {
+      "any_leaderboard_eligible_safe": false,
+      "n_points": 4,
+      "points": [
+        {
+          "algo": "all_on",
+          "algo_label": "All-On",
+          "claim_status": "conservative_safe_or_near_safe",
+          "claim_tags": [
+            "conservative_safe_or_near_safe"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.0,
+            "ci_lo": 0.0,
+            "iqm": 0.0,
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_line_tightening_s0_20260424_021711_573035",
+              "seed": 0,
+              "thermal_violation_rate": 0.05041666666666667,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_line_tightening_s1_20260424_033013_237643",
+              "seed": 1,
+              "thermal_violation_rate": 0.05041666666666667,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_line_tightening_s2_20260424_033213_145454",
+              "seed": 2,
+              "thermal_violation_rate": 0.05041666666666667,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_line_tightening_s3_20260424_033412_124281",
+              "seed": 3,
+              "thermal_violation_rate": 0.05041666666666667,
+              "total_operating_cost": 4336064.64
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_line_tightening_s4_20260424_033612_571283",
+              "seed": 4,
+              "thermal_violation_rate": 0.05041666666666667,
+              "total_operating_cost": 4336064.64
+            }
+          ],
+          "split": "line_tightening",
+          "thermal_violation_rate": {
+            "ci_hi": 0.05041666666666668,
+            "ci_lo": 0.05041666666666668,
+            "iqm": 0.05041666666666668,
+            "mean": 0.05041666666666668,
+            "std": 6.938893903907228e-18
+          },
+          "total_operating_cost": {
+            "ci_hi": 4336064.64,
+            "ci_lo": 4336064.64,
+            "iqm": 4336064.64,
+            "mean": 4336064.64,
+            "std": 0.0
+          }
+        },
+        {
+          "algo": "merit_order",
+          "algo_label": "Merit Order",
+          "claim_status": "cost_efficient_unsafe",
+          "claim_tags": [
+            "cost_efficient_unsafe"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.009583333333333333,
+            "ci_lo": 0.009583333333333333,
+            "iqm": 0.009583333333333333,
+            "mean": 0.009583333333333333,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_line_tightening_s0_20260424_021910_460212",
+              "seed": 0,
+              "thermal_violation_rate": 0.33708333333333335,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_line_tightening_s1_20260424_033812_161750",
+              "seed": 1,
+              "thermal_violation_rate": 0.33708333333333335,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_line_tightening_s2_20260424_034012_986120",
+              "seed": 2,
+              "thermal_violation_rate": 0.33708333333333335,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_line_tightening_s3_20260424_034212_407326",
+              "seed": 3,
+              "thermal_violation_rate": 0.33708333333333335,
+              "total_operating_cost": 2893244.4675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.009583333333333333,
+              "run_id": "tso_merit_order_line_tightening_s4_20260424_034413_077879",
+              "seed": 4,
+              "thermal_violation_rate": 0.33708333333333335,
+              "total_operating_cost": 2893244.4675
+            }
+          ],
+          "split": "line_tightening",
+          "thermal_violation_rate": {
+            "ci_hi": 0.33708333333333335,
+            "ci_lo": 0.33708333333333335,
+            "iqm": 0.33708333333333335,
+            "mean": 0.33708333333333335,
+            "std": 0.0
+          },
+          "total_operating_cost": {
+            "ci_hi": 2893244.4675,
+            "ci_lo": 2893244.4675,
+            "iqm": 2893244.4675,
+            "mean": 2893244.4675,
+            "std": 0.0
+          }
+        },
+        {
+          "algo": "ppo",
+          "algo_label": "PPO",
+          "claim_status": "cost_efficient_unsafe",
+          "claim_tags": [
+            "cost_efficient_unsafe",
+            "hard_negative_result"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.06733333333333333,
+            "ci_lo": 0.04358333333333334,
+            "iqm": 0.052083333333333336,
+            "mean": 0.05466666666666666,
+            "std": 0.013734587321390074
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.03875,
+              "run_id": "tso_ppo_line_tightening_s0_20260424_023626_815298",
+              "seed": 0,
+              "thermal_violation_rate": 0.5166666666666666,
+              "total_operating_cost": 1653012.86625
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.05458333333333333,
+              "run_id": "tso_ppo_line_tightening_s1_20260424_043841_249882",
+              "seed": 1,
+              "thermal_violation_rate": 0.5958333333333333,
+              "total_operating_cost": 1606067.70125
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.04375,
+              "run_id": "tso_ppo_line_tightening_s2_20260424_044306_565797",
+              "seed": 2,
+              "thermal_violation_rate": 0.4954166666666667,
+              "total_operating_cost": 1459531.35375
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.05791666666666667,
+              "run_id": "tso_ppo_line_tightening_s3_20260424_044732_390465",
+              "seed": 3,
+              "thermal_violation_rate": 0.3475,
+              "total_operating_cost": 1749029.23
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.07833333333333334,
+              "run_id": "tso_ppo_line_tightening_s4_20260424_045159_374300",
+              "seed": 4,
+              "thermal_violation_rate": 0.5104166666666666,
+              "total_operating_cost": 1370731.9125
+            }
+          ],
+          "split": "line_tightening",
+          "thermal_violation_rate": {
+            "ci_hi": 0.5586666666666666,
+            "ci_lo": 0.4126666666666666,
+            "iqm": 0.5075,
+            "mean": 0.49316666666666664,
+            "std": 0.08076397367913768
+          },
+          "total_operating_cost": {
+            "ci_hi": 1682030.3787500001,
+            "ci_lo": 1453318.8467499998,
+            "iqm": 1572870.6404166666,
+            "mean": 1567674.6127499999,
+            "std": 135740.5875939805
+          }
+        },
+        {
+          "algo": "ppo_lagrangian",
+          "algo_label": "PPO-Lag",
+          "claim_status": "hard_negative_result",
+          "claim_tags": [
+            "hard_negative_result"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.0,
+            "ci_lo": 0.0,
+            "iqm": 0.0,
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_line_tightening_s0_20260506_055100_384692",
+              "seed": 0,
+              "thermal_violation_rate": 0.22041666666666668,
+              "total_operating_cost": 3805769.065
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_line_tightening_s1_20260506_060803_425040",
+              "seed": 1,
+              "thermal_violation_rate": 0.125,
+              "total_operating_cost": 3315347.7675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_line_tightening_s2_20260506_062457_958591",
+              "seed": 2,
+              "thermal_violation_rate": 0.185,
+              "total_operating_cost": 3276220.485
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_line_tightening_s3_20260506_055101_751393",
+              "seed": 3,
+              "thermal_violation_rate": 0.07791666666666666,
+              "total_operating_cost": 4055769.935
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_line_tightening_s4_20260506_060803_320629",
+              "seed": 4,
+              "thermal_violation_rate": 0.1716666666666667,
+              "total_operating_cost": 3070055.575
+            }
+          ],
+          "split": "line_tightening",
+          "thermal_violation_rate": {
+            "ci_hi": 0.19650000000000004,
+            "ci_lo": 0.10874999999999999,
+            "iqm": 0.16055555555555556,
+            "mean": 0.156,
+            "std": 0.04958620439866987
+          },
+          "total_operating_cost": {
+            "ci_hi": 3849859.8710000003,
+            "ci_lo": 3201579.9775,
+            "iqm": 3465779.105833333,
+            "mean": 3504632.5655,
+            "std": 366413.3090745393
+          }
+        }
+      ]
+    },
+    "load_stress": {
+      "any_leaderboard_eligible_safe": false,
+      "n_points": 4,
+      "points": [
+        {
+          "algo": "all_on",
+          "algo_label": "All-On",
+          "claim_status": "conservative_safe_or_near_safe",
+          "claim_tags": [
+            "conservative_safe_or_near_safe"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.0,
+            "ci_lo": 0.0,
+            "iqm": 0.0,
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_load_stress_s0_20260424_021318_622304",
+              "seed": 0,
+              "thermal_violation_rate": 0.07541666666666666,
+              "total_operating_cost": 4676903.675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_load_stress_s1_20260424_031429_984137",
+              "seed": 1,
+              "thermal_violation_rate": 0.07541666666666666,
+              "total_operating_cost": 4676903.675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_load_stress_s2_20260424_031627_076906",
+              "seed": 2,
+              "thermal_violation_rate": 0.07541666666666666,
+              "total_operating_cost": 4676903.675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_load_stress_s3_20260424_031823_428406",
+              "seed": 3,
+              "thermal_violation_rate": 0.07541666666666666,
+              "total_operating_cost": 4676903.675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_all_on_load_stress_s4_20260424_032020_617908",
+              "seed": 4,
+              "thermal_violation_rate": 0.07541666666666666,
+              "total_operating_cost": 4676903.675
+            }
+          ],
+          "split": "load_stress",
+          "thermal_violation_rate": {
+            "ci_hi": 0.07541666666666666,
+            "ci_lo": 0.07541666666666666,
+            "iqm": 0.07541666666666666,
+            "mean": 0.07541666666666666,
+            "std": 0.0
+          },
+          "total_operating_cost": {
+            "ci_hi": 4676903.675,
+            "ci_lo": 4676903.675,
+            "iqm": 4676903.675,
+            "mean": 4676903.675,
+            "std": 0.0
+          }
+        },
+        {
+          "algo": "merit_order",
+          "algo_label": "Merit Order",
+          "claim_status": "cost_efficient_unsafe",
+          "claim_tags": [
+            "cost_efficient_unsafe"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.018333333333333333,
+            "ci_lo": 0.018333333333333333,
+            "iqm": 0.018333333333333333,
+            "mean": 0.018333333333333333,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.018333333333333333,
+              "run_id": "tso_merit_order_load_stress_s0_20260424_021513_176624",
+              "seed": 0,
+              "thermal_violation_rate": 0.16749999999999995,
+              "total_operating_cost": 3305430.905
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.018333333333333333,
+              "run_id": "tso_merit_order_load_stress_s1_20260424_032216_934700",
+              "seed": 1,
+              "thermal_violation_rate": 0.16749999999999995,
+              "total_operating_cost": 3305430.905
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.018333333333333333,
+              "run_id": "tso_merit_order_load_stress_s2_20260424_032416_299616",
+              "seed": 2,
+              "thermal_violation_rate": 0.16749999999999995,
+              "total_operating_cost": 3305430.905
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.018333333333333333,
+              "run_id": "tso_merit_order_load_stress_s3_20260424_032614_737747",
+              "seed": 3,
+              "thermal_violation_rate": 0.16749999999999995,
+              "total_operating_cost": 3305430.905
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.018333333333333333,
+              "run_id": "tso_merit_order_load_stress_s4_20260424_032814_396119",
+              "seed": 4,
+              "thermal_violation_rate": 0.16749999999999995,
+              "total_operating_cost": 3305430.905
+            }
+          ],
+          "split": "load_stress",
+          "thermal_violation_rate": {
+            "ci_hi": 0.16749999999999995,
+            "ci_lo": 0.16749999999999995,
+            "iqm": 0.16749999999999995,
+            "mean": 0.16749999999999995,
+            "std": 0.0
+          },
+          "total_operating_cost": {
+            "ci_hi": 3305430.905,
+            "ci_lo": 3305430.905,
+            "iqm": 3305430.905,
+            "mean": 3305430.905,
+            "std": 0.0
+          }
+        },
+        {
+          "algo": "ppo",
+          "algo_label": "PPO",
+          "claim_status": "cost_efficient_unsafe",
+          "claim_tags": [
+            "cost_efficient_unsafe",
+            "hard_negative_result"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.11358333333333333,
+            "ci_lo": 0.06875,
+            "iqm": 0.08625000000000001,
+            "mean": 0.08941666666666667,
+            "std": 0.024332191754043764
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.05625000000000001,
+              "run_id": "tso_ppo_load_stress_s0_20260424_023520_318587",
+              "seed": 0,
+              "thermal_violation_rate": 0.4258333333333333,
+              "total_operating_cost": 1911541.24
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.08791666666666666,
+              "run_id": "tso_ppo_load_stress_s1_20260424_043735_574066",
+              "seed": 1,
+              "thermal_violation_rate": 0.42666666666666664,
+              "total_operating_cost": 1866893.7375
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.08375,
+              "run_id": "tso_ppo_load_stress_s2_20260424_044200_123359",
+              "seed": 2,
+              "thermal_violation_rate": 0.42125,
+              "total_operating_cost": 1724595.14
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.08708333333333335,
+              "run_id": "tso_ppo_load_stress_s3_20260424_044625_642682",
+              "seed": 3,
+              "thermal_violation_rate": 0.3591666666666666,
+              "total_operating_cost": 1934812.7675
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.13208333333333333,
+              "run_id": "tso_ppo_load_stress_s4_20260424_045052_128177",
+              "seed": 4,
+              "thermal_violation_rate": 0.42625,
+              "total_operating_cost": 1638444.36625
+            }
+          ],
+          "split": "load_stress",
+          "thermal_violation_rate": {
+            "ci_hi": 0.42633333333333334,
+            "ci_lo": 0.3850833333333333,
+            "iqm": 0.42444444444444446,
+            "mean": 0.41183333333333333,
+            "std": 0.026405754844141278
+          },
+          "total_operating_cost": {
+            "ci_hi": 1911920.3505000002,
+            "ci_lo": 1714948.20125,
+            "iqm": 1834343.3724999998,
+            "mean": 1815257.4502499998,
+            "std": 114641.06540484804
+          }
+        },
+        {
+          "algo": "ppo_lagrangian",
+          "algo_label": "PPO-Lag",
+          "claim_status": "hard_negative_result",
+          "claim_tags": [
+            "hard_negative_result"
+          ],
+          "hard_safety_gate_pass": false,
+          "n_seeds": 5,
+          "reserve_shortfall_rate": {
+            "ci_hi": 0.0,
+            "ci_lo": 0.0,
+            "iqm": 0.0,
+            "mean": 0.0,
+            "std": 0.0
+          },
+          "seed_points": [
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_load_stress_s0_20260506_054844_409392",
+              "seed": 0,
+              "thermal_violation_rate": 0.11458333333333334,
+              "total_operating_cost": 4059009.455
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_load_stress_s1_20260506_060545_553839",
+              "seed": 1,
+              "thermal_violation_rate": 0.0925,
+              "total_operating_cost": 3611447.0
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_load_stress_s2_20260506_062244_741166",
+              "seed": 2,
+              "thermal_violation_rate": 0.14083333333333334,
+              "total_operating_cost": 3540644.345
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_load_stress_s3_20260506_054841_554272",
+              "seed": 3,
+              "thermal_violation_rate": 0.02208333333333333,
+              "total_operating_cost": 4342893.615
+            },
+            {
+              "hard_safety_gate_pass": false,
+              "reserve_shortfall_rate": 0.0,
+              "run_id": "tso_ppo_lagrangian_load_stress_s4_20260506_060540_422126",
+              "seed": 4,
+              "thermal_violation_rate": 0.07458333333333333,
+              "total_operating_cost": 3360257.305
+            }
+          ],
+          "split": "load_stress",
+          "thermal_violation_rate": {
+            "ci_hi": 0.12150000000000001,
+            "ci_lo": 0.051083333333333335,
+            "iqm": 0.0938888888888889,
+            "mean": 0.08891666666666667,
+            "std": 0.04009762392517099
+          },
+          "total_operating_cost": {
+            "ci_hi": 4125666.9290000005,
+            "ci_lo": 3482650.06,
+            "iqm": 3737033.6,
+            "mean": 3782850.3440000005,
+            "std": 362364.4709068249
+          }
+        }
+      ]
+    }
+  },
+  "task": "tso"
+}

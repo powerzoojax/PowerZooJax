@@ -1,0 +1,205 @@
+{
+  "run_id": "tso_ppo_lagrangian_train_s1_20260506_055310_550264",
+  "checkpoints": [
+    {
+      "index": 0,
+      "timesteps": 491520,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_000_params.pkl"
+    },
+    {
+      "index": 1,
+      "timesteps": 983040,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_001_params.pkl"
+    },
+    {
+      "index": 2,
+      "timesteps": 1474560,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_002_params.pkl"
+    },
+    {
+      "index": 3,
+      "timesteps": 1966080,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_003_params.pkl"
+    },
+    {
+      "index": 4,
+      "timesteps": 2457600,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_004_params.pkl"
+    },
+    {
+      "index": 5,
+      "timesteps": 2949120,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_005_params.pkl"
+    },
+    {
+      "index": 6,
+      "timesteps": 3440640,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_006_params.pkl"
+    },
+    {
+      "index": 7,
+      "timesteps": 3932160,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_007_params.pkl"
+    },
+    {
+      "index": 8,
+      "timesteps": 4423680,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_008_params.pkl"
+    },
+    {
+      "index": 9,
+      "timesteps": 4915200,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_009_params.pkl"
+    },
+    {
+      "index": 10,
+      "timesteps": 5406720,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_010_params.pkl"
+    },
+    {
+      "index": 11,
+      "timesteps": 5898240,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_011_params.pkl"
+    },
+    {
+      "index": 12,
+      "timesteps": 6389760,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_012_params.pkl"
+    },
+    {
+      "index": 13,
+      "timesteps": 6881280,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_013_params.pkl"
+    },
+    {
+      "index": 14,
+      "timesteps": 7372800,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_014_params.pkl"
+    },
+    {
+      "index": 15,
+      "timesteps": 7864320,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_015_params.pkl"
+    },
+    {
+      "index": 16,
+      "timesteps": 8355840,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_016_params.pkl"
+    },
+    {
+      "index": 17,
+      "timesteps": 8847360,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_017_params.pkl"
+    },
+    {
+      "index": 18,
+      "timesteps": 9338880,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_018_params.pkl"
+    },
+    {
+      "index": 19,
+      "timesteps": 9830400,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_019_params.pkl"
+    },
+    {
+      "index": 20,
+      "timesteps": 10321920,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_020_params.pkl"
+    },
+    {
+      "index": 21,
+      "timesteps": 10813440,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_021_params.pkl"
+    },
+    {
+      "index": 22,
+      "timesteps": 11304960,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_022_params.pkl"
+    },
+    {
+      "index": 23,
+      "timesteps": 11796480,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_023_params.pkl"
+    },
+    {
+      "index": 24,
+      "timesteps": 12288000,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_024_params.pkl"
+    },
+    {
+      "index": 25,
+      "timesteps": 12779520,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_025_params.pkl"
+    },
+    {
+      "index": 26,
+      "timesteps": 13271040,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_026_params.pkl"
+    },
+    {
+      "index": 27,
+      "timesteps": 13762560,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_027_params.pkl"
+    },
+    {
+      "index": 28,
+      "timesteps": 14254080,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_028_params.pkl"
+    },
+    {
+      "index": 29,
+      "timesteps": 14745600,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_029_params.pkl"
+    },
+    {
+      "index": 30,
+      "timesteps": 15237120,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_030_params.pkl"
+    },
+    {
+      "index": 31,
+      "timesteps": 15728640,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_031_params.pkl"
+    },
+    {
+      "index": 32,
+      "timesteps": 16220160,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_032_params.pkl"
+    },
+    {
+      "index": 33,
+      "timesteps": 16711680,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_033_params.pkl"
+    },
+    {
+      "index": 34,
+      "timesteps": 17203200,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_034_params.pkl"
+    },
+    {
+      "index": 35,
+      "timesteps": 17694720,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_035_params.pkl"
+    },
+    {
+      "index": 36,
+      "timesteps": 18186240,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_036_params.pkl"
+    },
+    {
+      "index": 37,
+      "timesteps": 18677760,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_037_params.pkl"
+    },
+    {
+      "index": 38,
+      "timesteps": 19169280,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_038_params.pkl"
+    },
+    {
+      "index": 39,
+      "timesteps": 19992576,
+      "params": "artifacts/tso_ppo_lagrangian_train_s1_20260506_055310_550264_checkpoint_039_params.pkl"
+    }
+  ]
+}

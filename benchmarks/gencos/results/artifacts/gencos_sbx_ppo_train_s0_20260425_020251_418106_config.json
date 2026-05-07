@@ -1,0 +1,66 @@
+{
+  "powerzoo_driver_config": {
+    "algorithm": "SBX_PPO",
+    "total_timesteps": 5000000,
+    "seed": 0,
+    "split": "train",
+    "requested_split": "train",
+    "train_split": "train",
+    "eval_split": "train",
+    "device": "cuda",
+    "n_envs": 0,
+    "access_path": "pettingzoo_il",
+    "rl_paradigm": "multi_agent_competitive",
+    "n_agents": 5,
+    "algo_kwargs": {
+      "learning_rate": 0.0003,
+      "n_steps": 48,
+      "batch_size": 48,
+      "n_epochs": 4,
+      "gamma": 0.995,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "ent_coef": 0.01,
+      "vf_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "policy_kwargs": {
+        "net_arch": [
+          128,
+          128
+        ]
+      }
+    },
+    "aligned_from_train_config": "benchmarks/gencos/configs/train_ppo.yaml",
+    "requested_continuous_action_dist": "gaussian",
+    "policy_class": "MlpPolicy",
+    "effective_continuous_action_dist": "gaussian",
+    "benchmark_train_config": "benchmarks/gencos/configs/train_ppo.yaml"
+  },
+  "powerzoo_task": "gencos_bidding",
+  "jax_task": "gencos",
+  "backend": "sbx",
+  "task_config": null,
+  "train_config_raw": {
+    "algo": "ppo",
+    "total_timesteps": 5000000,
+    "n_steps": 48,
+    "n_epochs": 4,
+    "n_minibatches": 1,
+    "hidden_dims": [
+      128,
+      128
+    ],
+    "gamma": 0.995,
+    "gae_lambda": 0.95,
+    "lr": 0.0003,
+    "clip_eps": 0.2,
+    "ent_coef": 0.01,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "il_self_play_rounds": 4,
+    "per_agent_steps_per_round": 250000,
+    "curve_eval_episodes": 5,
+    "train_split": "train",
+    "notes": "Frozen PPO config for GenCos cross-backend SB3/SBX IL runs. Matches the canonical case5 + GB real-data train split + 5M aggregate timestep budget."
+  }
+}

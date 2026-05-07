@@ -1,0 +1,6 @@
+split: train
+role: train
+gb_split: train
+load_scale: 1.0
+line_rating_scale: 1.0
+notes: Evaluate on training-split GB demand (2025-04-01 to 2025-12-31)

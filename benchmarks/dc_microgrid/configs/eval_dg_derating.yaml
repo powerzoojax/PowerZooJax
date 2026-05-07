@@ -1,0 +1,6 @@
+split: dg_derating
+ood_scenario: dg_derating
+dg_derating_factor: 0.6
+n_eval_episodes: 10
+notes: 'OOD: diesel generator capacity derated to 60% of nominal. Tests fallback when
+  backup power is constrained.'

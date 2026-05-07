@@ -1,0 +1,135 @@
+{
+  "train_config": {
+    "algo": "ippo",
+    "total_timesteps": 5000000,
+    "num_envs": 256,
+    "n_steps": 48,
+    "n_epochs": 4,
+    "hidden_dims": [
+      128,
+      128
+    ],
+    "gamma": 0.995,
+    "gae_lambda": 0.95,
+    "lr": 0.0003,
+    "clip_eps": 0.2,
+    "ent_coef": 0.01,
+    "vf_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "eval_freq": 100000,
+    "data_split": "train",
+    "notes": "GenCos IPPO on case5 MarketMARLEnv, 5 agents bidding via segmented offer curves. algo='ippo' uses self-implemented IPPO; n_minibatches not used."
+  },
+  "task_config": {
+    "task": "gencos",
+    "case": "case5",
+    "n_agents": 5,
+    "n_segments": 3,
+    "max_markup": 2.0,
+    "max_steps": 48,
+    "dt_hours": 0.5,
+    "lmp_history_len": 4,
+    "data_source": "gb",
+    "num_envs": 256,
+    "eval_splits": [
+      "train",
+      "iid",
+      "demand_shift",
+      "renewable_shock"
+    ],
+    "primary_split": "iid",
+    "baseline_set": [
+      "truthful",
+      "uniform_mid",
+      "max_markup"
+    ],
+    "baseline_algos": [
+      "truthful",
+      "uniform_mid",
+      "max_markup"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eval_episodes": 30,
+    "safety_thresholds": {
+      "market_HHI": 1.0
+    },
+    "benchmark_protocol": {
+      "protocol_formalization_pending": false,
+      "current_campaign_seed_budget": 5,
+      "submission_min_seeds": 5,
+      "required_statistics": [
+        "mean",
+        "std",
+        "iqm",
+        "bootstrap_ci95"
+      ],
+      "hypothesis_test": {
+        "name": "paired_primary_split_test",
+        "status": "implemented",
+        "metric": "total_profit",
+        "notes": "GenCos summary reports paired primary-split comparisons between IPPO and canonical market baselines on iid."
+      },
+      "leaderboard": {
+        "split": "iid",
+        "primary_metric": "total_profit",
+        "direction": "higher_is_better",
+        "include_baselines": true
+      }
+    },
+    "target_return_metric_key": "total_profit",
+    "target_metric_direction": "higher_is_better",
+    "cross_backend_eval_metric": {
+      "name": "mean_per_agent_cumulative_profit",
+      "source_metric": "mean_profit_per_agent",
+      "artifact_key": "learning_curve_eval_return",
+      "direction": "higher_is_better",
+      "units": "usd_per_episode_per_agent"
+    },
+    "notes": "Frozen task definition for GenCos benchmark. baseline_set is the canonical key (P0-B rename); baseline_algos kept temporarily for backward-compat readers. seeds/eval_episodes preserve current driver defaults. convergence_threshold_per_split / convergence_provenance / safety_thresholds populated by P0-E experiment_ops.py derive_target after the seed-0 pipeline.",
+    "convergence_threshold_per_split": {
+      "iid": {
+        "target_return": 252876.45505391018,
+        "alpha": 0.8,
+        "status": "frozen",
+        "return_metric_key": "total_profit",
+        "metric_direction": "higher_is_better"
+      },
+      "train": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "demand_shift": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "renewable_shock": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      }
+    },
+    "convergence_provenance": {
+      "reference_run_id": "gencos_ippo_train_s0_20260428_235746_065164",
+      "reference_config_hash": "e272c294840a",
+      "reference_train_split": "train",
+      "target_eval_split": "iid",
+      "reference_backend": "jax_rejax",
+      "reference_device": "gpu",
+      "reference_seed": 0,
+      "reference_total_timesteps": 5000000,
+      "reference_eval_run_id": "gencos_ippo_iid_s0_20260429_000502_835835",
+      "reference_metric_source": "primary_eval_record",
+      "baseline_algo": "truthful",
+      "baseline_iqm": 6933.528060383266,
+      "return_metric_key": "total_profit"
+    }
+  }
+}

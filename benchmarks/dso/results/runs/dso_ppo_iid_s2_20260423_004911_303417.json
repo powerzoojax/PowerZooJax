@@ -1,0 +1,45 @@
+{
+  "task": "dso",
+  "variant": "dso_nflex",
+  "algo": "ppo",
+  "seed": 2,
+  "run_id": "dso_ppo_iid_s2_20260423_004911_303417",
+  "config_hash": "780bd012b993",
+  "status": "completed",
+  "split": "iid",
+  "backend": "jax_rejax",
+  "device": "gpu",
+  "framework_version": "",
+  "metrics": {
+    "total_reward": -0.38749804615974426,
+    "total_loss_mwh": 1.9374902045726776,
+    "mean_loss_mw": 0.08072875805199146,
+    "total_voltage_violations": 0.0,
+    "total_thermal_overloads": 0.0,
+    "total_violations": 0.0,
+    "voltage_violation_count_per_step": 0.0,
+    "thermal_overload_count_per_step": 0.0,
+    "total_curtailed_mwh": 16.909692649841308,
+    "total_shifted_mwh": 10.646388902664185,
+    "total_shift_in_mwh": 10.093030195236206,
+    "served_flex_ratio": 0.9472014307975769,
+    "network_loss_reduction_pct": 34.368483662605286,
+    "peak_shaving_pct": 30.571132093667984
+  },
+  "convergence": {},
+  "walltime_s": 48.5541787147522,
+  "throughput_sps": null,
+  "timestamp": "2026-04-23T00:50:01.921999+00:00",
+  "notes": "eval of dso_ppo_train_s2_20260423_003412_574185",
+  "env_info": {
+    "python": "3.12.3",
+    "jax": "0.7.1",
+    "jaxlib": "0.7.1",
+    "cuda": "unknown",
+    "nvidia_driver": "580.82.07",
+    "nvidia_gpu_name": "NVIDIA RTX 4500 Ada Generation"
+  },
+  "artifacts": {
+    "per_episode": "artifacts/dso_ppo_iid_s2_20260423_004911_303417_per_episode.json"
+  }
+}

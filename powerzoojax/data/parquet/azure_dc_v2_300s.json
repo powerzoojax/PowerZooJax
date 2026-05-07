@@ -1,0 +1,47 @@
+{
+  "source_file": "azure_dc_v2_300s.parquet",
+  "parquet_file": "azure_dc_v2_300s.parquet",
+  "source_url": "https://github.com/Azure/AzurePublicDataset/blob/master/AzurePublicDatasetV2.md",
+  "source_organization": "Microsoft Corporation",
+  "generated_at": "2026-03-25T18:32:50.166873",
+  "shape": {
+    "rows": 8640,
+    "columns": 3
+  },
+  "columns": [
+    "time_stamp",
+    "cpu_usage",
+    "assigned_mem"
+  ],
+  "dtypes": {
+    "time_stamp": "int64",
+    "cpu_usage": "float64",
+    "assigned_mem": "float64"
+  },
+  "numeric_statistics": {
+    "time_stamp": {
+      "count": 8640,
+      "mean": 4319.5,
+      "std": 2494.297496290288,
+      "min": 0.0,
+      "max": 8639.0,
+      "missing": 0
+    },
+    "cpu_usage": {
+      "count": 8640,
+      "mean": 6184580.55930899,
+      "std": 429753.20335834904,
+      "min": 5188680.089725921,
+      "max": 7812353.006218912,
+      "missing": 0
+    },
+    "assigned_mem": {
+      "count": 8640,
+      "mean": 1987180.0532407407,
+      "std": 45651.993997762016,
+      "min": 1906372.0,
+      "max": 2191468.0,
+      "missing": 0
+    }
+  }
+}

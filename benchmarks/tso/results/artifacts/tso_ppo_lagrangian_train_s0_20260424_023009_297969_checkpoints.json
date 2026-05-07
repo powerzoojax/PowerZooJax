@@ -1,0 +1,165 @@
+{
+  "run_id": "tso_ppo_lagrangian_train_s0_20260424_023009_297969",
+  "checkpoints": [
+    {
+      "index": 0,
+      "timesteps": 98304
+    },
+    {
+      "index": 1,
+      "timesteps": 196608
+    },
+    {
+      "index": 2,
+      "timesteps": 294912
+    },
+    {
+      "index": 3,
+      "timesteps": 393216
+    },
+    {
+      "index": 4,
+      "timesteps": 491520
+    },
+    {
+      "index": 5,
+      "timesteps": 589824
+    },
+    {
+      "index": 6,
+      "timesteps": 688128
+    },
+    {
+      "index": 7,
+      "timesteps": 786432
+    },
+    {
+      "index": 8,
+      "timesteps": 884736
+    },
+    {
+      "index": 9,
+      "timesteps": 983040
+    },
+    {
+      "index": 10,
+      "timesteps": 1081344
+    },
+    {
+      "index": 11,
+      "timesteps": 1179648
+    },
+    {
+      "index": 12,
+      "timesteps": 1277952
+    },
+    {
+      "index": 13,
+      "timesteps": 1376256
+    },
+    {
+      "index": 14,
+      "timesteps": 1474560
+    },
+    {
+      "index": 15,
+      "timesteps": 1572864
+    },
+    {
+      "index": 16,
+      "timesteps": 1671168
+    },
+    {
+      "index": 17,
+      "timesteps": 1769472
+    },
+    {
+      "index": 18,
+      "timesteps": 1867776
+    },
+    {
+      "index": 19,
+      "timesteps": 1966080
+    },
+    {
+      "index": 20,
+      "timesteps": 2064384
+    },
+    {
+      "index": 21,
+      "timesteps": 2162688
+    },
+    {
+      "index": 22,
+      "timesteps": 2260992
+    },
+    {
+      "index": 23,
+      "timesteps": 2359296
+    },
+    {
+      "index": 24,
+      "timesteps": 2457600
+    },
+    {
+      "index": 25,
+      "timesteps": 2555904
+    },
+    {
+      "index": 26,
+      "timesteps": 2654208
+    },
+    {
+      "index": 27,
+      "timesteps": 2752512
+    },
+    {
+      "index": 28,
+      "timesteps": 2850816
+    },
+    {
+      "index": 29,
+      "timesteps": 2949120
+    },
+    {
+      "index": 30,
+      "timesteps": 3047424
+    },
+    {
+      "index": 31,
+      "timesteps": 3145728
+    },
+    {
+      "index": 32,
+      "timesteps": 3244032
+    },
+    {
+      "index": 33,
+      "timesteps": 3342336
+    },
+    {
+      "index": 34,
+      "timesteps": 3440640
+    },
+    {
+      "index": 35,
+      "timesteps": 3538944
+    },
+    {
+      "index": 36,
+      "timesteps": 3637248
+    },
+    {
+      "index": 37,
+      "timesteps": 3735552
+    },
+    {
+      "index": 38,
+      "timesteps": 3833856
+    },
+    {
+      "index": 39,
+      "timesteps": 3999744
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+# TSO PPO-Lagrangian canonical safe-RL config.
+algo: ppo_lagrangian
+total_timesteps: 20000000
+num_envs: 256
+n_steps: 48
+n_minibatches: 16
+hidden_dims: [256, 256]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 5.0e-05
+max_grad_norm: 0.3
+ent_coef: 0.005
+vf_coef: 0.5
+clip_eps: 0.2
+normalize_observations: true
+wrapper: safe
+cost_thresholds: [0.0, 0.0]
+lambda_lr: 0.005
+cost_scale: 10.0
+log_lambda_max: 3.0
+eval_episodes: 8
+record_eval_wall_time: true
+n_checkpoints: 40
+notes: "TSO PPO-Lagrangian canonical config: n256, 20M timesteps (matched to PPO baseline), n_steps=48, n_minibatches=16, zero reserve/thermal thresholds. CUDA required; CPU is capped to ~32 envs which materially changes batch size and optimization regime."

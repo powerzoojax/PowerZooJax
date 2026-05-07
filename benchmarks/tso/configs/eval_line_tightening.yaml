@@ -1,0 +1,6 @@
+split: line_tightening
+role: iid
+gb_split: iid
+load_scale: 1.0
+line_rating_scale: 0.85
+notes: 'OOD: line thermal ratings reduced to 85% (congestion stress test)'

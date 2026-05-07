@@ -1,0 +1,20 @@
+# TSO Sauté PPO canonical safe-ish baseline.
+algo: saute_ppo
+total_timesteps: 4000000
+num_envs: 256
+n_steps: 24
+n_epochs: 4
+n_minibatches: 8
+eval_freq: 100000
+eval_episodes: 8
+record_eval_wall_time: true
+hidden_dims: [256, 256]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0003
+normalize_observations: true
+wrapper: saute
+cost_thresholds: [5.0, 100.0]
+saute_unsafe_reward: -30.0
+saute_use_reward_shaping: true
+notes: "TSO Sauté PPO canonical config: n256, 4M timesteps, n_steps=24, n_minibatches=8, thermal budget=5, reserve budget=100."

@@ -1,0 +1,149 @@
+{
+  "task": "gencos",
+  "split": "iid",
+  "seed": 0,
+  "run_id": "gencos_ippo_train_s0_20260430_002150_849416",
+  "episode_start_idx": 1716,
+  "all_acceptance_checks_passed": true,
+  "acceptance": {
+    "sced_convergence_rate_is_1": true,
+    "unsafe_steps_zero": true,
+    "n_violations_zero": true,
+    "ramp_binding_rate_gt_0_05": true,
+    "profit_order_truthful_lt_ippo_lt_max": true,
+    "market_hhi_lt_1": true
+  },
+  "profit_order_reference": {
+    "truthful": 1163.54248046875,
+    "ippo": 259381.25390625,
+    "max_markup": 498318.029296875
+  },
+  "figures": {
+    "episode_mechanism": "<repo-root>/benchmarks/gencos/results/figures/phase1_episode_mechanism.pdf",
+    "policy_compare": "<repo-root>/benchmarks/gencos/results/figures/phase1_policy_compare.pdf",
+    "training_diagnostics": "<repo-root>/benchmarks/gencos/results/figures/phase1_training_diagnostics.pdf",
+    "iid_metric_distributions": "<repo-root>/benchmarks/gencos/results/figures/phase1_iid_metric_distributions.pdf"
+  },
+  "policies": {
+    "truthful": {
+      "total_profit": 1163.54248046875,
+      "total_profit_per_agent": {
+        "genco_0": 1281.955322265625,
+        "genco_1": 3401.39794921875,
+        "genco_2": -4327.13427734375,
+        "genco_3": -3321.292724609375,
+        "genco_4": 4128.6162109375
+      },
+      "avg_dispatch_share_per_agent": {
+        "genco_0": 0.029975472018122673,
+        "genco_1": 0.11256680637598038,
+        "genco_2": 0.10044440627098083,
+        "genco_3": 0.022222375497221947,
+        "genco_4": 0.7347908616065979
+      },
+      "mean_action_per_agent": {
+        "genco_0": -1.0,
+        "genco_1": -1.0,
+        "genco_2": -1.0,
+        "genco_3": -1.0,
+        "genco_4": -1.0
+      },
+      "mean_lmp": 18.064407348632812,
+      "hhi_mean": 0.6002886891365051,
+      "ramp_binding_rate_mean": 0.5916666761040688,
+      "unsafe_steps": 0,
+      "n_violations_sum": 0.0,
+      "sced_convergence_rate": 1.0
+    },
+    "uniform_mid": {
+      "total_profit": 250791.42578125,
+      "total_profit_per_agent": {
+        "genco_0": 11196.91796875,
+        "genco_1": 42949.14453125,
+        "genco_2": 51410.6640625,
+        "genco_3": 13219.55859375,
+        "genco_4": 132015.140625
+      },
+      "avg_dispatch_share_per_agent": {
+        "genco_0": 0.029975473880767822,
+        "genco_1": 0.11235469579696655,
+        "genco_2": 0.094674251973629,
+        "genco_3": 0.02612592838704586,
+        "genco_4": 0.7368696331977844
+      },
+      "mean_action_per_agent": {
+        "genco_0": 0.0,
+        "genco_1": 0.0,
+        "genco_2": 0.0,
+        "genco_3": 0.0,
+        "genco_4": 0.0
+      },
+      "mean_lmp": 36.29790115356445,
+      "hhi_mean": 0.6014102101325989,
+      "ramp_binding_rate_mean": 0.5916666764145097,
+      "unsafe_steps": 0,
+      "n_violations_sum": 0.0,
+      "sced_convergence_rate": 1.0
+    },
+    "max_markup": {
+      "total_profit": 498318.029296875,
+      "total_profit_per_agent": {
+        "genco_0": 20866.880859375,
+        "genco_1": 81547.90625,
+        "genco_2": 102942.421875,
+        "genco_3": 33632.5859375,
+        "genco_4": 259328.234375
+      },
+      "avg_dispatch_share_per_agent": {
+        "genco_0": 0.02979273535311222,
+        "genco_1": 0.11166006326675415,
+        "genco_2": 0.09179427474737167,
+        "genco_3": 0.028254037722945213,
+        "genco_4": 0.738498866558075
+      },
+      "mean_action_per_agent": {
+        "genco_0": 1.0,
+        "genco_1": 1.0,
+        "genco_2": 1.0,
+        "genco_3": 1.0,
+        "genco_4": 1.0
+      },
+      "mean_lmp": 54.38814163208008,
+      "hhi_mean": 0.6022856831550598,
+      "ramp_binding_rate_mean": 0.5750000088786086,
+      "unsafe_steps": 0,
+      "n_violations_sum": 0.0,
+      "sced_convergence_rate": 1.0
+    },
+    "ippo": {
+      "total_profit": 259381.25390625,
+      "total_profit_per_agent": {
+        "genco_0": 10063.115234375,
+        "genco_1": 35487.46875,
+        "genco_2": 39677.6796875,
+        "genco_3": 11582.537109375,
+        "genco_4": 162570.453125
+      },
+      "avg_dispatch_share_per_agent": {
+        "genco_0": 0.029605353251099586,
+        "genco_1": 0.1026659831404686,
+        "genco_2": 0.09973505884408951,
+        "genco_3": 0.02768017165362835,
+        "genco_4": 0.7403134703636169
+      },
+      "mean_action_per_agent": {
+        "genco_0": -0.03720282965029279,
+        "genco_1": -0.037161666667088866,
+        "genco_2": -0.03718645994861921,
+        "genco_3": -0.03710917880137762,
+        "genco_4": -0.03722571643690268
+      },
+      "mean_lmp": 33.74906539916992,
+      "hhi_mean": 0.594374418258667,
+      "ramp_binding_rate_mean": 0.37083333916962147,
+      "unsafe_steps": 0,
+      "n_violations_sum": 0.0,
+      "sced_convergence_rate": 1.0
+    }
+  }
+}

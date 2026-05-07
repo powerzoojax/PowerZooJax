@@ -1,0 +1,53 @@
+{
+  "task": "ders",
+  "variant": "ders_cross_backend_pettingzoo_il_eval",
+  "algo": "ppo",
+  "seed": 0,
+  "run_id": "ders_ppo_pv_penetration_shift_s0_20260424_161849_173631",
+  "config_hash": "d35bc939fc1b",
+  "status": "completed",
+  "split": "pv_penetration_shift",
+  "backend": "sb3",
+  "device": "cuda",
+  "framework_version": "sb3-2.8.0",
+  "metrics": {
+    "cost_reduction_pct": 0.0,
+    "episode_idx": 14.5,
+    "episode_reward": -0.8953945419097082,
+    "episode_start": 1261.5333333333333,
+    "loss_reduction_pct": 9.450198925294774,
+    "max_overvoltage_dev": 0.0,
+    "max_undervoltage_dev": 0.0,
+    "mean_p_loss_mw": 0.18654052956452258,
+    "mean_v_max": 1.0,
+    "mean_v_min": 0.9681592482351464,
+    "overvoltage_steps": 0.0,
+    "total_cost": 0.0,
+    "total_reward": -0.8953945419097082,
+    "undervoltage_steps": 0.0,
+    "voltage_safety_rate": 1.0,
+    "voltage_violation_rate": 0.0,
+    "voltage_violation_steps": 0.0,
+    "final_return": -0.8953945419097082
+  },
+  "convergence": {},
+  "walltime_s": 0.0,
+  "throughput_sps": null,
+  "timestamp": "2026-04-24T16:18:49.245946+00:00",
+  "notes": "cross-backend eval of ders_ppo_train_s0_20260423_233936_171932 on split=pv_penetration_shift",
+  "env_info": {
+    "python": "3.12.3",
+    "jax": "0.7.1",
+    "jaxlib": "0.7.1",
+    "jax_backend": "gpu",
+    "jax_device_kind": "NVIDIA RTX 4500 Ada Generation",
+    "cuda": "NVIDIA RTX 4500 Ada Generation",
+    "nvidia_driver": "580.82.07",
+    "nvidia_gpu_name": "NVIDIA RTX 4500 Ada Generation"
+  },
+  "labels": {},
+  "artifacts": {
+    "per_episode": "artifacts/ders_ppo_pv_penetration_shift_s0_20260424_161849_173631_per_episode.json",
+    "action_stats": "artifacts/ders_ppo_pv_penetration_shift_s0_20260424_161849_173631_action_stats.json"
+  }
+}

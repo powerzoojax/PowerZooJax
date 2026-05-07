@@ -1,0 +1,26 @@
+{
+  "convergence_threshold_per_split": {
+    "iid": {
+      "target_return": -0.42456985485553744,
+      "alpha": 0.8,
+      "status": "frozen",
+      "return_metric_key": "total_reward",
+      "metric_direction": "higher_is_better"
+    }
+  },
+  "convergence_provenance": {
+    "reference_run_id": "dso_saute_ppo_train_s0_20260423_003941_272421",
+    "reference_config_hash": "f6363e77e9b2",
+    "reference_train_split": "train",
+    "target_eval_split": "iid",
+    "reference_backend": "jax_rejax",
+    "reference_device": "gpu",
+    "reference_seed": 0,
+    "reference_total_timesteps": 3000000,
+    "reference_eval_run_id": "dso_saute_ppo_iid_s0_20260423_005332_770309",
+    "reference_metric_source": "primary_eval_record",
+    "baseline_algo": "no_control",
+    "baseline_iqm": -0.5781745392084122,
+    "return_metric_key": "total_reward"
+  }
+}

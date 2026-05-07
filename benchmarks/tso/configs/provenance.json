@@ -1,0 +1,41 @@
+{
+  "convergence_threshold_per_split": {
+    "iid": {
+      "target_return": 3783052.5,
+      "alpha": 0.8,
+      "status": "frozen",
+      "return_metric_key": "total_operating_cost",
+      "metric_direction": "lower_is_better"
+    },
+    "train": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    },
+    "load_stress": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    },
+    "line_tightening": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    }
+  },
+  "convergence_provenance": {
+    "reference_run_id": "tso_ppo_lagrangian_train_s0_20260424_023009_297969",
+    "reference_config_hash": "4c219a681022",
+    "reference_train_split": "train",
+    "target_eval_split": "iid",
+    "reference_backend": "jax_rejax",
+    "reference_device": "gpu",
+    "reference_seed": 0,
+    "reference_total_timesteps": 4000000,
+    "reference_eval_run_id": "tso_ppo_lagrangian_iid_s0_20260424_023838_511679",
+    "reference_metric_source": "primary_eval_record",
+    "baseline_algo": "all_on",
+    "baseline_iqm": 4336064.64,
+    "return_metric_key": "total_operating_cost"
+  }
+}

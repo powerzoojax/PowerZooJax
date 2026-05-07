@@ -1,0 +1,877 @@
+{
+  "reference_date": "2026-04-27",
+  "summary_source": "benchmarks/dc_microgrid/results/summary/latest.json",
+  "paper_ready": true,
+  "fairness_audit": {
+    "reference_cell": "jax_gpu_ppo",
+    "reference_contract": {
+      "total_timesteps": 1000000,
+      "n_envs": 64,
+      "train_split": "train",
+      "eval_split": "iid",
+      "requested_continuous_action_dist": "beta",
+      "effective_continuous_action_dist": "beta",
+      "policy_class": "jax_native_beta_ppo",
+      "data_source": "google",
+      "case_overrides": {
+        "dg_p_max_mw": 1.2,
+        "pv_p_max_mw": 0.8,
+        "grid_import_p_max_mw": 1.5,
+        "grid_price_ref_per_mwh": 150.0,
+        "grid_carbon_kg_per_kwh": 0.18,
+        "battery_soc_min": 0.15,
+        "battery_soc_max": 0.9,
+        "battery_soc_init": 0.55,
+        "terminal_soc_target": 0.55,
+        "terminal_soc_penalty": 20000.0,
+        "w_cost": 0.2,
+        "w_carbon": 0.1
+      },
+      "dg_autobalance": true,
+      "reward_shaping_weights": {
+        "sla": 50.0,
+        "overtemp": 30.0,
+        "power_deficit": 200.0,
+        "power_spill": 100.0,
+        "dispatch_tracking": 40.0
+      },
+      "eval_episodes": 10
+    },
+    "all_cells_match_total_timesteps": true,
+    "all_cells_match_num_envs": true,
+    "all_cells_train_on_train_split": true,
+    "all_cells_eval_on_iid": true,
+    "all_cells_match_data_source": true,
+    "all_cells_match_case_overrides": true,
+    "all_cells_match_dg_autobalance": true,
+    "all_cells_match_reward_shaping": true,
+    "all_cells_match_eval_episodes": true,
+    "all_python_cells_beta_actor_aligned": true,
+    "notes": [
+      "JAX rows store curves on the train run and per-episode metrics on the eval run.",
+      "PowerZoo driver rows store curves and per-episode metrics on the IID eval record itself.",
+      "JAX curve arrays have 21 points because they include step 0; driver rows have 20 checkpoint points."
+    ]
+  },
+  "phase2_cells": {
+    "jax_gpu_ppo": {
+      "cell": {
+        "backend": "jax_rejax",
+        "device": "gpu",
+        "algo": "ppo"
+      },
+      "summary_metrics": {
+        "episode_reward_mean": -3056.8761897304657,
+        "episode_reward_std": 134.71749884111964,
+        "n_seeds": 5,
+        "feasibility_rate_mean": 0.9999305555555555,
+        "sla_violation_rate_mean": 6.944444774287856e-08,
+        "mean_cost_power_balance_mean": 6.2821096803923464e-06
+      },
+      "timing": {
+        "source": "train",
+        "walltime_mean_s": 61.91597318649292,
+        "walltime_std_s": 1.9524861634882955,
+        "throughput_mean_sps": 16166.891916177465,
+        "throughput_std_sps": 506.52226646847237
+      },
+      "contract_unique_values": {
+        "total_timesteps": [
+          "1000000"
+        ],
+        "n_envs": [
+          "64"
+        ],
+        "train_split": [
+          "\"train\""
+        ],
+        "eval_split": [
+          "\"iid\""
+        ],
+        "requested_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "effective_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "policy_class": [
+          "\"jax_native_beta_ppo\""
+        ],
+        "data_source": [
+          "\"google\""
+        ],
+        "case_overrides": [
+          "{\"battery_soc_init\": 0.55, \"battery_soc_max\": 0.9, \"battery_soc_min\": 0.15, \"dg_p_max_mw\": 1.2, \"grid_carbon_kg_per_kwh\": 0.18, \"grid_import_p_max_mw\": 1.5, \"grid_price_ref_per_mwh\": 150.0, \"pv_p_max_mw\": 0.8, \"terminal_soc_penalty\": 20000.0, \"terminal_soc_target\": 0.55, \"w_carbon\": 0.1, \"w_cost\": 0.2}"
+        ],
+        "dg_autobalance": [
+          "true"
+        ],
+        "reward_shaping_weights": [
+          "{\"dispatch_tracking\": 40.0, \"overtemp\": 30.0, \"power_deficit\": 200.0, \"power_spill\": 100.0, \"sla\": 50.0}"
+        ],
+        "eval_episodes": [
+          "10"
+        ]
+      },
+      "artifact_audit": {
+        "all_config_exists": true,
+        "all_timesteps_exists": true,
+        "all_eval_curves_exist": true,
+        "all_train_curves_exist": false,
+        "all_per_episode_exists": true,
+        "all_trajectory_exists": false,
+        "timesteps_points_unique": [
+          21
+        ],
+        "learning_curve_eval_return_points_unique": [
+          21
+        ],
+        "learning_curve_eval_walltimes_points_unique": [
+          21
+        ],
+        "learning_curve_train_return_points_unique": [],
+        "curve_logging_note": "JAX train rows include a step-0 point (21 points total); PowerZoo driver rows log 20 checkpoints over 1M steps."
+      },
+      "episode_reward_pairs": [
+        -3218.3769142627716,
+        -2675.9306824207306,
+        -2824.391595840454,
+        -3558.217052936554,
+        -3172.9270989894867,
+        -2562.234238386154,
+        -2160.496879220009,
+        -1712.770354270935,
+        -3567.5001208782196,
+        -2874.0228691101074,
+        -2714.035139799118,
+        -3399.0940914154053,
+        -3277.454245686531,
+        -4523.3547686338425,
+        -4473.505813598633,
+        -3117.875450372696,
+        -1711.6289175152779,
+        -1708.4084829688072,
+        -1938.5058025121689,
+        -3613.9649555683136,
+        -4228.908373594284,
+        -3893.9335243701935,
+        -3039.15390253067,
+        -3125.5567004829645,
+        -3034.8864617347717,
+        -3141.9216923713684,
+        -3919.1802661418915,
+        -2154.1296017169952,
+        -1671.0549410581589,
+        -3742.2897658348083,
+        -3307.075600385666,
+        -1982.5157556533813,
+        -2628.0872180461884,
+        -2863.494947910309,
+        -2570.5061881542206,
+        -2486.466075897217,
+        -3978.6669058799744,
+        -4069.7123250961304,
+        -5320.759128570557,
+        -2752.631889462471,
+        -3502.2733767032623,
+        -2676.4889528751373,
+        -2385.4155769348145,
+        -1609.9720879793167,
+        -1693.001005411148,
+        -2696.347654104233,
+        -3943.9092919826508,
+        -4090.8792476654053,
+        -5749.441992998123,
+        -1780.453560590744
+      ],
+      "selected_run_ids": {
+        "eval": {
+          "0": "dc_microgrid_ppo_iid_s0_20260427_033223_230991",
+          "1": "dc_microgrid_ppo_iid_s1_20260427_033647_666017",
+          "2": "dc_microgrid_ppo_iid_s2_20260427_034113_599509",
+          "3": "dc_microgrid_ppo_iid_s3_20260427_034539_449915",
+          "4": "dc_microgrid_ppo_iid_s4_20260427_035005_125493"
+        },
+        "curve_source": {
+          "0": "dc_microgrid_ppo_train_s0_20260427_032911_194831",
+          "1": "dc_microgrid_ppo_train_s1_20260427_033020_938522",
+          "2": "dc_microgrid_ppo_train_s2_20260427_032709_385867",
+          "3": "dc_microgrid_ppo_train_s3_20260427_032916_563959",
+          "4": "dc_microgrid_ppo_train_s4_20260427_033026_501125"
+        }
+      },
+      "numerical_tail_audit": {
+        "applicable": false
+      }
+    },
+    "jax_cpu_ppo": {
+      "cell": {
+        "backend": "jax_rejax",
+        "device": "cpu",
+        "algo": "ppo"
+      },
+      "summary_metrics": {
+        "episode_reward_mean": -3059.1233822798727,
+        "episode_reward_std": 129.63459692561113,
+        "n_seeds": 5,
+        "feasibility_rate_mean": 0.9998611111111112,
+        "sla_violation_rate_mean": 1.3888889548575713e-07,
+        "mean_cost_power_balance_mean": 0.0
+      },
+      "timing": {
+        "source": "train",
+        "walltime_mean_s": 96.89281129837036,
+        "walltime_std_s": 0.39735706439654866,
+        "throughput_mean_sps": 10320.856370584705,
+        "throughput_std_sps": 42.251106818514415
+      },
+      "contract_unique_values": {
+        "total_timesteps": [
+          "1000000"
+        ],
+        "n_envs": [
+          "64"
+        ],
+        "train_split": [
+          "\"train\""
+        ],
+        "eval_split": [
+          "\"iid\""
+        ],
+        "requested_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "effective_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "policy_class": [
+          "\"jax_native_beta_ppo\""
+        ],
+        "data_source": [
+          "\"google\""
+        ],
+        "case_overrides": [
+          "{\"battery_soc_init\": 0.55, \"battery_soc_max\": 0.9, \"battery_soc_min\": 0.15, \"dg_p_max_mw\": 1.2, \"grid_carbon_kg_per_kwh\": 0.18, \"grid_import_p_max_mw\": 1.5, \"grid_price_ref_per_mwh\": 150.0, \"pv_p_max_mw\": 0.8, \"terminal_soc_penalty\": 20000.0, \"terminal_soc_target\": 0.55, \"w_carbon\": 0.1, \"w_cost\": 0.2}"
+        ],
+        "dg_autobalance": [
+          "true"
+        ],
+        "reward_shaping_weights": [
+          "{\"dispatch_tracking\": 40.0, \"overtemp\": 30.0, \"power_deficit\": 200.0, \"power_spill\": 100.0, \"sla\": 50.0}"
+        ],
+        "eval_episodes": [
+          "10"
+        ]
+      },
+      "artifact_audit": {
+        "all_config_exists": true,
+        "all_timesteps_exists": true,
+        "all_eval_curves_exist": true,
+        "all_train_curves_exist": false,
+        "all_per_episode_exists": true,
+        "all_trajectory_exists": false,
+        "timesteps_points_unique": [
+          21
+        ],
+        "learning_curve_eval_return_points_unique": [
+          21
+        ],
+        "learning_curve_eval_walltimes_points_unique": [
+          21
+        ],
+        "learning_curve_train_return_points_unique": [],
+        "curve_logging_note": "JAX train rows include a step-0 point (21 points total); PowerZoo driver rows log 20 checkpoints over 1M steps."
+      },
+      "episode_reward_pairs": [
+        -3237.3718481063843,
+        -2675.054609298706,
+        -2818.2543139457703,
+        -3531.8668224811554,
+        -3280.5314996242523,
+        -2560.5756471157074,
+        -2169.23408305645,
+        -1748.9898036718369,
+        -3584.0678277015686,
+        -2861.262363910675,
+        -2714.7606436014175,
+        -3399.435655593872,
+        -3278.469951033592,
+        -4527.375507354736,
+        -4474.033102273941,
+        -3119.824729323387,
+        -1711.9129257202148,
+        -1709.3466271162033,
+        -1939.6761541366577,
+        -3614.873824596405,
+        -4179.902903556824,
+        -3999.057954788208,
+        -3075.7497502565384,
+        -3076.7133330106735,
+        -2980.5136210918427,
+        -3116.6785287857056,
+        -3930.095232486725,
+        -2130.8149775266647,
+        -1672.3068227767944,
+        -3750.389993906021,
+        -3298.857540369034,
+        -1997.4212787151337,
+        -2624.0831199884415,
+        -2876.549869298935,
+        -2568.756397008896,
+        -2490.8079392910004,
+        -3977.145421743393,
+        -4069.1353421211243,
+        -5314.00719332695,
+        -2755.902064204216,
+        -3504.9767105579376,
+        -2669.318405866623,
+        -2385.002986550331,
+        -1607.9643225073814,
+        -1694.8241274356842,
+        -2695.973963677883,
+        -3943.74294257164,
+        -4091.913796901703,
+        -5748.968149185181,
+        -1771.676484823227
+      ],
+      "selected_run_ids": {
+        "eval": {
+          "0": "dc_microgrid_ppo_iid_s0_20260427_125841_527871",
+          "1": "dc_microgrid_ppo_iid_s1_20260427_130046_773814",
+          "2": "dc_microgrid_ppo_iid_s2_20260427_130251_101258",
+          "3": "dc_microgrid_ppo_iid_s3_20260427_130455_395521",
+          "4": "dc_microgrid_ppo_iid_s4_20260427_130700_415091"
+        },
+        "curve_source": {
+          "0": "dc_microgrid_ppo_train_s0_20260427_125659_816523",
+          "1": "dc_microgrid_ppo_train_s1_20260427_125904_055230",
+          "2": "dc_microgrid_ppo_train_s2_20260427_130109_291397",
+          "3": "dc_microgrid_ppo_train_s3_20260427_130313_736798",
+          "4": "dc_microgrid_ppo_train_s4_20260427_130517_932167"
+        }
+      },
+      "numerical_tail_audit": {
+        "applicable": false
+      }
+    },
+    "sb3_cuda_ppo": {
+      "cell": {
+        "backend": "sb3",
+        "device": "cuda",
+        "algo": "ppo"
+      },
+      "summary_metrics": {
+        "episode_reward_mean": -1238.4336737309186,
+        "episode_reward_std": 417.6656861187475,
+        "n_seeds": 5,
+        "feasibility_rate_mean": 0.004097222222222223,
+        "sla_violation_rate_mean": 3.4722222222222224e-07,
+        "mean_cost_power_balance_mean": 0.0006655791129504451
+      },
+      "timing": {
+        "source": "eval",
+        "walltime_mean_s": 257.0842365161865,
+        "walltime_std_s": 2.461645435145911,
+        "throughput_mean_sps": 3890.1360994148404,
+        "throughput_std_sps": 37.64605091672056
+      },
+      "contract_unique_values": {
+        "total_timesteps": [
+          "1000000"
+        ],
+        "n_envs": [
+          "64"
+        ],
+        "train_split": [
+          "\"train\""
+        ],
+        "eval_split": [
+          "\"iid\""
+        ],
+        "requested_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "effective_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "policy_class": [
+          "\"SB3BoundedBetaPolicy\""
+        ],
+        "data_source": [
+          "\"google\""
+        ],
+        "case_overrides": [
+          "{\"battery_soc_init\": 0.55, \"battery_soc_max\": 0.9, \"battery_soc_min\": 0.15, \"dg_p_max_mw\": 1.2, \"grid_carbon_kg_per_kwh\": 0.18, \"grid_import_p_max_mw\": 1.5, \"grid_price_ref_per_mwh\": 150.0, \"pv_p_max_mw\": 0.8, \"terminal_soc_penalty\": 20000.0, \"terminal_soc_target\": 0.55, \"w_carbon\": 0.1, \"w_cost\": 0.2}"
+        ],
+        "dg_autobalance": [
+          "true"
+        ],
+        "reward_shaping_weights": [
+          "{\"dispatch_tracking\": 40.0, \"overtemp\": 30.0, \"power_deficit\": 200.0, \"power_spill\": 100.0, \"sla\": 50.0}"
+        ],
+        "eval_episodes": [
+          "10"
+        ]
+      },
+      "artifact_audit": {
+        "all_config_exists": true,
+        "all_timesteps_exists": true,
+        "all_eval_curves_exist": true,
+        "all_train_curves_exist": true,
+        "all_per_episode_exists": true,
+        "all_trajectory_exists": true,
+        "timesteps_points_unique": [
+          20
+        ],
+        "learning_curve_eval_return_points_unique": [
+          20
+        ],
+        "learning_curve_eval_walltimes_points_unique": [
+          20
+        ],
+        "learning_curve_train_return_points_unique": [
+          20
+        ],
+        "curve_logging_note": "PowerZoo driver rows log 20 checkpoints over 1M steps."
+      },
+      "episode_reward_pairs": [
+        -598.1202194146063,
+        -626.1889058024591,
+        -724.6875758161809,
+        -3161.5255379747414,
+        -2316.8476061916235,
+        -722.8077778268615,
+        -608.7053911573284,
+        -599.0499781229363,
+        -268.1421017269474,
+        -687.4479063088093,
+        -643.4711899481274,
+        -654.7707993589391,
+        -724.1395507662426,
+        -3270.53539558689,
+        -2313.406094562525,
+        -723.0005032515461,
+        -639.6466363076447,
+        -640.5689573454789,
+        -376.3483669648017,
+        -688.2366495383166,
+        -633.854508434013,
+        -646.2849627616922,
+        -723.2636683239717,
+        -3228.980572582388,
+        -2314.941845608852,
+        -722.2467206855994,
+        -635.2875485169436,
+        -631.2529436371075,
+        -350.9471506937814,
+        -690.1229727628543,
+        -296.0133434178426,
+        -439.08107133180357,
+        -665.3916951075543,
+        -3312.9496209432345,
+        -2313.3658596722657,
+        -629.5843123985039,
+        -448.46425450422754,
+        -262.68595561372996,
+        -592.6483499497713,
+        -689.7013155469084,
+        -2195.6496029735276,
+        -1608.1352983428142,
+        -1335.4901477856247,
+        -764.5104790639842,
+        -893.0977067043816,
+        -1704.2584403837618,
+        -3470.4248523456836,
+        -2937.4144454042535,
+        -4511.420306486384,
+        -1286.5665905894607
+      ],
+      "selected_run_ids": {
+        "eval": {
+          "0": "dc_microgrid_ppo_iid_s0_20260427_122502_444929",
+          "1": "dc_microgrid_ppo_iid_s1_20260427_123148_396145",
+          "2": "dc_microgrid_ppo_iid_s2_20260427_123836_277466",
+          "3": "dc_microgrid_ppo_iid_s3_20260427_124528_138227",
+          "4": "dc_microgrid_ppo_iid_s4_20260427_125219_722424"
+        },
+        "curve_source": {
+          "0": "dc_microgrid_ppo_iid_s0_20260427_122502_444929",
+          "1": "dc_microgrid_ppo_iid_s1_20260427_123148_396145",
+          "2": "dc_microgrid_ppo_iid_s2_20260427_123836_277466",
+          "3": "dc_microgrid_ppo_iid_s3_20260427_124528_138227",
+          "4": "dc_microgrid_ppo_iid_s4_20260427_125219_722424"
+        }
+      },
+      "numerical_tail_audit": {
+        "applicable": true,
+        "tolerance_cost_sum": 1e-06,
+        "strict_feasibility_rate_mean": 0.004097222222222222,
+        "tolerant_feasibility_rate_mean": 0.004097222222222222,
+        "strict_to_tolerant_gap": 0.0,
+        "mean_power_balance_error_mean": 0.0006655791129504496,
+        "max_power_balance_error_max": 0.31468373187209014,
+        "mean_abs_replay_reward_gap": 0.0
+      }
+    },
+    "sb3_cpu_ppo": {
+      "cell": {
+        "backend": "sb3",
+        "device": "cpu",
+        "algo": "ppo"
+      },
+      "summary_metrics": {
+        "episode_reward_mean": -1237.0962400606502,
+        "episode_reward_std": 416.15329334522494,
+        "n_seeds": 5,
+        "feasibility_rate_mean": 0.004097222222222223,
+        "sla_violation_rate_mean": 4.1666666666666667e-07,
+        "mean_cost_power_balance_mean": 0.0006374056338013147
+      },
+      "timing": {
+        "source": "eval",
+        "walltime_mean_s": 256.3213049853919,
+        "walltime_std_s": 4.128912586517132,
+        "throughput_mean_sps": 3902.36917913828,
+        "throughput_std_sps": 63.05961098141166
+      },
+      "contract_unique_values": {
+        "total_timesteps": [
+          "1000000"
+        ],
+        "n_envs": [
+          "64"
+        ],
+        "train_split": [
+          "\"train\""
+        ],
+        "eval_split": [
+          "\"iid\""
+        ],
+        "requested_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "effective_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "policy_class": [
+          "\"SB3BoundedBetaPolicy\""
+        ],
+        "data_source": [
+          "\"google\""
+        ],
+        "case_overrides": [
+          "{\"battery_soc_init\": 0.55, \"battery_soc_max\": 0.9, \"battery_soc_min\": 0.15, \"dg_p_max_mw\": 1.2, \"grid_carbon_kg_per_kwh\": 0.18, \"grid_import_p_max_mw\": 1.5, \"grid_price_ref_per_mwh\": 150.0, \"pv_p_max_mw\": 0.8, \"terminal_soc_penalty\": 20000.0, \"terminal_soc_target\": 0.55, \"w_carbon\": 0.1, \"w_cost\": 0.2}"
+        ],
+        "dg_autobalance": [
+          "true"
+        ],
+        "reward_shaping_weights": [
+          "{\"dispatch_tracking\": 40.0, \"overtemp\": 30.0, \"power_deficit\": 200.0, \"power_spill\": 100.0, \"sla\": 50.0}"
+        ],
+        "eval_episodes": [
+          "10"
+        ]
+      },
+      "artifact_audit": {
+        "all_config_exists": true,
+        "all_timesteps_exists": true,
+        "all_eval_curves_exist": true,
+        "all_train_curves_exist": true,
+        "all_per_episode_exists": true,
+        "all_trajectory_exists": true,
+        "timesteps_points_unique": [
+          20
+        ],
+        "learning_curve_eval_return_points_unique": [
+          20
+        ],
+        "learning_curve_eval_walltimes_points_unique": [
+          20
+        ],
+        "learning_curve_train_return_points_unique": [
+          20
+        ],
+        "curve_logging_note": "PowerZoo driver rows log 20 checkpoints over 1M steps."
+      },
+      "episode_reward_pairs": [
+        -598.4458856693509,
+        -626.3215079811632,
+        -724.6820821816563,
+        -3160.2903661936616,
+        -2316.988778941164,
+        -722.8887440123247,
+        -608.8787784333333,
+        -599.2746634149137,
+        -268.405298891458,
+        -687.4565546977009,
+        -643.831399966582,
+        -654.9233318434464,
+        -724.269097790023,
+        -3270.1981046805295,
+        -2313.5122662802755,
+        -722.9997157415999,
+        -639.8378354163771,
+        -641.0118143259576,
+        -377.0115491632825,
+        -688.2875927220695,
+        -634.5013172713816,
+        -646.606044234688,
+        -723.2225659016439,
+        -3227.6528006384365,
+        -2314.9057660015214,
+        -722.2094716515583,
+        -635.6733368381892,
+        -631.8124454092447,
+        -352.4398148181585,
+        -690.0807742047327,
+        -292.418716999503,
+        -449.32648791206117,
+        -673.4379803666138,
+        -3313.255396105938,
+        -2313.370338418636,
+        -645.5495103724245,
+        -463.9011979276118,
+        -278.42310657191246,
+        -505.29927775533156,
+        -689.7051899999601,
+        -2195.6386937153334,
+        -1593.9047399837764,
+        -1335.4787363970786,
+        -759.9280118189567,
+        -885.1629867821605,
+        -1704.2456574752043,
+        -3451.9771812032277,
+        -2937.4028955532062,
+        -4511.410445518786,
+        -1286.355746838362
+      ],
+      "selected_run_ids": {
+        "eval": {
+          "0": "dc_microgrid_ppo_iid_s0_20260427_130948_013575",
+          "1": "dc_microgrid_ppo_iid_s1_20260427_131629_020042",
+          "2": "dc_microgrid_ppo_iid_s2_20260427_132319_104372",
+          "3": "dc_microgrid_ppo_iid_s3_20260427_133000_756324",
+          "4": "dc_microgrid_ppo_iid_s4_20260427_133652_832023"
+        },
+        "curve_source": {
+          "0": "dc_microgrid_ppo_iid_s0_20260427_130948_013575",
+          "1": "dc_microgrid_ppo_iid_s1_20260427_131629_020042",
+          "2": "dc_microgrid_ppo_iid_s2_20260427_132319_104372",
+          "3": "dc_microgrid_ppo_iid_s3_20260427_133000_756324",
+          "4": "dc_microgrid_ppo_iid_s4_20260427_133652_832023"
+        }
+      },
+      "numerical_tail_audit": {
+        "applicable": true,
+        "tolerance_cost_sum": 1e-06,
+        "strict_feasibility_rate_mean": 0.004097222222222222,
+        "tolerant_feasibility_rate_mean": 0.004097222222222222,
+        "strict_to_tolerant_gap": 0.0,
+        "mean_power_balance_error_mean": 0.0006374056338013187,
+        "max_power_balance_error_max": 0.30843147925402287,
+        "mean_abs_replay_reward_gap": 0.0
+      }
+    },
+    "sbx_cuda_ppo": {
+      "cell": {
+        "backend": "sbx",
+        "device": "cuda",
+        "algo": "sbx_ppo"
+      },
+      "summary_metrics": {
+        "episode_reward_mean": -1227.8047706012956,
+        "episode_reward_std": 399.25369602473944,
+        "n_seeds": 5,
+        "feasibility_rate_mean": 0.0,
+        "sla_violation_rate_mean": 4.861111111111111e-07,
+        "mean_cost_power_balance_mean": 0.0
+      },
+      "timing": {
+        "source": "eval",
+        "walltime_mean_s": 221.19554071999156,
+        "walltime_std_s": 1.1764931071861244,
+        "throughput_mean_sps": 4521.015158855669,
+        "throughput_std_sps": 24.133484027729974
+      },
+      "contract_unique_values": {
+        "total_timesteps": [
+          "1000000"
+        ],
+        "n_envs": [
+          "64"
+        ],
+        "train_split": [
+          "\"train\""
+        ],
+        "eval_split": [
+          "\"iid\""
+        ],
+        "requested_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "effective_continuous_action_dist": [
+          "\"beta\""
+        ],
+        "policy_class": [
+          "\"SBXPPOBoundedBetaPolicy\""
+        ],
+        "data_source": [
+          "\"google\""
+        ],
+        "case_overrides": [
+          "{\"battery_soc_init\": 0.55, \"battery_soc_max\": 0.9, \"battery_soc_min\": 0.15, \"dg_p_max_mw\": 1.2, \"grid_carbon_kg_per_kwh\": 0.18, \"grid_import_p_max_mw\": 1.5, \"grid_price_ref_per_mwh\": 150.0, \"pv_p_max_mw\": 0.8, \"terminal_soc_penalty\": 20000.0, \"terminal_soc_target\": 0.55, \"w_carbon\": 0.1, \"w_cost\": 0.2}"
+        ],
+        "dg_autobalance": [
+          "true"
+        ],
+        "reward_shaping_weights": [
+          "{\"dispatch_tracking\": 40.0, \"overtemp\": 30.0, \"power_deficit\": 200.0, \"power_spill\": 100.0, \"sla\": 50.0}"
+        ],
+        "eval_episodes": [
+          "10"
+        ]
+      },
+      "artifact_audit": {
+        "all_config_exists": true,
+        "all_timesteps_exists": true,
+        "all_eval_curves_exist": true,
+        "all_train_curves_exist": true,
+        "all_per_episode_exists": true,
+        "all_trajectory_exists": true,
+        "timesteps_points_unique": [
+          20
+        ],
+        "learning_curve_eval_return_points_unique": [
+          20
+        ],
+        "learning_curve_eval_walltimes_points_unique": [
+          20
+        ],
+        "learning_curve_train_return_points_unique": [
+          20
+        ],
+        "curve_logging_note": "PowerZoo driver rows log 20 checkpoints over 1M steps."
+      },
+      "episode_reward_pairs": [
+        -630.8544082211838,
+        -418.45982426551177,
+        -487.99132434672543,
+        -3147.8643275711684,
+        -2317.191039263716,
+        -410.2375668513399,
+        -317.9469312637209,
+        -347.87220119580024,
+        -1394.5174322900637,
+        -687.5988107252566,
+        -645.1755314709201,
+        -654.9614848926326,
+        -723.8493253959583,
+        -3240.8595493276107,
+        -2312.8062904159756,
+        -722.6830412070584,
+        -640.2098630857238,
+        -641.4315353410674,
+        -380.97324804185024,
+        -687.8964478559363,
+        -200.13860459320685,
+        -459.20467317115515,
+        -668.83297593208,
+        -3219.252608049942,
+        -2314.7116172189667,
+        -646.3539949144002,
+        -491.8932058949573,
+        -295.13794515042673,
+        -429.7397115587322,
+        -691.6503365704285,
+        -667.4703886046121,
+        -502.85271197301034,
+        -429.90484376053587,
+        -3334.2699360247157,
+        -2307.3163785832094,
+        -520.5961885989599,
+        -305.7455607906894,
+        -357.6766239518256,
+        -1861.6542593880283,
+        -680.1655674581715,
+        -2192.3547122499403,
+        -1380.3728341206393,
+        -1335.8687366052213,
+        -1147.9509257514808,
+        -826.9679121018739,
+        -1739.4562925199207,
+        -2819.9753984498598,
+        -2936.9580573557055,
+        -4500.319800515163,
+        -1314.0655451777134
+      ],
+      "selected_run_ids": {
+        "eval": {
+          "0": "dc_microgrid_sbx_ppo_iid_s0_20260427_122514_897886",
+          "1": "dc_microgrid_sbx_ppo_iid_s1_20260427_123124_738828",
+          "2": "dc_microgrid_sbx_ppo_iid_s2_20260427_123735_707848",
+          "3": "dc_microgrid_sbx_ppo_iid_s3_20260427_124346_445208",
+          "4": "dc_microgrid_sbx_ppo_iid_s4_20260427_124956_471422"
+        },
+        "curve_source": {
+          "0": "dc_microgrid_sbx_ppo_iid_s0_20260427_122514_897886",
+          "1": "dc_microgrid_sbx_ppo_iid_s1_20260427_123124_738828",
+          "2": "dc_microgrid_sbx_ppo_iid_s2_20260427_123735_707848",
+          "3": "dc_microgrid_sbx_ppo_iid_s3_20260427_124346_445208",
+          "4": "dc_microgrid_sbx_ppo_iid_s4_20260427_124956_471422"
+        }
+      },
+      "numerical_tail_audit": {
+        "applicable": true,
+        "tolerance_cost_sum": 1e-06,
+        "strict_feasibility_rate_mean": 0.0,
+        "tolerant_feasibility_rate_mean": 0.0,
+        "strict_to_tolerant_gap": 0.0,
+        "mean_power_balance_error_mean": 4.007925083787243e-18,
+        "max_power_balance_error_max": 2.2090264744464175e-16,
+        "mean_abs_replay_reward_gap": 0.0
+      }
+    }
+  },
+  "paired_tests": [
+    {
+      "left_cell": "jax_gpu_ppo",
+      "right_cell": "jax_cpu_ppo",
+      "test": "paired_signflip_permutation",
+      "n_pairs": 50,
+      "mean_left_minus_right": 2.2471925494074823,
+      "p_value_two_sided": 0.5779211039448028
+    },
+    {
+      "left_cell": "jax_gpu_ppo",
+      "right_cell": "sbx_cuda_ppo",
+      "test": "paired_signflip_permutation",
+      "n_pairs": 50,
+      "mean_left_minus_right": -1829.0714191291697,
+      "p_value_two_sided": 4.999750012499375e-05
+    },
+    {
+      "left_cell": "sbx_cuda_ppo",
+      "right_cell": "sb3_cuda_ppo",
+      "test": "paired_signflip_permutation",
+      "n_pairs": 50,
+      "mean_left_minus_right": 10.628903129622715,
+      "p_value_two_sided": 0.8113094345282735
+    },
+    {
+      "left_cell": "sb3_cuda_ppo",
+      "right_cell": "sb3_cpu_ppo",
+      "test": "paired_signflip_permutation",
+      "n_pairs": 50,
+      "mean_left_minus_right": -1.3374336702683685,
+      "p_value_two_sided": 0.6917654117294135
+    }
+  ],
+  "interpretation": {
+    "phase2_submission_grade_ready": true,
+    "jax_cpu_vs_gpu_no_detectable_primary_metric_difference": true,
+    "sbx_vs_jax_gpu_no_detectable_primary_metric_difference": false,
+    "sbx_significantly_outperforms_sb3_cuda": false,
+    "sb3_cuda_significantly_outperforms_sb3_cpu": false,
+    "strict_feasibility_has_numerical_tail_caveat_for_python_backends": false
+  }
+}

@@ -1,0 +1,29 @@
+# DSO PPO-Lagrangian (safe RL via SafeRLWrapper + cost channel).
+algo: ppo_lagrangian
+total_timesteps: 3000000
+num_envs: 128
+n_steps: 48
+hidden_dims: [128, 128]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0003
+# cost_thresholds: EPISODE-level voltage-violation budget.
+# DSO task.yaml and the experiment prompt both treat voltage violations as a
+# hard physical target, so the CMDP budget must stay at zero here. The prior
+# 192.0 setting silently trained PPO-Lagrangian toward "about 4 violations per
+# step is acceptable", which is why PPO-Lag plateaued near PPO instead of
+# pushing formal IID eval toward zero violations.
+cost_thresholds: [0.0]
+# lambda_lr: dual-variable step size (episode-level units).
+# Keep the small 2e-5 step so zero-threshold training still ramps lambda
+# smoothly over the 3M-step budget instead of exploding on the first update.
+lambda_lr: 0.00002
+normalize_observations: true
+wrapper: safe                 # SafeRLWrapper enables CMDP cost channel
+# Run a small greedy eval at every update (8 envs × 48 steps).
+# Produces eval_returns and eval_cost_voltage_violation arrays that are
+# directly comparable to rejax PPO's eval_returns (same greedy policy,
+# same episode length).  Overhead ≈ 8/128 = 6 % of training time.
+n_eval_envs: 8
+record_eval_wall_time: true
+notes: "PPO-Lagrangian; cost_thresholds=[0.0] to match the DSO hard safety target; lambda_lr=2e-5 keeps lambda growth stable over the 3M-step budget."

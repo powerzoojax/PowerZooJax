@@ -1,0 +1,29 @@
+# DERs IPPO with type-specific parameter sharing.
+#
+# algo='ippo_typed' partitions the 12 agents by name prefix
+# (battery_*, pv_*, flexload_*) and trains an independent SharedActorCritic
+# per type.  Self-implemented (PureJaxRL/Mava-style); n_minibatches not used
+# (full-batch updates).
+#
+# Conservative tuning relative to single-agent PPO:
+#   * lr 3e-4 -> 1e-4 (typical MARL needs smaller lr)
+#   * num_envs 32 -> 64 (less gradient noise across cooperative agents)
+#   * ent_coef 0.01 -> 0.02 (more exploration since 12 agents share team reward)
+#   * voltage_penalty 8.0 -> 4.0 (rebalance reward so cost channel doesn't dominate)
+algo: ippo_typed
+total_timesteps: 10000000
+num_envs: 128
+n_steps: 48
+n_epochs: 4
+hidden_dims: [128, 128]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0001
+clip_eps: 0.2
+ent_coef: 0.02
+vf_coef: 0.5
+max_grad_norm: 0.5
+eval_freq: 100000
+record_eval_wall_time: true
+voltage_penalty: 4.0          # reward-shaping weight passed to DERsTask, not TrainConfig
+notes: "DERs IPPO (typed) on case141, 12 agents (4 battery + 4 PV + 4 flexload). algo='ippo_typed' uses self-implemented type-specific SharedActorCritic; n_minibatches not used (full-batch updates). 2026-04-18 seed-0 reference calibration revealed the seed=0 training run was DESTRUCTIVE (total_reward -36.88 vs no_control -2.04, voltage_safety_rate dropped 28%->19%). Tuned conservatively: lr 3e-4->1e-4 (typical MARL needs smaller lr), ent_coef 0.01->0.02 (more exploration), voltage_penalty 8.0->4.0 (rebalance reward so cost channel doesn't dominate). 2026-04-21 speed optimization: num_envs 64->128 (convergence verified at 1M steps with seed=0, reward delta <0.03, no divergence; throughput ~52k->~100k steps/s on RTX 4500 Ada GPU1)."

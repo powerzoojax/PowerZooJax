@@ -1,0 +1,47 @@
+{
+  "source_file": "alibaba_gpu_2020_300s.parquet",
+  "parquet_file": "alibaba_gpu_2020_300s.parquet",
+  "source_url": "https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2020",
+  "source_organization": "Alibaba Group",
+  "generated_at": "2026-03-25T18:32:50.164604",
+  "shape": {
+    "rows": 415,
+    "columns": 3
+  },
+  "columns": [
+    "time_stamp",
+    "gpu_util_percent",
+    "cpu_util_percent"
+  ],
+  "dtypes": {
+    "time_stamp": "int64",
+    "gpu_util_percent": "float64",
+    "cpu_util_percent": "float64"
+  },
+  "numeric_statistics": {
+    "time_stamp": {
+      "count": 415,
+      "mean": 207.0,
+      "std": 119.94443157840495,
+      "min": 0.0,
+      "max": 414.0,
+      "missing": 0
+    },
+    "gpu_util_percent": {
+      "count": 415,
+      "mean": 17.8272743627179,
+      "std": 0.6858864172206723,
+      "min": 17.744300311346027,
+      "max": 23.483338864567205,
+      "missing": 0
+    },
+    "cpu_util_percent": {
+      "count": 415,
+      "mean": 23.913208911272793,
+      "std": 0.5255485850535567,
+      "min": 23.849631481832862,
+      "max": 28.247070351427517,
+      "missing": 0
+    }
+  }
+}

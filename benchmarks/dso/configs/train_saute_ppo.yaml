@@ -1,0 +1,19 @@
+# DSO Sauté PPO — observation-augmented PPO with a positive safety budget.
+algo: saute_ppo
+total_timesteps: 3000000
+num_envs: 128
+n_steps: 48
+hidden_dims: [128, 128]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0003
+eval_episodes: 8
+record_eval_wall_time: true
+normalize_observations: true
+wrapper: saute
+# Positive training budget for Sauté. This is not the benchmark's formal
+# zero-violation target; it only controls the remaining-budget signal in obs.
+saute_budget: 192.0
+saute_unsafe_reward: 0.0
+saute_use_reward_shaping: true
+notes: "DSO Sauté PPO: augments obs with remaining voltage budget and trains with plain PPO."

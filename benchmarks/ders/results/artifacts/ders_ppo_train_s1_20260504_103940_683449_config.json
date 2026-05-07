@@ -1,0 +1,181 @@
+{
+  "powerzoo_driver_config": {
+    "algorithm": "PPO",
+    "total_timesteps": 10000000,
+    "seed": 1,
+    "model_seed": 1,
+    "split": "train",
+    "requested_split": "iid",
+    "train_split": "train",
+    "eval_split": "iid",
+    "device": "cuda",
+    "n_envs": 0,
+    "access_path": "pettingzoo_il",
+    "rl_paradigm": "scalable_safe_marl_cooperative",
+    "n_agents": 12,
+    "requested_continuous_action_dist": "gaussian",
+    "policy_class": "MlpPolicy",
+    "effective_continuous_action_dist": "gaussian",
+    "requested_normalize_observations": false,
+    "effective_normalize_observations": false
+  },
+  "powerzoo_task": "marl_ders_benchmark",
+  "jax_task": "ders",
+  "backend": "sb3",
+  "task_config": {
+    "task": "ders",
+    "case": "case141",
+    "n_agents": 12,
+    "agent_types": {
+      "battery": [
+        9,
+        55,
+        17,
+        122
+      ],
+      "pv": [
+        6,
+        73,
+        72,
+        82
+      ],
+      "flexload": [
+        41,
+        70,
+        135,
+        24
+      ]
+    },
+    "max_steps": 48,
+    "dt_hours": 0.5,
+    "v_min": 0.94,
+    "v_max": 1.06,
+    "voltage_penalty": 4.0,
+    "num_envs": 128,
+    "eval_splits": [
+      "train",
+      "iid",
+      "voltage_tightening",
+      "pv_penetration_shift",
+      "load_stress"
+    ],
+    "primary_split": "iid",
+    "baseline_set": [
+      "no_control",
+      "volt_droop"
+    ],
+    "baseline_algos": [
+      "no_control",
+      "volt_droop"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eval_episodes": 30,
+    "safety_thresholds": {
+      "voltage_violation_rate": 0.0
+    },
+    "benchmark_protocol": {
+      "protocol_formalization_pending": false,
+      "current_campaign_seed_budget": 5,
+      "submission_min_seeds": 5,
+      "required_statistics": [
+        "mean",
+        "std",
+        "iqm",
+        "bootstrap_ci95"
+      ],
+      "hypothesis_test": {
+        "name": "paired_primary_split_test",
+        "status": "implemented",
+        "implementation": "benchmarks/ders/summarize.py::_build_hypothesis_tests",
+        "metric": "mean_p_loss_mw",
+        "comparison_pairs": [
+          [
+            "ippo",
+            "no_control"
+          ],
+          [
+            "ippo",
+            "volt_droop"
+          ],
+          [
+            "ippo_safe",
+            "no_control"
+          ],
+          [
+            "ippo_safe",
+            "volt_droop"
+          ],
+          [
+            "ippo_lagrangian",
+            "no_control"
+          ],
+          [
+            "ippo_lagrangian",
+            "volt_droop"
+          ]
+        ],
+        "notes": "Paired sign-flip permutation tests on primary-split per_episode mean_p_loss_mw. Lower is better; negative left-minus-right favours the learned policy."
+      },
+      "leaderboard": {
+        "split": "iid",
+        "primary_metric": "mean_p_loss_mw",
+        "direction": "lower_is_better",
+        "include_baselines": true
+      }
+    },
+    "target_return_metric_key": "mean_p_loss_mw",
+    "target_metric_direction": "lower_is_better",
+    "notes": "Frozen task definition for DERs benchmark. baseline_set is the canonical key (P0-B rename); baseline_algos kept temporarily for backward-compat readers. seeds/eval_episodes define the submission-grade reporting budget; eval.py and baselines.py read eval_<split>.yaml where present, with eval_episodes as the canonical fallback. convergence_threshold_per_split / convergence_provenance / safety_thresholds populated by P0-E experiment_ops.py derive_target after the seed-0 pipeline.",
+    "convergence_threshold_per_split": {
+      "iid": {
+        "target_return": 0.20502185493707656,
+        "alpha": 0.8,
+        "status": "frozen",
+        "return_metric_key": "mean_p_loss_mw",
+        "metric_direction": "lower_is_better"
+      },
+      "train": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "voltage_tightening": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "pv_penetration_shift": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "load_stress": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      }
+    },
+    "convergence_provenance": {
+      "reference_run_id": "ders_ippo_safe_train_s0_20260424_023832_610974",
+      "reference_config_hash": "55fb25d19ad1",
+      "reference_train_split": "train",
+      "target_eval_split": "iid",
+      "reference_backend": "jax_rejax",
+      "reference_device": "gpu",
+      "reference_seed": 0,
+      "reference_total_timesteps": 10000000,
+      "reference_eval_run_id": "ders_ippo_safe_iid_s0_20260424_025111_313549",
+      "reference_metric_source": "primary_eval_record",
+      "baseline_algo": "no_control",
+      "baseline_iqm": 0.20517511516809464,
+      "return_metric_key": "mean_p_loss_mw"
+    }
+  },
+  "train_config_raw": null
+}

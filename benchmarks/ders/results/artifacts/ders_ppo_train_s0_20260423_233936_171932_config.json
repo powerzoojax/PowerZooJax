@@ -1,0 +1,126 @@
+{
+  "powerzoo_driver_config": {
+    "algorithm": "PPO",
+    "total_timesteps": 10000000,
+    "seed": 0,
+    "split": "train",
+    "requested_split": "iid",
+    "train_split": "train",
+    "eval_split": "iid",
+    "device": "cuda",
+    "n_envs": 0,
+    "access_path": "pettingzoo_il",
+    "rl_paradigm": "scalable_safe_marl_cooperative",
+    "n_agents": 12,
+    "requested_continuous_action_dist": "gaussian",
+    "policy_class": "MlpPolicy",
+    "effective_continuous_action_dist": "gaussian"
+  },
+  "powerzoo_task": "marl_ders_benchmark",
+  "jax_task": "ders",
+  "backend": "sb3",
+  "task_config": {
+    "task": "ders",
+    "case": "case141",
+    "n_agents": 12,
+    "agent_types": {
+      "battery": [
+        9,
+        55,
+        17,
+        122
+      ],
+      "pv": [
+        6,
+        73,
+        72,
+        82
+      ],
+      "flexload": [
+        41,
+        70,
+        135,
+        24
+      ]
+    },
+    "max_steps": 48,
+    "dt_hours": 0.5,
+    "v_min": 0.94,
+    "v_max": 1.06,
+    "voltage_penalty": 4.0,
+    "num_envs": 128,
+    "eval_splits": [
+      "train",
+      "iid",
+      "voltage_tightening",
+      "pv_penetration_shift",
+      "load_stress"
+    ],
+    "primary_split": "iid",
+    "baseline_set": [
+      "no_control",
+      "volt_droop"
+    ],
+    "baseline_algos": [
+      "no_control",
+      "volt_droop"
+    ],
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "eval_episodes": 30,
+    "safety_thresholds": {
+      "voltage_violation_rate": 0.0
+    },
+    "target_return_metric_key": "mean_p_loss_mw",
+    "target_metric_direction": "lower_is_better",
+    "notes": "Frozen task definition for DERs benchmark. baseline_set is the canonical key (P0-B rename); baseline_algos kept temporarily for backward-compat readers. seeds/eval_episodes preserve current driver defaults (eval.py uses 30, baselines.py uses 10 internally — eval value is the canonical reporting count). convergence_threshold_per_split / convergence_provenance / safety_thresholds populated by P0-E experiment_ops.py derive_target after the seed-0 pipeline.",
+    "convergence_threshold_per_split": {
+      "iid": {
+        "target_return": 0.19280728995800017,
+        "alpha": 0.8,
+        "status": "frozen",
+        "return_metric_key": "mean_p_loss_mw",
+        "metric_direction": "lower_is_better"
+      },
+      "train": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "voltage_tightening": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "pv_penetration_shift": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "load_stress": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      }
+    },
+    "convergence_provenance": {
+      "reference_run_id": "ders_ippo_train_s0_20260422_043944",
+      "reference_config_hash": "7591549f6ad5",
+      "reference_train_split": "train",
+      "target_eval_split": "iid",
+      "reference_backend": "jax_rejax",
+      "reference_device": "gpu",
+      "reference_seed": 0,
+      "reference_total_timesteps": 10000000,
+      "reference_eval_run_id": "ders_ippo_iid_s0_20260422_051333",
+      "reference_metric_source": "primary_eval_record",
+      "baseline_algo": "no_control",
+      "baseline_iqm": 0.1951921433210373,
+      "return_metric_key": "mean_p_loss_mw"
+    }
+  },
+  "train_config_raw": null
+}

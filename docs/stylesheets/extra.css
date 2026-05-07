@@ -1,0 +1,105 @@
+:root,
+[data-md-color-scheme="default"] {
+  --powerzoo-mermaid-font-size: 13px;
+  --powerzoo-mermaid-class-font-size: 13px;
+  --powerzoo-mermaid-class-scale: 1;
+  --powerzoo-mermaid-class-stroke-width: 1.2px;
+  --powerzoo-mermaid-node-fill: #e8f7f4;
+  --powerzoo-mermaid-node-stroke: #0f766e;
+  --powerzoo-mermaid-text: #123c3a;
+  --powerzoo-mermaid-line: #0f766e;
+  --powerzoo-mermaid-edge-label-fill: #ffffff;
+}
+
+[data-md-color-scheme="slate"] {
+  --powerzoo-mermaid-node-fill: #143f3b;
+  --powerzoo-mermaid-node-stroke: #5eead4;
+  --powerzoo-mermaid-text: #ecfeff;
+  --powerzoo-mermaid-line: #5eead4;
+  --powerzoo-mermaid-edge-label-fill: #0f172a;
+}
+
+.mermaid {
+  display: block;
+  margin: 1.2rem 0;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+  color: var(--powerzoo-mermaid-text);
+  font-size: var(--powerzoo-mermaid-font-size);
+}
+
+.mermaid svg {
+  display: block;
+  width: auto !important;
+  max-width: none !important;
+  height: auto;
+  margin-inline: auto;
+}
+
+.mermaid svg text,
+.mermaid svg tspan,
+.mermaid svg foreignObject,
+.mermaid svg foreignObject div,
+.mermaid svg foreignObject span,
+.mermaid svg foreignObject p,
+.mermaid svg foreignObject small,
+.mermaid svg foreignObject *,
+.mermaid svg .nodeLabel,
+.mermaid svg .edgeLabel,
+.mermaid svg .label,
+.mermaid svg .cluster-label {
+  font-family: var(--md-text-font-family, Roboto, "Helvetica Neue", Arial, sans-serif) !important;
+  font-size: var(--powerzoo-mermaid-font-size) !important;
+  line-height: 1.25 !important;
+  color: var(--powerzoo-mermaid-text) !important;
+  fill: var(--powerzoo-mermaid-text) !important;
+}
+
+.mermaid svg .node rect,
+.mermaid svg .node circle,
+.mermaid svg .node ellipse,
+.mermaid svg .node polygon,
+.mermaid svg .node path {
+  fill: var(--powerzoo-mermaid-node-fill) !important;
+  stroke: var(--powerzoo-mermaid-node-stroke) !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid svg .flowchart-link {
+  stroke: var(--powerzoo-mermaid-line) !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid svg marker path,
+.mermaid svg .marker {
+  fill: var(--powerzoo-mermaid-line) !important;
+  stroke: var(--powerzoo-mermaid-line) !important;
+}
+
+.mermaid svg .edgeLabel,
+.mermaid svg .edgeLabel p,
+.mermaid svg .edgeLabel div {
+  background-color: var(--powerzoo-mermaid-edge-label-fill) !important;
+}
+
+.mermaid svg .edgeLabel rect,
+.mermaid svg .labelBkg {
+  fill: var(--powerzoo-mermaid-edge-label-fill) !important;
+}
+
+/* Keep class-diagram typography aligned with the global Mermaid font size. */
+.mermaid svg .classTitleText,
+.mermaid svg .classText,
+.mermaid svg g.classGroup text,
+.mermaid svg .classGroup foreignObject div {
+  font-size: var(--powerzoo-mermaid-class-font-size) !important;
+}
+
+.mermaid.mermaid-class-diagram svg {
+  transform: scale(var(--powerzoo-mermaid-class-scale));
+  transform-origin: top center;
+}
+
+.mermaid.mermaid-class-diagram svg .classGroup rect {
+  stroke-width: var(--powerzoo-mermaid-class-stroke-width) !important;
+}

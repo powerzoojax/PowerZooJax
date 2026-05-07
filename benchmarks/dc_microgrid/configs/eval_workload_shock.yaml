@@ -1,0 +1,6 @@
+split: workload_shock
+ood_scenario: workload_shock
+n_eval_episodes: 10
+notes: 'OOD: cpu_profile source switched from Google to Alibaba (higher variance,
+  bursty workloads). Requires real Alibaba workload data; benchmarks/dc_microgrid/{train,eval,baselines,dump_trajectory}.py
+  now raise instead of falling back to synthetic if the parquet is missing.'

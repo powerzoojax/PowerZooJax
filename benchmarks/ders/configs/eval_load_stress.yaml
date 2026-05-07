@@ -1,0 +1,3 @@
+n_eval_episodes: 30
+ood_scenario: load_stress
+load_scale: 1.15

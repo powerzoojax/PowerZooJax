@@ -1,0 +1,12 @@
+# Keep source, lightweight result JSON/CSV, and paper figures visible. Exclude
+# training-state payloads that are not part of the anonymous benchmark release.
+__pycache__/
+*.pyc
+**/results/artifacts/*.npy
+**/results/artifacts/*.npz
+**/results/artifacts/*.pkl
+**/results/artifacts/*.msgpack
+**/results/artifacts/*.zip
+**/results/artifacts/*_params_orbax/
+**/results/trajectories/*.npz
+**/results/artifacts/*_models_manifest.json

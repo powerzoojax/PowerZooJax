@@ -1,0 +1,4 @@
+split: iid
+role: iid
+n_eval_episodes: 50
+notes: Held-out days from same substation pool and season distribution

@@ -1,0 +1,46 @@
+{
+  "convergence_threshold_per_split": {
+    "iid": {
+      "target_return": 0.20502185493707656,
+      "alpha": 0.8,
+      "status": "frozen",
+      "return_metric_key": "mean_p_loss_mw",
+      "metric_direction": "lower_is_better"
+    },
+    "train": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    },
+    "voltage_tightening": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    },
+    "pv_penetration_shift": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    },
+    "load_stress": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    }
+  },
+  "convergence_provenance": {
+    "reference_run_id": "ders_ippo_safe_train_s0_20260424_023832_610974",
+    "reference_config_hash": "55fb25d19ad1",
+    "reference_train_split": "train",
+    "target_eval_split": "iid",
+    "reference_backend": "jax_rejax",
+    "reference_device": "gpu",
+    "reference_seed": 0,
+    "reference_total_timesteps": 10000000,
+    "reference_eval_run_id": "ders_ippo_safe_iid_s0_20260424_025111_313549",
+    "reference_metric_source": "primary_eval_record",
+    "baseline_algo": "no_control",
+    "baseline_iqm": 0.20517511516809464,
+    "return_metric_key": "mean_p_loss_mw"
+  }
+}

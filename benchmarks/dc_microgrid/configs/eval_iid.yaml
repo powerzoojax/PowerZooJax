@@ -1,0 +1,7 @@
+split: iid
+role: iid
+n_eval_episodes: 10
+data_source: google
+ood_scenario: null
+episode_len: 288
+notes: Evaluate on held-out IID split (Google workload, same distribution as train)

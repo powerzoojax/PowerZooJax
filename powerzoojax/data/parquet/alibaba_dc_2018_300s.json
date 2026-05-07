@@ -1,0 +1,77 @@
+{
+  "source_file": "alibaba_dc_2018_300s.parquet",
+  "parquet_file": "alibaba_dc_2018_300s.parquet",
+  "source_url": "https://github.com/alibaba/clusterdata/tree/master/cluster-trace-v2018",
+  "source_organization": "Alibaba Group",
+  "generated_at": "2026-03-25T18:32:50.161432",
+  "shape": {
+    "rows": 2243,
+    "columns": 6
+  },
+  "columns": [
+    "time_stamp",
+    "cpu_util_percent",
+    "mem_util_percent",
+    "net_in",
+    "net_out",
+    "disk_io_percent"
+  ],
+  "dtypes": {
+    "time_stamp": "int64",
+    "cpu_util_percent": "float64",
+    "mem_util_percent": "float64",
+    "net_in": "float64",
+    "net_out": "float64",
+    "disk_io_percent": "float64"
+  },
+  "numeric_statistics": {
+    "time_stamp": {
+      "count": 2243,
+      "mean": 1121.0,
+      "std": 647.6426483794902,
+      "min": 0.0,
+      "max": 2242.0,
+      "missing": 0
+    },
+    "cpu_util_percent": {
+      "count": 2243,
+      "mean": 40.17565699733218,
+      "std": 9.790954178009287,
+      "min": 16.126976521322472,
+      "max": 79.07429568686113,
+      "missing": 0
+    },
+    "mem_util_percent": {
+      "count": 2243,
+      "mean": 87.97396097592305,
+      "std": 2.5411023968194444,
+      "min": 78.264269549912,
+      "max": 95.02071375093588,
+      "missing": 0
+    },
+    "net_in": {
+      "count": 2243,
+      "mean": 41.02701936074196,
+      "std": 3.7665091906228363,
+      "min": 34.700788402848424,
+      "max": 47.45905189620758,
+      "missing": 0
+    },
+    "net_out": {
+      "count": 2243,
+      "mean": 32.521239358058985,
+      "std": 3.0147116301511714,
+      "min": 27.493448626653105,
+      "max": 37.77077844311377,
+      "missing": 0
+    },
+    "disk_io_percent": {
+      "count": 2243,
+      "mean": 7.677442360831148,
+      "std": 3.4712061410411734,
+      "min": 3.314343845371312,
+      "max": 25.7999487047961,
+      "missing": 0
+    }
+  }
+}

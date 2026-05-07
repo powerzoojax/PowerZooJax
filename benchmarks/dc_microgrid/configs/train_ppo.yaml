@@ -1,0 +1,23 @@
+# Canonical DC Microgrid PPO config.
+#
+# Formal training uses the benchmark reward-shaping wrapper on top of the env
+# scalar objective and current task-level shaping weights.
+algo: ppo
+total_timesteps: 1000000
+num_envs: 64
+n_steps: 288                  # full episode = 288 5-min steps
+n_epochs: 12
+hidden_dims: [256, 256]
+continuous_action_dist: beta
+gamma: 0.99
+gae_lambda: 0.95
+clip_eps: 0.1
+ent_coef: 0.001
+lr: 0.0001
+n_minibatches: 32
+eval_freq: 50000
+eval_num_episodes: 32
+normalize_observations: true
+record_eval_wall_time: true
+wrapper: log
+notes: "Calibrated PPO with bounded beta actor for DC Microgrid. After the grid-connected MID-price task update, PPO uses a conservative lr=1e-4, clip_eps=0.1, ent_coef=0.001, n_epochs=12, and n_minibatches=32. The n_epochs/n_minibatches values are the best yaml-only JAX convergence sweep candidate from 2026-04-29, improving the 5-seed median(last5) from about -2015 to about -1478 while remaining below the Python bounded-beta reference. total_timesteps remains 1M; eval_freq=50000 for smoother curves; eval_num_episodes=32 keeps each eval lighter than the default 128. record_eval_wall_time=true enables learning_curve_eval_walltimes.npy for cross-backend wall-clock plots."

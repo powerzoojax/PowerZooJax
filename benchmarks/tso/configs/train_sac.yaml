@@ -1,0 +1,16 @@
+# TSO unconstrained SAC (Rejax) — same total budget and eval schedule as train_ppo.yaml
+# for comparable learning curves (timesteps + wall time).
+algo: sac
+total_timesteps: 20000000
+num_envs: 64
+hidden_dims: [256, 256]
+gamma: 0.995
+lr: 0.0003
+eval_freq: 100000
+eval_episodes: 8
+eval_num_episodes: 8
+normalize_observations: true
+normalize_rewards: false
+record_eval_wall_time: true
+wrapper: log
+notes: "TSO unconstrained SAC (Rejax, LogWrapper); 20M steps, eval every 100k, 8 eval episodes, walltime logging — aligned with train_ppo.yaml for dashboard plots."

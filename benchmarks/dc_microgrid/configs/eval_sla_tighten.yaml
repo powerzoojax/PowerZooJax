@@ -1,0 +1,6 @@
+split: sla_tighten
+ood_scenario: sla_tighten
+sla_slack: 1.2
+n_eval_episodes: 10
+notes: 'OOD: SLA deadlines tightened (slack=1.2 vs default ~2.0). Tests scheduling
+  robustness under stricter QoS requirements.'

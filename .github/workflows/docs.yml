@@ -1,0 +1,67 @@
+# Build MkDocs (Material + mkdocstrings + Jupyter + i18n) and deploy to GitHub Pages.
+# Requires: Settings → Pages → Build and deployment → Source: GitHub Actions.
+#
+# Mirrors local doc build: isolated Jupyter config (see docs/hooks.py).
+
+name: Docs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "powerzoojax/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # uv + lockfile: fast resolver; setup-uv caches ~/.cache/uv between runs (keyed on uv.lock).
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install project and doc dependencies
+        run: uv sync --extra docs --frozen
+
+      - name: Build site
+        env:
+          JUPYTER_CONFIG_DIR: ${{ github.workspace }}/docs/.jupyter_site_build
+          JUPYTER_DATA_DIR: ${{ github.workspace }}/docs/.jupyter_site_build
+        run: |
+          mkdir -p docs/.jupyter_site_build
+          uv run mkdocs build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment

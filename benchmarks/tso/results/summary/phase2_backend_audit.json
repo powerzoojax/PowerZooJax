@@ -1,0 +1,344 @@
+{
+  "task": "tso",
+  "phase": "phase2_cross_backend_learning_curves",
+  "required_cells": [
+    {
+      "name": "jax_gpu",
+      "backend": "jax_rejax",
+      "device": "gpu",
+      "algo": "ppo"
+    },
+    {
+      "name": "jax_cpu",
+      "backend": "jax_rejax",
+      "device": "cpu",
+      "algo": "ppo"
+    },
+    {
+      "name": "sb3_cuda",
+      "backend": "sb3",
+      "device": "cuda",
+      "algo": "ppo"
+    },
+    {
+      "name": "sbx_cuda",
+      "backend": "sbx",
+      "device": "cuda",
+      "algo": "sbx_ppo"
+    }
+  ],
+  "required_artifacts": [
+    "config",
+    "params"
+  ],
+  "required_curves": [
+    "timesteps",
+    "learning_curve_eval_return",
+    "learning_curve_eval_walltimes",
+    "eval_total_operating_cost",
+    "eval_reserve_shortfall_rate",
+    "eval_thermal_violation_rate"
+  ],
+  "expected_contract": {
+    "split": "train",
+    "total_timesteps": 20000000,
+    "num_envs": 256,
+    "n_steps": 48,
+    "eval_freq": 100000,
+    "eval_episodes": 8,
+    "gb_train_window": "2025-04-01..2025-12-31"
+  },
+  "filters": {
+    "after": "2026-04-24T02:05:20+00:00",
+    "candidate_rows": 98,
+    "total_rows_scanned": 98
+  },
+  "cells": {
+    "jax_gpu": {
+      "present": true,
+      "cell_ok": true,
+      "run_id": "tso_ppo_train_s4_20260429_003823_807879",
+      "backend": "jax_rejax",
+      "device": "gpu",
+      "algo": "ppo",
+      "seed": 4,
+      "timestamp": "2026-04-29T00:47:31.042571+00:00",
+      "walltime_s": 543.9002799987793,
+      "throughput_sps": 36771.4464130169,
+      "checks": {
+        "split_train": true,
+        "status_completed": true,
+        "total_timesteps_20m": true,
+        "n_steps_48": true,
+        "num_envs_256": true,
+        "eval_freq_100k": true,
+        "eval_episodes_8": true,
+        "task_window_train_2025_04_to_2025_12": true,
+        "forecast_horizon_steps_4": true,
+        "env_info_present": true,
+        "backend_contract_ok": true,
+        "required_artifacts_present": true,
+        "required_curves_present": true,
+        "curve_lengths_match": true,
+        "timesteps_monotone": true,
+        "walltimes_monotone": true
+      },
+      "contract_details": {
+        "notes": "data_mode=real | gb_split=train | gb_window=2025-04-01..2025-12-31 | train_reset_sampling=uniform_window"
+      },
+      "artifact_audit": {
+        "required_artifacts_present": {
+          "config": true,
+          "params": true
+        },
+        "all_required_artifacts_present": true
+      },
+      "curve_audit": {
+        "required_curves_present": {
+          "timesteps": true,
+          "learning_curve_eval_return": true,
+          "learning_curve_eval_walltimes": true,
+          "eval_total_operating_cost": true,
+          "eval_reserve_shortfall_rate": true,
+          "eval_thermal_violation_rate": true
+        },
+        "curve_lengths": {
+          "timesteps": 201,
+          "learning_curve_eval_return": 201,
+          "learning_curve_eval_walltimes": 201,
+          "eval_total_operating_cost": 201,
+          "eval_reserve_shortfall_rate": 201,
+          "eval_thermal_violation_rate": 201
+        },
+        "all_required_curves_present": true,
+        "timesteps_monotone_non_decreasing": true,
+        "walltimes_monotone_non_decreasing": true,
+        "curve_lengths_match": true,
+        "n_monitor_points": 201,
+        "first_timestep": 0.0,
+        "last_timestep": 20000000.0,
+        "first_eval_walltime_s": 3.4275195598602295,
+        "last_eval_walltime_s": 519.0813598632812,
+        "final_eval_total_operating_cost": 1617826.25,
+        "final_eval_reserve_shortfall_rate": 0.1140950545668602,
+        "final_eval_thermal_violation_rate": 0.4314778745174408
+      }
+    },
+    "jax_cpu": {
+      "present": true,
+      "cell_ok": true,
+      "run_id": "tso_ppo_train_s0_20260424_140711_675374",
+      "backend": "jax_rejax",
+      "device": "cpu",
+      "algo": "ppo",
+      "seed": 0,
+      "timestamp": "2026-04-24T21:44:49.490113+00:00",
+      "walltime_s": 27456.528752565384,
+      "throughput_sps": 728.4242003145176,
+      "checks": {
+        "split_train": true,
+        "status_completed": true,
+        "total_timesteps_20m": true,
+        "n_steps_48": true,
+        "num_envs_256": true,
+        "eval_freq_100k": true,
+        "eval_episodes_8": true,
+        "task_window_train_2025_04_to_2025_12": true,
+        "forecast_horizon_steps_4": true,
+        "env_info_present": true,
+        "backend_contract_ok": true,
+        "required_artifacts_present": true,
+        "required_curves_present": true,
+        "curve_lengths_match": true,
+        "timesteps_monotone": true,
+        "walltimes_monotone": true
+      },
+      "contract_details": {
+        "notes": "data_mode=real | gb_split=train | gb_window=2025-04-01..2025-12-31 | train_reset_sampling=uniform_window"
+      },
+      "artifact_audit": {
+        "required_artifacts_present": {
+          "config": true,
+          "params": true
+        },
+        "all_required_artifacts_present": true
+      },
+      "curve_audit": {
+        "required_curves_present": {
+          "timesteps": true,
+          "learning_curve_eval_return": true,
+          "learning_curve_eval_walltimes": true,
+          "eval_total_operating_cost": true,
+          "eval_reserve_shortfall_rate": true,
+          "eval_thermal_violation_rate": true
+        },
+        "curve_lengths": {
+          "timesteps": 201,
+          "learning_curve_eval_return": 201,
+          "learning_curve_eval_walltimes": 201,
+          "eval_total_operating_cost": 201,
+          "eval_reserve_shortfall_rate": 201,
+          "eval_thermal_violation_rate": 201
+        },
+        "all_required_curves_present": true,
+        "timesteps_monotone_non_decreasing": true,
+        "walltimes_monotone_non_decreasing": true,
+        "curve_lengths_match": true,
+        "n_monitor_points": 201,
+        "first_timestep": 0.0,
+        "last_timestep": 20000000.0,
+        "first_eval_walltime_s": 4.025523662567139,
+        "last_eval_walltime_s": 27307.17578125,
+        "final_eval_total_operating_cost": 2804424.5,
+        "final_eval_reserve_shortfall_rate": 0.01318359375,
+        "final_eval_thermal_violation_rate": 0.42919921875
+      }
+    },
+    "sb3_cuda": {
+      "present": true,
+      "cell_ok": true,
+      "run_id": "tso_ppo_train_s0_20260424_144016_825486",
+      "backend": "sb3",
+      "device": "cuda",
+      "algo": "ppo",
+      "seed": 0,
+      "timestamp": "2026-04-24T17:40:17.738048+00:00",
+      "walltime_s": 10800.824770430976,
+      "throughput_sps": 1851.7104411093928,
+      "checks": {
+        "split_train": true,
+        "status_completed": true,
+        "total_timesteps_20m": true,
+        "n_steps_48": true,
+        "num_envs_256": true,
+        "eval_freq_100k": true,
+        "eval_episodes_8": true,
+        "task_window_train_2025_04_to_2025_12": true,
+        "forecast_horizon_steps_4": true,
+        "env_info_present": true,
+        "backend_contract_ok": true,
+        "required_artifacts_present": true,
+        "required_curves_present": true,
+        "curve_lengths_match": true,
+        "timesteps_monotone": true,
+        "walltimes_monotone": true
+      },
+      "contract_details": {
+        "data_source": "gb_real",
+        "benchmark_split": "train",
+        "profile_window": "2025-04-01..2025-12-31"
+      },
+      "artifact_audit": {
+        "required_artifacts_present": {
+          "config": true,
+          "params": true
+        },
+        "all_required_artifacts_present": true
+      },
+      "curve_audit": {
+        "required_curves_present": {
+          "timesteps": true,
+          "learning_curve_eval_return": true,
+          "learning_curve_eval_walltimes": true,
+          "eval_total_operating_cost": true,
+          "eval_reserve_shortfall_rate": true,
+          "eval_thermal_violation_rate": true
+        },
+        "curve_lengths": {
+          "timesteps": 200,
+          "learning_curve_eval_return": 200,
+          "learning_curve_eval_walltimes": 200,
+          "eval_total_operating_cost": 200,
+          "eval_reserve_shortfall_rate": 200,
+          "eval_thermal_violation_rate": 200
+        },
+        "all_required_curves_present": true,
+        "timesteps_monotone_non_decreasing": true,
+        "walltimes_monotone_non_decreasing": true,
+        "curve_lengths_match": true,
+        "n_monitor_points": 200,
+        "first_timestep": 100000.0,
+        "last_timestep": 20000000.0,
+        "first_eval_walltime_s": 32.21174822500325,
+        "last_eval_walltime_s": 10791.685947323014,
+        "final_eval_total_operating_cost": 971149.8422546387,
+        "final_eval_reserve_shortfall_rate": 0.0390625,
+        "final_eval_thermal_violation_rate": 0.0
+      }
+    },
+    "sbx_cuda": {
+      "present": true,
+      "cell_ok": true,
+      "run_id": "tso_sbx_ppo_train_s0_20260424_174249_992116",
+      "backend": "sbx",
+      "device": "cuda",
+      "algo": "sbx_ppo",
+      "seed": 0,
+      "timestamp": "2026-04-24T20:42:49.598438+00:00",
+      "walltime_s": 10799.474423369975,
+      "throughput_sps": 1851.9419756872762,
+      "checks": {
+        "split_train": true,
+        "status_completed": true,
+        "total_timesteps_20m": true,
+        "n_steps_48": true,
+        "num_envs_256": true,
+        "eval_freq_100k": true,
+        "eval_episodes_8": true,
+        "task_window_train_2025_04_to_2025_12": true,
+        "forecast_horizon_steps_4": true,
+        "env_info_present": true,
+        "backend_contract_ok": true,
+        "required_artifacts_present": true,
+        "required_curves_present": true,
+        "curve_lengths_match": true,
+        "timesteps_monotone": true,
+        "walltimes_monotone": true
+      },
+      "contract_details": {
+        "data_source": "gb_real",
+        "benchmark_split": "train",
+        "profile_window": "2025-04-01..2025-12-31"
+      },
+      "artifact_audit": {
+        "required_artifacts_present": {
+          "config": true,
+          "params": true
+        },
+        "all_required_artifacts_present": true
+      },
+      "curve_audit": {
+        "required_curves_present": {
+          "timesteps": true,
+          "learning_curve_eval_return": true,
+          "learning_curve_eval_walltimes": true,
+          "eval_total_operating_cost": true,
+          "eval_reserve_shortfall_rate": true,
+          "eval_thermal_violation_rate": true
+        },
+        "curve_lengths": {
+          "timesteps": 200,
+          "learning_curve_eval_return": 200,
+          "learning_curve_eval_walltimes": 200,
+          "eval_total_operating_cost": 200,
+          "eval_reserve_shortfall_rate": 200,
+          "eval_thermal_violation_rate": 200
+        },
+        "all_required_curves_present": true,
+        "timesteps_monotone_non_decreasing": true,
+        "walltimes_monotone_non_decreasing": true,
+        "curve_lengths_match": true,
+        "n_monitor_points": 200,
+        "first_timestep": 100000.0,
+        "last_timestep": 20000000.0,
+        "first_eval_walltime_s": 35.927622137009166,
+        "last_eval_walltime_s": 10789.51824196201,
+        "final_eval_total_operating_cost": 1308016.9216461182,
+        "final_eval_reserve_shortfall_rate": 0.0078125,
+        "final_eval_thermal_violation_rate": 0.0
+      }
+    }
+  },
+  "all_cells_present": true,
+  "all_cells_ok": true
+}

@@ -1,0 +1,7 @@
+split: iid
+role: iid
+gb_split: iid
+load_scale: 1.0
+line_rating_scale: 1.0
+notes: Evaluate on held-out IID split (2026-01-01 to 2026-03-31), same distribution
+  as train

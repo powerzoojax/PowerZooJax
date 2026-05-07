@@ -1,0 +1,8 @@
+split: renewable_drought
+role: ood
+n_eval_episodes: 10
+data_source: google
+ood_scenario: renewable_drought
+drought_factor: 0.2
+episode_len: 288
+notes: 'OOD: solar availability reduced to 20%, tests DG/battery fallback'

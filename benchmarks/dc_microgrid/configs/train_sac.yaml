@@ -1,0 +1,18 @@
+# Canonical DC Microgrid SAC config.
+#
+# Off-policy; replay buffer hyperparameters use Rejax defaults unless
+# overridden. Train budget and eval logging are aligned with PPO.
+algo: sac
+total_timesteps: 1000000
+num_envs: 64
+hidden_dims: [256, 256]
+sac_num_epochs: 2
+gamma: 0.99
+lr: 0.0003
+eval_freq: 50000
+eval_num_episodes: 32
+normalize_observations: true
+normalize_rewards: false
+record_eval_wall_time: true
+wrapper: log
+notes: "Calibrated SAC with widened 256x256 network and sac_num_epochs=2 for DC Microgrid. total_timesteps aligned to the 1M stable Phase-1 regime chosen after PPO long-horizon instability and task re-calibration. eval_freq and wall-time logging remain aligned with train_ppo.yaml for comparable curves."

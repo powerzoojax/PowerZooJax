@@ -1,0 +1,113 @@
+{
+  "train_config": {
+    "algo": "sac",
+    "total_timesteps": 3000000,
+    "num_envs": 64,
+    "hidden_dims": [
+      128,
+      128
+    ],
+    "gamma": 0.995,
+    "lr": 0.0003,
+    "eval_episodes": 8,
+    "eval_num_episodes": 8,
+    "normalize_observations": true,
+    "normalize_rewards": false,
+    "record_eval_wall_time": true,
+    "wrapper": "log",
+    "notes": "DSO unconstrained SAC (Rejax, LogWrapper); 3M steps, 64 envs, wall-time logging aligned with PPO-style upper-bound dashboards."
+  },
+  "task_config": {
+    "task": "dso",
+    "case": "case33bw",
+    "max_steps": 48,
+    "dt_hours": 0.5,
+    "v_slack": 1.045,
+    "v_min": 0.94,
+    "v_max": 1.06,
+    "cost_mode": "voltage_only",
+    "n_flexloads": 6,
+    "flexload_config": [
+      {
+        "bus_id": 6,
+        "curtail_cap_mw": 0.165,
+        "shift_cap_mw": 0.165
+      },
+      {
+        "bus_id": 14,
+        "curtail_cap_mw": 0.11,
+        "shift_cap_mw": 0.11
+      },
+      {
+        "bus_id": 18,
+        "curtail_cap_mw": 0.11,
+        "shift_cap_mw": 0.11
+      },
+      {
+        "bus_id": 22,
+        "curtail_cap_mw": 0.088,
+        "shift_cap_mw": 0.088
+      },
+      {
+        "bus_id": 28,
+        "curtail_cap_mw": 0.132,
+        "shift_cap_mw": 0.132
+      },
+      {
+        "bus_id": 33,
+        "curtail_cap_mw": 0.11,
+        "shift_cap_mw": 0.11
+      }
+    ],
+    "shift_horizon": 4,
+    "data_source": "ausgrid",
+    "load_scale": 0.83,
+    "preserve_feeder_totals": true,
+    "bus_load_scale_overrides": {
+      "15": 0.88,
+      "16": 0.75,
+      "17": 0.64,
+      "18": 0.56,
+      "29": 0.88,
+      "30": 0.75,
+      "31": 0.64,
+      "32": 0.56,
+      "33": 0.5
+    },
+    "train_window_role": "iid",
+    "train_window_sampling": "reset_bank",
+    "train_window_len": 48,
+    "train_window_starts": [
+      0,
+      360,
+      721,
+      1081,
+      1442,
+      1802,
+      2163,
+      2524
+    ],
+    "num_envs": 512,
+    "baseline_set": [
+      "no_control",
+      "tou",
+      "droop"
+    ],
+    "eval_splits": [
+      "iid"
+    ],
+    "primary_split": "iid",
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "eval_episodes": 50,
+    "safety_thresholds": {
+      "voltage_violation_rate": 0.0
+    },
+    "target_return_metric_key": "total_reward",
+    "target_metric_direction": "higher_is_better",
+    "notes": "Canonical DSO benchmark configuration."
+  }
+}

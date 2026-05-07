@@ -1,0 +1,302 @@
+[
+  {
+    "total_profit": 319340.4094810486,
+    "mean_profit_per_agent": 63868.08189620972,
+    "total_gen_cost": 601474.5815429688,
+    "mean_lmp": 38.89188003540039,
+    "price_volatility": 0.3324465906041468,
+    "hhi": 0.5532426834106445,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5625000086923441
+  },
+  {
+    "total_profit": 344871.62174987793,
+    "mean_profit_per_agent": 68974.32434997559,
+    "total_gen_cost": 631755.9360351562,
+    "mean_lmp": 39.16407012939453,
+    "price_volatility": 0.3166169066581557,
+    "hhi": 0.5508459210395813,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5708333421498537
+  },
+  {
+    "total_profit": 315127.45306777954,
+    "mean_profit_per_agent": 63025.49061355591,
+    "total_gen_cost": 605921.5200195312,
+    "mean_lmp": 38.39189529418945,
+    "price_volatility": 0.3745830022773831,
+    "hhi": 0.5543338656425476,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5625000086923441
+  },
+  {
+    "total_profit": 350742.8052139282,
+    "mean_profit_per_agent": 70148.56104278564,
+    "total_gen_cost": 663716.0942382812,
+    "mean_lmp": 39.05891036987305,
+    "price_volatility": 0.33298713447592787,
+    "hhi": 0.5331079363822937,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5541666749243935
+  },
+  {
+    "total_profit": 264447.20557403564,
+    "mean_profit_per_agent": 52889.44111480713,
+    "total_gen_cost": 519250.7509765625,
+    "mean_lmp": 36.02938461303711,
+    "price_volatility": 0.39070394471335107,
+    "hhi": 0.5869833827018738,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5916666754831871
+  },
+  {
+    "total_profit": 432975.06016921997,
+    "mean_profit_per_agent": 86595.01203384399,
+    "total_gen_cost": 826311.5571289062,
+    "mean_lmp": 39.94612121582031,
+    "price_volatility": 0.34114807840013733,
+    "hhi": 0.5175604820251465,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5500000088165203
+  },
+  {
+    "total_profit": 268206.7438812256,
+    "mean_profit_per_agent": 53641.34877624512,
+    "total_gen_cost": 531205.3557128906,
+    "mean_lmp": 35.86961364746094,
+    "price_volatility": 0.3965464120785738,
+    "hhi": 0.5938333868980408,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.6000000095615784
+  },
+  {
+    "total_profit": 314414.6491317749,
+    "mean_profit_per_agent": 62882.92982635498,
+    "total_gen_cost": 612430.1459960938,
+    "mean_lmp": 38.35934066772461,
+    "price_volatility": 0.35911606486117126,
+    "hhi": 0.5402774214744568,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5625000086923441
+  },
+  {
+    "total_profit": 410477.41915130615,
+    "mean_profit_per_agent": 82095.48383026123,
+    "total_gen_cost": 757183.2963867188,
+    "mean_lmp": 43.56820297241211,
+    "price_volatility": 0.26089597403028125,
+    "hhi": 0.4864107370376587,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5000000077610215
+  },
+  {
+    "total_profit": 492672.9515838623,
+    "mean_profit_per_agent": 98534.59031677246,
+    "total_gen_cost": 1075643.15234375,
+    "mean_lmp": 45.034061431884766,
+    "price_volatility": 0.27372666624955067,
+    "hhi": 0.39230361580848694,
+    "sced_convergence_rate": 0.7291666666666666,
+    "ramp_binding_rate": 0.4708333443850279
+  },
+  {
+    "total_profit": 233003.77166748047,
+    "mean_profit_per_agent": 46600.754333496094,
+    "total_gen_cost": 433137.2900390625,
+    "mean_lmp": 35.19340896606445,
+    "price_volatility": 0.3983605599371543,
+    "hhi": 0.6422879099845886,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.6208333435157934
+  },
+  {
+    "total_profit": 350170.9725341797,
+    "mean_profit_per_agent": 70034.19450683593,
+    "total_gen_cost": 656097.6025390625,
+    "mean_lmp": 39.15155029296875,
+    "price_volatility": 0.35452518151447054,
+    "hhi": 0.5480531454086304,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5625000086923441
+  },
+  {
+    "total_profit": 439259.510848999,
+    "mean_profit_per_agent": 87851.90216979981,
+    "total_gen_cost": 899872.525390625,
+    "mean_lmp": 46.41182327270508,
+    "price_volatility": 0.14296478399521004,
+    "hhi": 0.4080282747745514,
+    "sced_convergence_rate": 0.9166666666666666,
+    "ramp_binding_rate": 0.441666675110658
+  },
+  {
+    "total_profit": 417155.4250450134,
+    "mean_profit_per_agent": 83431.08500900268,
+    "total_gen_cost": 770648.4467773438,
+    "mean_lmp": 40.304500579833984,
+    "price_volatility": 0.3233591251702067,
+    "hhi": 0.521488606929779,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5541666752348343
+  },
+  {
+    "total_profit": 474641.904876709,
+    "mean_profit_per_agent": 94928.3809753418,
+    "total_gen_cost": 904785.8251953125,
+    "mean_lmp": 44.591121673583984,
+    "price_volatility": 0.2261460398818861,
+    "hhi": 0.45624884963035583,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.4875000078851978
+  },
+  {
+    "total_profit": 447798.44886016846,
+    "mean_profit_per_agent": 89559.68977203369,
+    "total_gen_cost": 824831.896484375,
+    "mean_lmp": 45.86964416503906,
+    "price_volatility": 0.20351004349025723,
+    "hhi": 0.4476032257080078,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.46666667393098277
+  },
+  {
+    "total_profit": 202670.52406311035,
+    "mean_profit_per_agent": 40534.10481262207,
+    "total_gen_cost": 399765.427734375,
+    "mean_lmp": 34.0582160949707,
+    "price_volatility": 0.4012270783008329,
+    "hhi": 0.6149193048477173,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.6041666762903333
+  },
+  {
+    "total_profit": 235397.0039024353,
+    "mean_profit_per_agent": 47079.40078048706,
+    "total_gen_cost": 473042.453125,
+    "mean_lmp": 34.036808013916016,
+    "price_volatility": 0.4190013890545369,
+    "hhi": 0.6009532809257507,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.6166666758557161
+  },
+  {
+    "total_profit": 402993.6885910034,
+    "mean_profit_per_agent": 80598.73771820069,
+    "total_gen_cost": 745526.4296875,
+    "mean_lmp": 44.722354888916016,
+    "price_volatility": 0.1939494165911137,
+    "hhi": 0.4660186767578125,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.4833333417773247
+  },
+  {
+    "total_profit": 212323.17711639404,
+    "mean_profit_per_agent": 42464.63542327881,
+    "total_gen_cost": 419104.6457519531,
+    "mean_lmp": 31.730060577392578,
+    "price_volatility": 0.4127508137675794,
+    "hhi": 0.6410327553749084,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.6625000108033419
+  },
+  {
+    "total_profit": 393877.47676849365,
+    "mean_profit_per_agent": 78775.49535369873,
+    "total_gen_cost": 740755.7099609375,
+    "mean_lmp": 39.35057067871094,
+    "price_volatility": 0.3229893271594586,
+    "hhi": 0.5299991369247437,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5583333419635892
+  },
+  {
+    "total_profit": 245555.1784248352,
+    "mean_profit_per_agent": 49111.03568496704,
+    "total_gen_cost": 485210.84130859375,
+    "mean_lmp": 34.286441802978516,
+    "price_volatility": 0.4115732001022571,
+    "hhi": 0.567602276802063,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.6250000099341074
+  },
+  {
+    "total_profit": 315372.1656188965,
+    "mean_profit_per_agent": 63074.433123779294,
+    "total_gen_cost": 621467.6350097656,
+    "mean_lmp": 36.52375411987305,
+    "price_volatility": 0.38709398188761274,
+    "hhi": 0.5357769131660461,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5875000090648731
+  },
+  {
+    "total_profit": 372845.21810150146,
+    "mean_profit_per_agent": 74569.04362030029,
+    "total_gen_cost": 722036.3142089844,
+    "mean_lmp": 38.546146392822266,
+    "price_volatility": 0.37478906959856495,
+    "hhi": 0.5158498287200928,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5666666760419806
+  },
+  {
+    "total_profit": 182026.20613479614,
+    "mean_profit_per_agent": 36405.24122695923,
+    "total_gen_cost": 339832.8386230469,
+    "mean_lmp": 29.484676361083984,
+    "price_volatility": 0.3959687970223161,
+    "hhi": 0.6962593197822571,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.6833333438262343
+  },
+  {
+    "total_profit": 259583.46564483643,
+    "mean_profit_per_agent": 51916.69312896729,
+    "total_gen_cost": 509548.3369140625,
+    "mean_lmp": 36.02938461303711,
+    "price_volatility": 0.39070394471335107,
+    "hhi": 0.5858619809150696,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5875000087544322
+  },
+  {
+    "total_profit": 318607.11784362793,
+    "mean_profit_per_agent": 63721.423568725586,
+    "total_gen_cost": 627929.6047363281,
+    "mean_lmp": 36.524681091308594,
+    "price_volatility": 0.38710712054612334,
+    "hhi": 0.5350108742713928,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5833333420256773
+  },
+  {
+    "total_profit": 335406.3172836304,
+    "mean_profit_per_agent": 67081.26345672607,
+    "total_gen_cost": 645011.3203125,
+    "mean_lmp": 36.454776763916016,
+    "price_volatility": 0.4012957752246114,
+    "hhi": 0.5604061484336853,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5958333425223827
+  },
+  {
+    "total_profit": 278109.8220252991,
+    "mean_profit_per_agent": 55621.964405059814,
+    "total_gen_cost": 520380.3786621094,
+    "mean_lmp": 38.36402893066406,
+    "price_volatility": 0.37081481361333324,
+    "hhi": 0.5647178292274475,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5708333421498537
+  },
+  {
+    "total_profit": 453297.5331840515,
+    "mean_profit_per_agent": 90659.5066368103,
+    "total_gen_cost": 832312.490234375,
+    "mean_lmp": 41.03162384033203,
+    "price_volatility": 0.30094265222008354,
+    "hhi": 0.5000149607658386,
+    "sced_convergence_rate": 1.0,
+    "ramp_binding_rate": 0.5458333417773247
+  }
+]

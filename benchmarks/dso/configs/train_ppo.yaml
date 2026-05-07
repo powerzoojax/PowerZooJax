@@ -1,0 +1,15 @@
+# DSO unconstrained PPO baseline (rejax backend).
+# Reference run pinned in provenance.json::convergence_provenance.
+algo: ppo
+total_timesteps: 3000000      # ~24 h on RTX 4500 Ada
+num_envs: 128                 # rejax PPO rollout parallelism
+n_steps: 48                   # one episode worth of rollout per update
+hidden_dims: [128, 128]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0003                    # alias for learning_rate; build_train_cfg() handles both
+eval_episodes: 8              # keep wall-time monitoring comparable to penalty/CMDP runs
+record_eval_wall_time: true
+normalize_observations: true  # high-dim obs (per-bus voltages); helps stability
+wrapper: log                  # LogWrapper (no cost channel); use train_safe.yaml for CMDP
+notes: Unconstrained PPO baseline for DSO

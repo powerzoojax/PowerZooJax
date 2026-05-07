@@ -1,0 +1,53 @@
+{
+  "task": "ders",
+  "variant": "ders_cross_backend_pettingzoo_il_eval",
+  "algo": "ppo",
+  "seed": 0,
+  "run_id": "ders_ppo_load_stress_s0_20260424_161928_812352",
+  "config_hash": "d4564b03acfb",
+  "status": "completed",
+  "split": "load_stress",
+  "backend": "sb3",
+  "device": "cuda",
+  "framework_version": "sb3-2.8.0",
+  "metrics": {
+    "cost_reduction_pct": -717998.6575293266,
+    "episode_idx": 14.5,
+    "episode_reward": -1.2769850732250687,
+    "episode_start": 1261.5333333333333,
+    "loss_reduction_pct": 8.307082299610146,
+    "max_overvoltage_dev": 0.0,
+    "max_undervoltage_dev": 0.0005142405789798262,
+    "mean_p_loss_mw": 0.2524631833352429,
+    "mean_v_max": 1.0,
+    "mean_v_min": 0.9629873666544814,
+    "overvoltage_steps": 0.0,
+    "total_cost": 0.01629044830397578,
+    "total_reward": -1.2769850732250687,
+    "undervoltage_steps": 0.7333333333333333,
+    "voltage_safety_rate": 0.9847222222222222,
+    "voltage_violation_rate": 0.015277777777777777,
+    "voltage_violation_steps": 0.7333333333333333,
+    "final_return": -1.2769850732250687
+  },
+  "convergence": {},
+  "walltime_s": 0.0,
+  "throughput_sps": null,
+  "timestamp": "2026-04-24T16:19:28.895793+00:00",
+  "notes": "cross-backend eval of ders_ppo_train_s0_20260423_233936_171932 on split=load_stress",
+  "env_info": {
+    "python": "3.12.3",
+    "jax": "0.7.1",
+    "jaxlib": "0.7.1",
+    "jax_backend": "gpu",
+    "jax_device_kind": "NVIDIA RTX 4500 Ada Generation",
+    "cuda": "NVIDIA RTX 4500 Ada Generation",
+    "nvidia_driver": "580.82.07",
+    "nvidia_gpu_name": "NVIDIA RTX 4500 Ada Generation"
+  },
+  "labels": {},
+  "artifacts": {
+    "per_episode": "artifacts/ders_ppo_load_stress_s0_20260424_161928_812352_per_episode.json",
+    "action_stats": "artifacts/ders_ppo_load_stress_s0_20260424_161928_812352_action_stats.json"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "task": "dso",
+  "variant": "dso_cross_backend_direct_env",
+  "algo": "ppo",
+  "seed": 0,
+  "run_id": "dso_ppo_iid_s0_20260423_124907_332781",
+  "config_hash": "a2f3be5f8d19",
+  "status": "completed",
+  "split": "iid",
+  "backend": "sb3",
+  "device": "cuda",
+  "framework_version": "sb3-2.8.0",
+  "metrics": {
+    "train_final_return": -0.44571902,
+    "mean_loss_mw": 0.06555235739136045,
+    "network_loss_reduction_pct": 46.90026037021033,
+    "peak_shaving_pct": 40.94179777616681,
+    "served_flex_ratio": 0.2618364095411224,
+    "thermal_overload_count_per_step": 0.0,
+    "total_curtailed_mwh": 16.57223937555626,
+    "total_loss_mwh": 1.5732565773926508,
+    "total_reward": -0.31465131547853015,
+    "total_shift_in_mwh": 4.171005414393171,
+    "total_shifted_mwh": 15.952606493193658,
+    "total_thermal_overloads": 0.0,
+    "total_violations": 0.0,
+    "total_voltage_violations": 0.0,
+    "voltage_violation_count_per_step": 0.0,
+    "final_return": -0.31465131547853015
+  },
+  "convergence": {},
+  "walltime_s": 974.4031775380136,
+  "throughput_sps": 3078.807693936285,
+  "timestamp": "2026-04-23T13:07:22.785439+00:00",
+  "notes": "cross-backend run via powerzoo_driver. powerzoo_task=make_dso_env access_path=direct_env rl_paradigm=single_agent_non_stationary n_agents=1 algorithm=PPO train_split=train eval_split=iid.",
+  "env_info": {
+    "python": "3.12.3",
+    "jax": "0.7.1",
+    "jaxlib": "0.7.1",
+    "cuda": "NVIDIA RTX 4500 Ada Generation",
+    "nvidia_driver": "580.82.07",
+    "nvidia_gpu_name": "NVIDIA RTX 4500 Ada Generation"
+  },
+  "artifacts": {
+    "config": "artifacts/dso_ppo_iid_s0_20260423_124907_332781_config.json",
+    "per_episode": "artifacts/dso_ppo_iid_s0_20260423_124907_332781_per_episode.json"
+  }
+}

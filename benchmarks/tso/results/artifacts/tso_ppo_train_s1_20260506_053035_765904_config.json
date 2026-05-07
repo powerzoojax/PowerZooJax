@@ -1,0 +1,208 @@
+{
+  "powerzoo_driver_config": {
+    "algorithm": "PPO",
+    "total_timesteps": 20000000,
+    "seed": 1,
+    "model_seed": 1,
+    "split": "train",
+    "requested_split": "train",
+    "train_split": "train",
+    "eval_split": "train",
+    "device": "cuda",
+    "n_envs": 256,
+    "access_path": "direct_env",
+    "rl_paradigm": "single_agent_safe_rl_hybrid",
+    "n_agents": 1,
+    "algo_kwargs": {
+      "learning_rate": 0.0003,
+      "n_steps": 48,
+      "batch_size": 3072,
+      "n_epochs": 4,
+      "gamma": 0.995,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "ent_coef": 0.01,
+      "vf_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "policy_kwargs": {
+        "net_arch": [
+          256,
+          256
+        ]
+      }
+    },
+    "aligned_from_train_config": "benchmarks/tso/configs/train_ppo.yaml",
+    "requested_continuous_action_dist": "gaussian",
+    "policy_class": "MlpPolicy",
+    "effective_continuous_action_dist": "gaussian",
+    "benchmark_normalize_observations": true,
+    "requested_normalize_observations": true,
+    "effective_normalize_observations": true,
+    "benchmark_train_config": "benchmarks/tso/configs/train_ppo.yaml",
+    "vec_normalize": {
+      "norm_obs": true,
+      "norm_reward": false,
+      "training": true
+    }
+  },
+  "powerzoo_task": "CentralizedComparisonTSOEnv",
+  "jax_task": "tso",
+  "backend": "sb3",
+  "task_config": {
+    "task": "tso",
+    "case": "case118",
+    "n_units": 54,
+    "n_buses": 118,
+    "n_lines": 186,
+    "max_steps": 48,
+    "dt_hours": 0.5,
+    "data_source": "gb",
+    "gb_train_start": "2025-04-01",
+    "gb_train_end": "2025-12-31",
+    "gb_iid_start": "2026-01-01",
+    "gb_iid_end": "2026-03-31",
+    "num_envs": 1024,
+    "reserve_margin_frac": 0.05,
+    "reward_scale": 0.0001,
+    "cost_thermal_weight": 1.0,
+    "solver_mode": 1,
+    "dcopf_max_iter": 200,
+    "dcopf_tol": 0.0001,
+    "forecast_horizon_steps": 4,
+    "baseline_set": [
+      "all_on",
+      "merit_order"
+    ],
+    "eval_splits": [
+      "train",
+      "iid",
+      "load_stress",
+      "line_tightening"
+    ],
+    "primary_split": "iid",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eval_episodes": 50,
+    "safety_thresholds": {
+      "reserve_shortfall_rate": 0.0,
+      "thermal_violation_rate": 0.0
+    },
+    "benchmark_protocol": {
+      "benchmark_question": "Can a method lower SCUC operating cost without violating physical security, and does held-out IID strength transfer to peak-load and congestion OOD shifts?",
+      "current_campaign_start_iso": "2026-04-24T02:05:20+00:00",
+      "primary_algorithms": [
+        "ppo",
+        "ppo_lagrangian"
+      ],
+      "current_campaign_seed_budget": 5,
+      "submission_min_seeds": 5,
+      "required_statistics": [
+        "mean",
+        "std",
+        "iqm",
+        "bootstrap_ci95"
+      ],
+      "hypothesis_test": {
+        "name": "paired_wilcoxon_or_permutation",
+        "status": "implemented",
+        "implementation": "paired_signflip_permutation",
+        "notes": "summarize.py runs paired sign-flip permutation tests on primary-split per-episode total_operating_cost for canonical jax_rejax+gpu rows."
+      },
+      "leaderboard": {
+        "split": "iid",
+        "primary_metric": "total_operating_cost",
+        "direction": "lower_is_better",
+        "include_baselines": true,
+        "require_safety_thresholds": [
+          "reserve_shortfall_rate",
+          "thermal_violation_rate"
+        ],
+        "notes": "Unsafe policies are still reported, but they are not leaderboard-eligible on the primary split."
+      }
+    },
+    "split_taxonomy": {
+      "train": {
+        "capability": "optimization sanity check on the training distribution",
+        "interpretation": "A large train gap usually indicates optimizer instability or under-training, not a generalization failure."
+      },
+      "iid": {
+        "capability": "routine day-ahead security dispatch on held-out same-regime demand windows",
+        "interpretation": "Low IID performance means the method cannot solve standard SCUC reliably even before deliberate distribution shift."
+      },
+      "load_stress": {
+        "capability": "reserve adequacy and cost control under peak-demand stress",
+        "interpretation": "IID-strong but load_stress-weak suggests brittle reserve margins or overly aggressive commitment trimming."
+      },
+      "line_tightening": {
+        "capability": "congestion-aware commitment and redispatch under reduced transfer headroom",
+        "interpretation": "IID-strong but line_tightening-weak suggests the policy relies on uncongested merit-order patterns and lacks transmission-security robustness."
+      }
+    },
+    "target_return_metric_key": "total_operating_cost",
+    "target_metric_direction": "lower_is_better",
+    "notes": "Frozen task definition for TSO-SCUC benchmark (case118, GB demand, continuous-relaxation SCUC). eval_episodes is the executable source for benchmark eval/baseline episode count; split-specific eval YAMLs only carry load/rating modifiers. train.py reads train_*.yaml for optimizer hyperparameters and num_envs; task.yaml::num_envs is throughput metadata for benchmark analysis only. submission-grade reporting is tracked separately in benchmark_protocol. convergence_threshold_per_split / convergence_provenance / safety_thresholds populated by P0-E experiment_ops.py derive_target after the seed-0 pipeline.",
+    "convergence_threshold_per_split": {
+      "iid": {
+        "target_return": 3783052.5,
+        "alpha": 0.8,
+        "status": "frozen",
+        "return_metric_key": "total_operating_cost",
+        "metric_direction": "lower_is_better"
+      },
+      "train": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "load_stress": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "line_tightening": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      }
+    },
+    "convergence_provenance": {
+      "reference_run_id": "tso_ppo_lagrangian_train_s0_20260424_023009_297969",
+      "reference_config_hash": "4c219a681022",
+      "reference_train_split": "train",
+      "target_eval_split": "iid",
+      "reference_backend": "jax_rejax",
+      "reference_device": "gpu",
+      "reference_seed": 0,
+      "reference_total_timesteps": 4000000,
+      "reference_eval_run_id": "tso_ppo_lagrangian_iid_s0_20260424_023838_511679",
+      "reference_metric_source": "primary_eval_record",
+      "baseline_algo": "all_on",
+      "baseline_iqm": 4336064.64,
+      "return_metric_key": "total_operating_cost"
+    }
+  },
+  "train_config_raw": {
+    "algo": "ppo",
+    "total_timesteps": 20000000,
+    "num_envs": 256,
+    "n_steps": 48,
+    "eval_freq": 100000,
+    "eval_episodes": 8,
+    "record_eval_wall_time": true,
+    "hidden_dims": [
+      256,
+      256
+    ],
+    "gamma": 0.995,
+    "gae_lambda": 0.95,
+    "lr": 0.0003,
+    "normalize_observations": true,
+    "wrapper": "log",
+    "notes": "TSO unconstrained PPO (LogWrapper): continuous-relaxation SCUC; 20M env steps, 256×48 rollouts, eval every 100k steps, 8 eval episodes, eval walltime logged."
+  }
+}

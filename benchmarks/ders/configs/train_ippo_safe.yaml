@@ -1,0 +1,28 @@
+# DERs IPPO-rs (reward-shaped) variant: same typed actor-critic as
+# train_ippo.yaml with stronger reward shaping (voltage_penalty = 2x
+# unconstrained) plus a strict zero cost_threshold field reserved for future
+# Lagrangian wrappers.
+#
+# The internal algo key remains ``ippo_safe`` to preserve compatibility with
+# already-trained artifacts (run IDs, manifest entries, eval rows). The
+# user-facing display label is ``IPPO-rs``; do NOT confuse this with the Sauté
+# PPO algorithm in ``powerzoojax/rl/wrappers.py``. This is reward-shaped IPPO,
+# NOT constrained safe-RL.
+algo: ippo_typed
+total_timesteps: 10000000
+num_envs: 128
+n_steps: 48
+n_epochs: 4
+hidden_dims: [128, 128]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0001
+clip_eps: 0.2
+ent_coef: 0.01
+vf_coef: 0.5
+max_grad_norm: 0.5
+eval_freq: 100000
+record_eval_wall_time: true
+voltage_penalty: 8.0          # 2x the unconstrained variant (4.0)
+cost_threshold: 0.0           # strict target; reserved, not yet consumed by trainer
+notes: "DERs IPPO-rs (reward-shaped) variant: same typed actor-critic as train_ippo.yaml with stronger reward shaping (voltage_penalty=8.0, 2x unconstrained 4.0) and strict zero cost_threshold reserved for downstream Lagrangian wrappers. Honest description: this is reward-shaped IPPO, not constrained MARL. Internal algo key kept as ``ippo_safe`` for artifact compatibility. lr=1e-4 synced with train_ippo.yaml retuning (MARL stability). num_envs 32->128 (convergence verified; throughput ~19k->~53k steps/s on RTX 4500 Ada GPU1)."

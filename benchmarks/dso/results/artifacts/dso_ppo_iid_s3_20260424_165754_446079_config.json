@@ -1,0 +1,201 @@
+{
+  "powerzoo_driver_config": {
+    "algorithm": "PPO",
+    "total_timesteps": 3000000,
+    "seed": 3,
+    "split": "iid",
+    "requested_split": "iid",
+    "train_split": "train",
+    "eval_split": "iid",
+    "device": "cuda",
+    "n_envs": 128,
+    "access_path": "direct_env",
+    "rl_paradigm": "single_agent_non_stationary",
+    "n_agents": 1,
+    "algo_kwargs": {
+      "learning_rate": 0.0003,
+      "n_steps": 48,
+      "batch_size": 1536,
+      "n_epochs": 4,
+      "gamma": 0.995,
+      "gae_lambda": 0.95,
+      "clip_range": 0.2,
+      "ent_coef": 0.01,
+      "vf_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "policy_kwargs": {
+        "net_arch": [
+          128,
+          128
+        ]
+      }
+    },
+    "aligned_from_train_config": "benchmarks/dso/configs/train_ppo.yaml",
+    "requested_continuous_action_dist": "gaussian",
+    "policy_class": "MlpPolicy",
+    "effective_continuous_action_dist": "gaussian",
+    "benchmark_train_config": "benchmarks/dso/configs/train_ppo.yaml"
+  },
+  "powerzoo_task": "make_dso_env",
+  "jax_task": "dso",
+  "backend": "sb3",
+  "task_config": {
+    "task": "dso",
+    "case": "case33bw",
+    "max_steps": 48,
+    "dt_hours": 0.5,
+    "v_slack": 1.045,
+    "v_min": 0.94,
+    "v_max": 1.06,
+    "cost_mode": "voltage_only",
+    "n_flexloads": 6,
+    "flexload_config": [
+      {
+        "bus_id": 6,
+        "curtail_cap_mw": 0.165,
+        "shift_cap_mw": 0.165
+      },
+      {
+        "bus_id": 14,
+        "curtail_cap_mw": 0.11,
+        "shift_cap_mw": 0.11
+      },
+      {
+        "bus_id": 18,
+        "curtail_cap_mw": 0.11,
+        "shift_cap_mw": 0.11
+      },
+      {
+        "bus_id": 22,
+        "curtail_cap_mw": 0.088,
+        "shift_cap_mw": 0.088
+      },
+      {
+        "bus_id": 28,
+        "curtail_cap_mw": 0.132,
+        "shift_cap_mw": 0.132
+      },
+      {
+        "bus_id": 33,
+        "curtail_cap_mw": 0.11,
+        "shift_cap_mw": 0.11
+      }
+    ],
+    "shift_horizon": 4,
+    "data_source": "ausgrid",
+    "load_scale": 0.83,
+    "preserve_feeder_totals": true,
+    "bus_load_scale_overrides": {
+      "15": 0.88,
+      "16": 0.75,
+      "17": 0.64,
+      "18": 0.56,
+      "29": 0.88,
+      "30": 0.75,
+      "31": 0.64,
+      "32": 0.56,
+      "33": 0.5
+    },
+    "train_window_role": "iid",
+    "train_window_sampling": "reset_bank",
+    "train_window_len": 48,
+    "train_window_starts": [
+      0,
+      360,
+      721,
+      1081,
+      1442,
+      1802,
+      2163,
+      2524
+    ],
+    "num_envs": 512,
+    "baseline_set": [
+      "no_control",
+      "tou",
+      "droop"
+    ],
+    "eval_splits": [
+      "iid"
+    ],
+    "primary_split": "iid",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eval_episodes": 50,
+    "safety_thresholds": {
+      "voltage_violation_rate": 0.0
+    },
+    "benchmark_protocol": {
+      "protocol_formalization_pending": false,
+      "current_campaign_seed_budget": 5,
+      "submission_min_seeds": 5,
+      "required_statistics": [
+        "mean",
+        "std",
+        "iqm",
+        "bootstrap_ci95"
+      ],
+      "hypothesis_test": {
+        "name": "paired_primary_split_test",
+        "status": "implemented",
+        "notes": "DSO summary reports paired seed-level primary-split comparisons against no_control on iid."
+      },
+      "leaderboard": {
+        "split": "iid",
+        "primary_metric": "total_loss_mwh",
+        "direction": "lower_is_better",
+        "include_baselines": true
+      }
+    },
+    "target_return_metric_key": "total_reward",
+    "target_metric_direction": "higher_is_better",
+    "notes": "Canonical DSO benchmark configuration.",
+    "convergence_threshold_per_split": {
+      "iid": {
+        "target_return": -0.42456985485553744,
+        "alpha": 0.8,
+        "status": "frozen",
+        "return_metric_key": "total_reward",
+        "metric_direction": "higher_is_better"
+      }
+    },
+    "convergence_provenance": {
+      "reference_run_id": "dso_saute_ppo_train_s0_20260423_003941_272421",
+      "reference_config_hash": "f6363e77e9b2",
+      "reference_train_split": "train",
+      "target_eval_split": "iid",
+      "reference_backend": "jax_rejax",
+      "reference_device": "gpu",
+      "reference_seed": 0,
+      "reference_total_timesteps": 3000000,
+      "reference_eval_run_id": "dso_saute_ppo_iid_s0_20260423_005332_770309",
+      "reference_metric_source": "primary_eval_record",
+      "baseline_algo": "no_control",
+      "baseline_iqm": -0.5781745392084122,
+      "return_metric_key": "total_reward"
+    }
+  },
+  "train_config_raw": {
+    "algo": "ppo",
+    "total_timesteps": 3000000,
+    "num_envs": 128,
+    "n_steps": 48,
+    "hidden_dims": [
+      128,
+      128
+    ],
+    "gamma": 0.995,
+    "gae_lambda": 0.95,
+    "lr": 0.0003,
+    "eval_episodes": 8,
+    "record_eval_wall_time": true,
+    "normalize_observations": true,
+    "wrapper": "log",
+    "notes": "Unconstrained PPO baseline for DSO"
+  }
+}

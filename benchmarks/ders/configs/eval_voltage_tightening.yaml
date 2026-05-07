@@ -1,0 +1,4 @@
+n_eval_episodes: 30
+ood_scenario: voltage_tightening
+v_min: 0.96
+v_max: 1.04

@@ -1,0 +1,218 @@
+{
+  "powerzoo_driver_config": {
+    "algorithm": "SBX_PPO",
+    "total_timesteps": 1000000,
+    "seed": 3,
+    "split": "iid",
+    "requested_split": "iid",
+    "train_split": "train",
+    "eval_split": "iid",
+    "device": "cuda",
+    "n_envs": 64,
+    "access_path": "pz_registry",
+    "rl_paradigm": "single_agent_multi_objective_robust",
+    "n_agents": 1,
+    "reward_shaping_weights": {
+      "sla": 50.0,
+      "overtemp": 30.0,
+      "power_deficit": 200.0,
+      "power_spill": 100.0,
+      "power_balance": 0.0,
+      "dispatch_tracking": 40.0
+    },
+    "algo_kwargs": {
+      "learning_rate": 0.0001,
+      "n_steps": 288,
+      "batch_size": 2304,
+      "n_epochs": 4,
+      "gamma": 0.99,
+      "gae_lambda": 0.95,
+      "clip_range": 0.1,
+      "ent_coef": 0.001,
+      "vf_coef": 0.5,
+      "max_grad_norm": 0.5,
+      "policy_kwargs": {
+        "net_arch": [
+          256,
+          256
+        ]
+      }
+    },
+    "aligned_from_train_config": "benchmarks/dc_microgrid/configs/train_ppo.yaml",
+    "requested_continuous_action_dist": "beta",
+    "policy_class": "SBXPPOBoundedBetaPolicy",
+    "effective_continuous_action_dist": "beta",
+    "benchmark_train_config": "benchmarks/dc_microgrid/configs/train_ppo.yaml"
+  },
+  "powerzoo_task": "dc_microgrid",
+  "jax_task": "dc_microgrid",
+  "backend": "sbx",
+  "task_config": {
+    "task": "dc_microgrid",
+    "max_steps": 288,
+    "dt_minutes": 5,
+    "dt_hours": 0.08333,
+    "data_source": "google",
+    "baseline_set": [
+      "no_control",
+      "max_renewable",
+      "rule_based"
+    ],
+    "eval_splits": [
+      "train",
+      "iid",
+      "cooling_stress",
+      "renewable_drought"
+    ],
+    "eval_splits_main": [
+      "train",
+      "iid",
+      "cooling_stress",
+      "renewable_drought"
+    ],
+    "eval_splits_appendix": [
+      "workload_swap",
+      "workload_shock",
+      "dg_derating",
+      "sla_tighten"
+    ],
+    "ood_scenarios": {
+      "cooling_stress": {
+        "scenario": "cooling_stress",
+        "temp_delta": 5.0
+      },
+      "renewable_drought": {
+        "scenario": "renewable_drought",
+        "drought_factor": 0.2
+      },
+      "workload_swap": {
+        "scenario": "workload_swap"
+      },
+      "workload_shock": {
+        "scenario": "workload_shock"
+      },
+      "dg_derating": {
+        "scenario": "dg_derating",
+        "dg_derating_factor": 0.6
+      },
+      "sla_tighten": {
+        "scenario": "sla_tighten",
+        "sla_slack": 1.2
+      }
+    },
+    "num_envs": 256,
+    "case_overrides": {
+      "dg_p_max_mw": 1.2,
+      "pv_p_max_mw": 0.8,
+      "grid_import_p_max_mw": 1.5,
+      "grid_price_ref_per_mwh": 150.0,
+      "grid_carbon_kg_per_kwh": 0.18,
+      "battery_soc_min": 0.15,
+      "battery_soc_max": 0.9,
+      "battery_soc_init": 0.55,
+      "terminal_soc_target": 0.55,
+      "terminal_soc_penalty": 20000.0,
+      "w_cost": 0.2,
+      "w_carbon": 0.1
+    },
+    "dg_autobalance": true,
+    "reward_shaping_weights": {
+      "sla": 50.0,
+      "overtemp": 30.0,
+      "power_deficit": 200.0,
+      "power_spill": 100.0,
+      "dispatch_tracking": 40.0
+    },
+    "primary_split": "iid",
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "eval_episodes": 10,
+    "safety_thresholds": {
+      "sla_deficit_rate": 0.0
+    },
+    "benchmark_protocol": {
+      "submission_min_seeds": 5,
+      "hypothesis_test": {
+        "name": "paired_episode_signflip_permutation",
+        "status": "implemented",
+        "metric": "episode_reward",
+        "pairing": "same seed + episode index on primary split"
+      },
+      "leaderboard": {
+        "split": "iid",
+        "primary_metric": "episode_reward",
+        "direction": "higher_is_better"
+      }
+    },
+    "target_return_metric_key": "episode_reward",
+    "target_metric_direction": "higher_is_better",
+    "notes": "Frozen task definition for DC Microgrid benchmark (288x5min, Google workload, GB real solar generation trace normalized to PV capacity factor, GB MID market grid-import price trace, deterministic outdoor-temperature adapter, multi-objective robust RL). Main table uses 4 splits (eval_splits = eval_splits_main, P0-B canonical alias); all 6 OOD scenarios reported in appendix (eval_splits_appendix). Reward shaping converts the underlying CMDP to a plain MDP so vanilla PPO/SAC can learn constraint-aware policies. Current case calibration uses dg_p_max_mw=1.2, pv_p_max_mw=0.8, grid_import_p_max_mw=1.5, battery_soc_window=[0.15,0.90], terminal_soc_target=0.55, terminal_soc_penalty=20000, w_cost=0.2, w_carbon=0.1. Reward shaping uses lambda_deficit=200, lambda_spill=100, lambda_dispatch_tracking=40 with price-aware battery/DG dispatch targets. DG is benchmark-wrapped as a same-step load-following slack actuator because the DC sub-step realises load after workload/cooling actions; direct same-step DG setpoints otherwise create avoidable residual imbalance unrelated to the intended control tradeoff. Submission-grade protocol uses 5 seeds and a paired episode-level sign-flip permutation test on the primary split. convergence_threshold_per_split / convergence_provenance / safety_thresholds populated by P0-E experiment_ops.py derive_target after the seed-0 pipeline.",
+    "convergence_threshold_per_split": {
+      "iid": {
+        "target_return": -2052.7092137868203,
+        "alpha": 0.8,
+        "status": "frozen",
+        "return_metric_key": "episode_reward",
+        "metric_direction": "higher_is_better"
+      },
+      "train": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "cooling_stress": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      },
+      "renewable_drought": {
+        "target_return": null,
+        "alpha": null,
+        "status": "optional"
+      }
+    },
+    "convergence_provenance": {
+      "reference_run_id": "dc_microgrid_sac_iid_s0_20260427_025526_437393",
+      "reference_config_hash": "a815052aef5a",
+      "reference_train_split": "iid",
+      "target_eval_split": "iid",
+      "reference_backend": "jax_rejax",
+      "reference_device": "gpu",
+      "reference_seed": 0,
+      "reference_total_timesteps": null,
+      "reference_eval_run_id": null,
+      "reference_metric_source": "reference_run",
+      "baseline_algo": "no_control",
+      "baseline_iqm": -3110.9020015274486,
+      "return_metric_key": "episode_reward"
+    }
+  },
+  "train_config_raw": {
+    "algo": "ppo",
+    "total_timesteps": 1000000,
+    "num_envs": 64,
+    "n_steps": 288,
+    "hidden_dims": [
+      256,
+      256
+    ],
+    "continuous_action_dist": "beta",
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_eps": 0.1,
+    "ent_coef": 0.001,
+    "lr": 0.0001,
+    "n_minibatches": 8,
+    "eval_freq": 50000,
+    "eval_num_episodes": 32,
+    "normalize_observations": true,
+    "record_eval_wall_time": true,
+    "wrapper": "log",
+    "notes": "Calibrated PPO with bounded beta actor for DC Microgrid. After the grid-connected MID-price task update, PPO uses a conservative lr=1e-4, clip_eps=0.1, ent_coef=0.001, and n_minibatches=8 to avoid seed-level NaNs observed with the older lr=3e-4 setting. total_timesteps remains 1M; eval_freq=50000 for smoother curves; eval_num_episodes=32 keeps each eval lighter than the default 128. record_eval_wall_time=true enables learning_curve_eval_walltimes.npy for cross-backend wall-clock plots."
+  }
+}

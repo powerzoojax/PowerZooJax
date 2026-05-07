@@ -1,0 +1,26 @@
+# TSO Penalty PPO ablation — λ=1000.
+#
+# Shaping: r' = r − penalty_lambda * reward_scale * Σ(costs)
+#   reward_scale = 1e-4 (from task.yaml); CMDP costs in physical MW.
+#   Effective coeff = 1000 * 1e-4 = 1e-1.
+#   Typical step reward ≈ −7.5; max penalty per violated step ≈ 50 — OVER-PENALISED
+#   regime: safety signal dominates reward → agent may reach all-on-like behavior
+#   (feasible but economically poor) or show training instability.
+#
+# This is an ablation baseline demonstrating that static λ is insufficient.
+# See ppo_penalty_l10 / ppo_penalty_l100 for weaker penalty regimes.
+algo: ppo
+total_timesteps: 10000000
+num_envs: 256
+n_steps: 48
+eval_freq: 100000
+eval_episodes: 8
+record_eval_wall_time: true
+hidden_dims: [256, 256]
+gamma: 0.995
+gae_lambda: 0.95
+lr: 0.0003
+normalize_observations: true
+wrapper: penalty
+penalty_lambda: 1000.0
+notes: "Penalty PPO ablation λ=1000 (TSO): r'=r−λ·reward_scale·Σ(c); effective coeff=1e-1; over-penalised — safety dominates training objective."

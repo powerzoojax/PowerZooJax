@@ -1,0 +1,41 @@
+{
+  "convergence_threshold_per_split": {
+    "iid": {
+      "target_return": -2657.149982290963,
+      "alpha": 0.8,
+      "status": "frozen",
+      "return_metric_key": "episode_reward",
+      "metric_direction": "higher_is_better"
+    },
+    "train": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    },
+    "cooling_stress": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    },
+    "renewable_drought": {
+      "target_return": null,
+      "alpha": null,
+      "status": "optional"
+    }
+  },
+  "convergence_provenance": {
+    "reference_run_id": "dc_microgrid_ppo_train_s0_20260429_181958_202858",
+    "reference_config_hash": "eca8eba7e642",
+    "reference_train_split": "train",
+    "target_eval_split": "iid",
+    "reference_backend": "jax_rejax",
+    "reference_device": "gpu",
+    "reference_seed": 0,
+    "reference_total_timesteps": 1000000,
+    "reference_eval_run_id": "dc_microgrid_ppo_iid_s0_20260429_211607_632030",
+    "reference_metric_source": "primary_eval_record",
+    "baseline_algo": "no_control",
+    "baseline_iqm": -3110.9020015274486,
+    "return_metric_key": "episode_reward"
+  }
+}

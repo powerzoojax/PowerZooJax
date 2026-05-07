@@ -1,0 +1,8 @@
+split: cooling_stress
+role: ood
+n_eval_episodes: 10
+data_source: google
+ood_scenario: cooling_stress
+temp_delta: 5.0
+episode_len: 288
+notes: 'OOD: outdoor temperature +5C, tests cooling robustness'

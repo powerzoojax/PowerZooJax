@@ -1,0 +1,68 @@
+task: dso
+case: case33bw
+max_steps: 48
+dt_hours: 0.5
+
+v_slack: 1.045
+v_min: 0.94
+v_max: 1.06
+cost_mode: voltage_only
+
+n_flexloads: 6
+flexload_config:
+  - {bus_id: 6,  curtail_cap_mw: 0.165, shift_cap_mw: 0.165}
+  - {bus_id: 14, curtail_cap_mw: 0.110, shift_cap_mw: 0.110}
+  - {bus_id: 18, curtail_cap_mw: 0.110, shift_cap_mw: 0.110}
+  - {bus_id: 22, curtail_cap_mw: 0.088, shift_cap_mw: 0.088}
+  - {bus_id: 28, curtail_cap_mw: 0.132, shift_cap_mw: 0.132}
+  - {bus_id: 33, curtail_cap_mw: 0.110, shift_cap_mw: 0.110}
+shift_horizon: 4
+
+data_source: ausgrid
+load_scale: 0.83
+preserve_feeder_totals: true
+bus_load_scale_overrides:
+  15: 0.88
+  16: 0.75
+  17: 0.64
+  18: 0.56
+  29: 0.88
+  30: 0.75
+  31: 0.64
+  32: 0.56
+  33: 0.50
+
+train_window_role: iid
+train_window_sampling: reset_bank
+train_window_len: 48
+train_window_starts: [0, 360, 721, 1081, 1442, 1802, 2163, 2524]
+
+num_envs: 512
+baseline_set: [no_control, tou, droop]
+eval_splits: [iid]
+primary_split: iid
+seeds: [0, 1, 2, 3, 4]
+eval_episodes: 50
+
+safety_thresholds:
+  voltage_violation_rate: 0.0
+
+benchmark_protocol:
+  protocol_formalization_pending: false
+  current_campaign_seed_budget: 5
+  submission_min_seeds: 5
+  required_statistics: [mean, std, iqm, bootstrap_ci95]
+  hypothesis_test:
+    name: paired_primary_split_test
+    status: implemented
+    notes: "DSO summary reports paired seed-level primary-split comparisons against no_control on iid."
+  leaderboard:
+    split: iid
+    primary_metric: total_loss_mwh
+    direction: lower_is_better
+    include_baselines: true
+
+target_return_metric_key: total_reward
+target_metric_direction: higher_is_better
+
+notes: "Canonical DSO benchmark configuration."

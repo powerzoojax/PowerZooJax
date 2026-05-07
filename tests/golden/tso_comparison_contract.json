@@ -1,0 +1,69 @@
+{
+  "_comment": "TSO comparison benchmark contract. JAX side generated from PowerZooJax. See _golden_type / _python_verified for cross-repo status. Refresh with: python scripts/generate_tso_comparison_golden.py [--powerzoo-dir PATH]",
+  "_golden_type": "python_verified_reference",
+  "_python_verified": true,
+  "generated_by": "powerzoojax/envs/grid/tso_env.py \u2014 TSO_COMPARISON_SCHEMA + make_comparison_tso_load_trace",
+  "case_id": "case118",
+  "n_units": 54,
+  "n_agents": 1,
+  "max_steps": 48,
+  "delta_t_minutes": 30,
+  "delta_t_hours": 0.5,
+  "load_source": "deterministic_synthetic",
+  "load_trace_formula": "norm[t] = clip(0.75 + 0.25*sin(2\u03c0*(t*delta_t_hours-3)/24), 0.10, 1.00); load_profiles[t,i] = norm[t] * load_d_max[i]",
+  "enable_uc": true,
+  "enable_reserve": true,
+  "reserve_margin_frac": 0.05,
+  "action_shape": [
+    108
+  ],
+  "action_range": "[-1, 1]",
+  "action_layout": "[commit_intent(54) | dispatch(54)]",
+  "action_semantics": "commit_intent > 0 \u2192 unit ON; dispatch \u2192 [p_min, p_max] scale",
+  "reward_components": [
+    "gen_cost",
+    "startup_cost",
+    "no_load_cost"
+  ],
+  "reward_scale": 0.0001,
+  "cost_channels_jax": [
+    "thermal_overload",
+    "reserve_shortfall"
+  ],
+  "load_trace_spot_checks": {
+    "step_0": 0.57322329,
+    "step_18": 1.0,
+    "step_42": 0.5,
+    "trace_sum_48steps": 36.0,
+    "trace_min": 0.5,
+    "trace_max": 1.0
+  },
+  "accepted_gaps": [
+    "obs_shape: JAX (406,) vs Python (249,) \u2014 different encoding of same physics",
+    "dispatch_solver: JAX DC-OPF vs Python score-based (internal implementation detail)",
+    "reserve_cost_routing: JAX CMDP cost channel vs Python info-only"
+  ],
+  "_powerzoo_verification": {
+    "powerzoo_reachable": true,
+    "powerzoo_registered_tasks": [
+      "battery_arbitrage",
+      "comparison_tso_centralized",
+      "dc_microgrid",
+      "dc_microgrid_safe",
+      "dc_scheduling",
+      "joint_trans_dist",
+      "joint_trans_dist_7d",
+      "marl_der_arbitrage",
+      "marl_ders_benchmark",
+      "marl_ev_v2g",
+      "marl_opf",
+      "marl_uc",
+      "opf_118",
+      "opf_118_7d"
+    ],
+    "comparison_tso_centralized_registered": true,
+    "status": "VERIFIED: comparison_tso_centralized exists and load trace matches JAX.",
+    "python_action_shape": "(108,)",
+    "python_load_trace_max_diff_vs_jax": 0.0
+  }
+}

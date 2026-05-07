@@ -1,0 +1,27 @@
+{
+  "name": "alibaba_gpu_2020",
+  "source": "alibaba",
+  "data_type": "actual_series",
+  "time_mode": "profile",
+  "resolution": "300s",
+  "parquet_file": "alibaba_gpu_2020_300s.parquet",
+  "column_map": {
+    "gpu_util_percent": "datacenter.gpu_util",
+    "cpu_util_percent": "datacenter.cpu_util"
+  },
+  "index_map": {
+    "time_stamp": "datetime"
+  },
+  "derived": {},
+  "normalize": {
+    "datacenter.gpu_util": 100,
+    "datacenter.cpu_util": 100
+  },
+  "data_epoch": "2020-07-01T00:00:00",
+  "cyclical": true,
+  "region_values": [],
+  "date_range": null,
+  "metadata_json": null,
+  "source_url": "https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2020",
+  "source_organization": "Alibaba Group"
+}
