@@ -4,15 +4,23 @@ PowerZooJax models the integrated electricity system across multiple interconnec
 
 ## System Architecture
 
-The integrated power system model in PowerZooJax spans five interconnected layers:
+PowerZooJax first connects the physical task suite to the JAX training path:
 
-![PowerZooJax physics overview diagram](../../assets/images/physics/fig1.png){ width="100%" }
+![PowerZooJax execution paradigm](../../assets/images/physics/fig1_execution_paradigm.png){ width="100%" }
 
-*Figure 1. Cross-layer overview of the modeled physics domains in PowerZooJax.*
+*Figure 1. Execution paradigm of PowerZooJax: five power-system CMDP tasks are expressed as JAX code, batched on GPU with `jax.vmap`, and consumed by actor-learner training loops as `[T × B]` trajectories.*
 
-## How to read Figure 1
+Figure 1 should be read left to right. The labeled physical tasks (GenCos, TSO, DSO, DERs, and DCMG) become a benchmark task family, then fixed-shape JAX code, then GPU-resident batched environments. The right side shows the training loop: batched observations go to the actor, batched actions return to the environments, and the learner updates the policy from CMDP trajectories.
 
-Figure 1 organizes PowerZooJax into three **physical system models** (transmission, distribution, microgrid), two **resource layers** (generation, end-use DER), and one **coordination layer** (market). Power flows left → right (generation to loads), while information signals (e.g., prices) propagate across layers.
+The integrated power system model behind those tasks spans five interconnected layers:
+
+![PowerZooJax physics overview diagram](../../assets/images/physics/fig2_power_system_model.png){ width="100%" }
+
+*Figure 2. Cross-layer overview of the modeled physics domains in PowerZooJax.*
+
+## How to read Figure 2
+
+Figure 2 organizes PowerZooJax into three **physical system models** (transmission, distribution, microgrid), two **resource layers** (generation, end-use DER), and one **coordination layer** (market). Power flows left → right (generation to loads), while information signals (e.g., prices) propagate across layers.
 
 ## Layer-by-layer model boundaries (code-aligned)
 
@@ -107,4 +115,3 @@ See [Microgrid Layer](microgrid.md) and `DataCenterMicrogridEnv`.
 - **Constraint coupling**: line thermal limits, voltage bounds, and (3-phase) VUF limits become explicit cost/safety outputs.
 - **Resource coupling**: attached bundles contribute both injections and per-bundle costs through the shared `resources` interface.
 - **Signal coupling**: market outputs and task-level wrappers map economic signals to env actions/rewards without duplicating physics kernels.
-
