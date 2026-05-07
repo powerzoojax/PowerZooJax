@@ -2,7 +2,7 @@
 """DSO behavior distribution: 4-panel box+jitter on IID per-episode metrics.
 
 Renders a 2x2 grid covering curtailment, shift, peak shaving and voltage
-violations across 7 algorithms.  Uses manifest-deduped IID records and shows
+violations across 6 algorithms.  Uses manifest-deduped IID records and shows
 all 250 points per algo as semi-transparent jitter overlaid on a box plot so
 that the distributional tails (where PPO-Lag / SAC voltage violations live)
 remain visible.
@@ -37,7 +37,6 @@ ALGO_ORDER = (
     "saute_ppo",
     "ppo_lagrangian",
     "sac",
-    "tou",
     "droop",
     "no_control",
 )
@@ -46,7 +45,6 @@ ALGO_LABELS = {
     "saute_ppo": "Sauté-PPO",
     "ppo_lagrangian": "PPO-Lag",
     "sac": "SAC",
-    "tou": "TOU",
     "droop": "Droop",
     "no_control": "No-control",
 }
@@ -56,7 +54,6 @@ ALGO_COLORS = {
     "saute_ppo": "#E07A29",
     "ppo_lagrangian": "#3B7DD8",
     "sac": "#7C42B8",
-    "tou": "#7E7E7E",
     "droop": "#3F6F4F",
     "no_control": "#1A1A1A",
 }
@@ -171,15 +168,6 @@ def plot(data: dict[str, dict[str, np.ndarray]]) -> tuple[Path, Path]:
         ax.invert_yaxis()
         ax.grid(axis="x", alpha=0.3, linewidth=0.4)
         ax.grid(axis="y", visible=False)
-
-    fig.suptitle(
-        "DSO IID per-episode behavior distributions "
-        "(7 algorithms x 5 seeds x 50 episodes; box + jitter)",
-        x=0.01,
-        y=1.02,
-        ha="left",
-        fontsize=FS,
-    )
 
     FIGURE_DIR.mkdir(parents=True, exist_ok=True)
     pdf_path = FIGURE_DIR / "episode_distributions.pdf"

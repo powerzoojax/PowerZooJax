@@ -142,7 +142,7 @@ def _confidence_ellipse(ax, xs, ys, color, n_std: float = 1.96) -> None:
 
 def plot(data: dict[str, np.ndarray]) -> tuple[Path, Path]:
     _figure_rc()
-    fig, ax = plt.subplots(figsize=(10.0, 5.2), constrained_layout=True)
+    fig, ax = plt.subplots(figsize=(10.0, 4.8), constrained_layout=False)
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
 
@@ -180,11 +180,6 @@ def plot(data: dict[str, np.ndarray]) -> tuple[Path, Path]:
 
     ax.set_xlabel(r"Total operating cost (£)")
     ax.set_ylabel("Total thermal-violation cost (symlog)")
-    ax.set_title(
-        "TSO episode-level cost vs thermal trade-off "
-        "(4 algos x 5 seeds x 50 eps = 1000 episodes)",
-        loc="left",
-    )
 
     def _fmt_pounds(value: float, _pos: int | None = None) -> str:
         if value >= 1e6:
@@ -198,19 +193,18 @@ def plot(data: dict[str, np.ndarray]) -> tuple[Path, Path]:
     # on the symmetric negative side.
     y_max = max(data[a][:, 1].max() for a in ALGOS)
     ax.set_ylim(0.0, y_max * 1.6)
-    ax.legend(loc="upper right", frameon=False, handletextpad=0.4)
-
-    # A small note about marker size encoding.
-    ax.text(
-        0.01,
-        0.98,
-        "Marker area ∝ thermal_violation_rate; ellipse = 95% covariance.",
-        transform=ax.transAxes,
-        ha="left",
-        va="top",
-        fontsize=FS - 2,
-        color="#444",
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(
+        handles,
+        labels,
+        loc="upper center",
+        ncol=2,
+        frameon=False,
+        bbox_to_anchor=(0.5, 0.995),
+        handletextpad=0.4,
+        columnspacing=0.9,
     )
+    fig.subplots_adjust(left=0.10, right=0.98, bottom=0.15, top=0.84)
 
     FIGURE_DIR.mkdir(parents=True, exist_ok=True)
     pdf_path = FIGURE_DIR / "episode_scatter_cost_vs_thermal.pdf"

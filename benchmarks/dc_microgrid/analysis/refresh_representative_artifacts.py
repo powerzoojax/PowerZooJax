@@ -30,12 +30,12 @@ def _figure_rc() -> None:
 
     plt.rcParams.update(
         {
-            "font.size": 10,
-            "axes.labelsize": 10,
-            "axes.titlesize": 10,
-            "xtick.labelsize": 10,
-            "ytick.labelsize": 10,
-            "legend.fontsize": 10,
+            "font.size": 12,
+            "axes.labelsize": 12,
+            "axes.titlesize": 12,
+            "xtick.labelsize": 12,
+            "ytick.labelsize": 12,
+            "legend.fontsize": 12,
             "axes.spines.top": False,
             "axes.spines.right": False,
             "axes.grid": True,
@@ -236,50 +236,87 @@ def _plot_dispatch(
     pv_cf = np.clip(pv / max(float(pv_capacity_mw), 1e-9), 0.0, 1.0)
     net_load = load - pv
 
-    fig, axes = plt.subplots(3, 1, figsize=(10.0, 7.78), sharex=True)
+    # Single shared fig.legend above the three panels: anchor its bottom just
+    # above the subplot tops (axes top ≈ 0.67 in fig coords) so there is no
+    # large empty band; loc="lower center" places the legend upward from the anchor.
+    fig = plt.figure(figsize=(10.0, 3.65))
+    # [left, bottom, width, height] — slightly narrower panels + wider
+    # inter-panel gap than 0.226@uniform spacing (was ~0.058, now ~0.072).
+    axes = [
+        fig.add_axes([0.068, 0.165, 0.218, 0.505]),
+        fig.add_axes([0.358, 0.165, 0.218, 0.505]),
+        fig.add_axes([0.648, 0.165, 0.218, 0.505]),
+    ]
     fig.patch.set_facecolor("white")
+    legend_handles = []
+    legend_labels = []
+
+    def _add_legend_items(handles, labels):
+        for handle, label in zip(handles, labels):
+            if label in legend_labels:
+                continue
+            legend_handles.append(handle)
+            legend_labels.append(label)
+
     ax = axes[0]
     ax.plot(h, load, color="#c62828", lw=2.0, label="DC load")
     ax.set_ylabel("Load [MW]")
+    ax.set_xlabel("Hour of day")
     ax.grid(True, alpha=0.26)
     ax2 = ax.twinx()
-    ax2.fill_between(h, 0.0, pv_cf, color="#f9c74f", alpha=0.45, step="mid", label="PV availability")
+    ax2.fill_between(h, 0.0, pv_cf, color="#f9c74f", alpha=0.45, step="mid", label="PV avail.")
     ax2.plot(h, pv_cf, color="#d99500", lw=1.4)
-    ax2.set_ylabel("PV CF")
+    ax2.text(0.97, 0.06, "PV CF", transform=ax2.transAxes, ha="right", va="bottom", fontsize=11)
     ax2.set_ylim(-0.02, 1.02)
+    ax2.tick_params(axis="y", right=False, labelright=False)
     lines1, labels1 = ax.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
-    ax.legend(lines1 + lines2, labels1 + labels2, loc="upper left", fontsize=10, frameon=False)
-    split_display = "in-distribution" if split == "iid" else split
-    ax.set_title(f"JAX/ReJAX {algo.upper()} representative DC Microgrid episode ({split_display}, ep={episode_idx})")
+    _add_legend_items(lines1 + lines2, labels1 + labels2)
 
     ax = axes[1]
-    ax.plot(h, net_load, color="#ad1457", lw=2.0, label="Net load after PV")
+    ax.plot(h, net_load, color="#ad1457", lw=2.0, label="Net load")
     ax.plot(h, grid, color="#455a64", lw=1.9, label="Grid import")
-    ax.plot(h, dg, color="#6d4c41", lw=1.9, label="Diesel generator")
-    ax.fill_between(h, 0.0, dis, color="#2e7d32", alpha=0.25, step="mid", label="Battery discharge")
+    ax.plot(h, dg, color="#6d4c41", lw=1.9, label="Diesel gen.")
+    ax.fill_between(h, 0.0, dis, color="#2e7d32", alpha=0.25, step="mid", label="Batt. discharge")
     ax.plot(h, dis, color="#2e7d32", lw=1.4)
-    ax.plot(h, -chg, color="#1565c0", lw=1.4, label="Battery charge")
+    ax.plot(h, -chg, color="#1565c0", lw=1.4, label="Batt. charge")
     ax.axhline(0.0, color="#9e9e9e", lw=0.7)
-    ax.set_ylabel("Power [MW]")
+    ax.set_ylabel("Power [MW]", labelpad=1.0)
+    ax.set_xlabel("Hour of day")
     ax.grid(True, alpha=0.26)
-    ax.legend(loc="upper left", ncol=3, fontsize=10, frameon=False)
+    lines, labels = ax.get_legend_handles_labels()
+    _add_legend_items(lines, labels)
 
     ax = axes[2]
-    ax.plot(h, soc, color="#2e7d32", lw=2.0, label="Battery SOC")
-    ax.axhline(0.15, color="#c62828", ls="--", lw=0.9, label="SOC bounds")
+    ax.plot(h, soc, color="#2e7d32", lw=2.0, label="Battery SoC")
+    ax.axhline(0.15, color="#c62828", ls="--", lw=0.9, label="SoC bounds")
     ax.axhline(0.90, color="#c62828", ls="--", lw=0.9)
     ax.set_ylim(0.05, 0.98)
     ax.set_xlabel("Hour of day")
-    ax.set_ylabel("SOC")
+    ax.set_ylabel("SoC")
     ax.grid(True, alpha=0.26)
     ax2 = ax.twinx()
     ax2.plot(h, price_30, color="#111111", lw=1.4, alpha=0.82, label="Grid price")
-    ax2.set_ylabel("Price [$/MWh]")
+    ax2.set_ylabel(r"Price [$\mathrm{\$/MWh}$]", labelpad=6)
     lines1, labels1 = ax.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
-    ax.legend(lines1 + lines2, labels1 + labels2, loc="upper left", ncol=3, fontsize=10, frameon=False)
-    fig.tight_layout()
+    _add_legend_items(lines1 + lines2, labels1 + labels2)
+    fig.legend(
+        legend_handles,
+        legend_labels,
+        loc="lower center",
+        ncol=5,
+        frameon=False,
+        bbox_to_anchor=(0.5, 0.705),
+        handlelength=1.2,
+        handletextpad=0.35,
+        columnspacing=0.75,
+        borderaxespad=0.25,
+        fontsize=11,
+    )
+    for ax in axes:
+        ax.set_xticks([0, 6, 12, 18])
+        ax.set_xlim(-0.6, 23.6)
     _save_fig(fig, f"{algo}_{split}_dispatch_representative")
     plt.close(fig)
 

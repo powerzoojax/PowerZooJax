@@ -415,12 +415,12 @@ def _plot_policy_compare(task_dir: Path, episodes: dict[str, dict]) -> Path:
 
     plt.rcParams.update(
         {
-            "font.size": 10,
-            "axes.labelsize": 10,
-            "axes.titlesize": 10,
-            "xtick.labelsize": 10,
-            "ytick.labelsize": 10,
-            "legend.fontsize": 10,
+            "font.size": 12,
+            "axes.labelsize": 12,
+            "axes.titlesize": 12,
+            "xtick.labelsize": 12,
+            "ytick.labelsize": 12,
+            "legend.fontsize": 12,
             "axes.spines.top": False,
             "axes.spines.right": False,
             "axes.grid": True,
@@ -431,7 +431,7 @@ def _plot_policy_compare(task_dir: Path, episodes: dict[str, dict]) -> Path:
     )
 
     steps = np.arange(len(episodes["ippo"]["mean_lmp"]))
-    fig, axes = plt.subplots(2, 2, figsize=(10.0, 6.67))
+    fig, axes = plt.subplots(2, 2, figsize=(10.0, 6.2))
     fig.patch.set_facecolor(PLOT_FACE)
     for ax in axes.ravel():
         _style_axes(ax)
@@ -455,7 +455,6 @@ def _plot_policy_compare(task_dir: Path, episodes: dict[str, dict]) -> Path:
             s=28,
             alpha=0.9,
         )
-    ax.set_title("Same physical load, different price response")
     ax.set_xlabel("Total load (MW)")
     ax.set_ylabel("Mean LMP ($/MWh)")
     policy_handles, policy_labels = ax.get_legend_handles_labels()
@@ -478,7 +477,6 @@ def _plot_policy_compare(task_dir: Path, episodes: dict[str, dict]) -> Path:
             s=40,
             zorder=3,
         )
-    ax.set_title("Cumulative total profit on the same episode")
     ax.set_ylabel("Cumulative profit ($)")
 
     ax = axes[1, 0]
@@ -494,11 +492,9 @@ def _plot_policy_compare(task_dir: Path, episodes: dict[str, dict]) -> Path:
         )
     uniform_line = ax.axhline(1.0 / 5.0, color="#3a7d44", lw=0.9, ls="--", label="Uniform dispatch")
     monopoly_line = ax.axhline(1.0, color="#c44536", lw=0.9, ls=":", label="Monopoly")
-    ax.set_title("Market concentration trajectory")
     ax.set_xlabel("30-min interval")
     ax.set_ylabel("HHI")
     ax.set_ylim(0.0, 1.0)
-    ax.legend(handles=[uniform_line, monopoly_line], fontsize=10, loc="lower left", framealpha=0.88)
 
     ax = axes[1, 1]
     _decorate_time_axis(ax, len(steps))
@@ -511,22 +507,21 @@ def _plot_policy_compare(task_dir: Path, episodes: dict[str, dict]) -> Path:
             lw=2.1,
             label=POLICY_LABELS.get(policy_name, policy_name.replace("_", " ").title()),
         )
-    ax.set_title("Physical coupling intensity")
     ax.set_xlabel("30-min interval")
     ax.set_ylabel("Ramp binding rate")
     ax.set_ylim(0.0, 1.0)
 
     fig.legend(
-        policy_handles,
-        policy_labels,
+        policy_handles + [uniform_line, monopoly_line],
+        policy_labels + ["Uniform dispatch", "Monopoly"],
         loc="upper center",
-        ncol=4,
+        ncol=6,
         frameon=False,
         bbox_to_anchor=(0.5, 0.995),
-        handlelength=2.0,
-        columnspacing=1.4,
+        handlelength=1.6,
+        columnspacing=0.9,
     )
-    fig.tight_layout(rect=[0, 0, 1, 0.94])
+    fig.tight_layout(rect=[0, 0, 1, 0.95])
     out = _figures_dir(task_dir) / "phase1_policy_compare.pdf"
     _save_figure(fig, out)
     plt.close(fig)

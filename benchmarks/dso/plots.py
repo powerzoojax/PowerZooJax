@@ -491,14 +491,14 @@ def _build_learning_curve_panels(
 
     has_cost = bool(algo_cost)
     has_lam  = bool(algo_lam)
-    n_panels = 1 + int(has_cost) + int(has_lam)
+    n_panels = 3
 
     plt.style.use("seaborn-v0_8-whitegrid")
     fig, axes_arr = plt.subplots(
-        n_panels, 1, figsize=(9, 3.2 * n_panels + 0.4),
-        sharex=False, squeeze=False, constrained_layout=True,
+        1, n_panels, figsize=(10.0, 3.4),
+        sharex=True, squeeze=False, constrained_layout=False,
     )
-    axes_list: list = axes_arr[:, 0].tolist()
+    axes_list: list = axes_arr[0, :].tolist()
     ax_r = axes_list[0]
 
     present_algos = [a for a in ALGO_ORDER if a in algo_reward]
@@ -542,8 +542,8 @@ def _build_learning_curve_panels(
     ax_r.set_ylabel("Episode total reward", fontsize=12)
 
     # ── Panel 1: Cost ─────────────────────────────────────────────────────────
+    ax_c = axes_list[1]
     if has_cost:
-        ax_c = axes_list[1]
         # Time-series cost curves for algos that record them during training
         for algo in present_algos:
             if algo not in algo_cost:
@@ -592,10 +592,12 @@ def _build_learning_curve_panels(
         ax_c.axhline(thresh_val, color="#e53935", linewidth=1.4, linestyle="--",
                      label=f"CMDP threshold ({thresh_val:.1f}/step)", zorder=5)
         ax_c.set_ylabel("Voltage violations / step", fontsize=12)
+    else:
+        ax_c.set_axis_off()
 
     # ── Panel 2: Lambda ───────────────────────────────────────────────────────
+    ax_l = axes_list[2]
     if has_lam:
-        ax_l = axes_list[1 + int(has_cost)]
         import math as _math
         lambda_cap = _math.exp(5.0)  # exp(log_lambda_max=5.0)
         for algo in present_algos:
@@ -613,6 +615,8 @@ def _build_learning_curve_panels(
         ax_l.axhline(lambda_cap, color="#9e9e9e", linewidth=1.2, linestyle=":",
                      label=f"λ cap = exp(5) ≈ {lambda_cap:.0f}", zorder=4)
         ax_l.set_ylabel("Lagrange λ", fontsize=12)
+    else:
+        ax_l.set_axis_off()
 
     # ── Shared x-axis formatting ───────────────────────────────────────────────
     for ax in axes_list:
@@ -624,7 +628,9 @@ def _build_learning_curve_panels(
                 mticker.FuncFormatter(lambda x, _: f"{x/1e6:.1f}M" if x >= 1e5 else f"{x:.0f}")
             )
 
-    axes_list[-1].set_xlabel(x_label, fontsize=12)
+    for ax in axes_list:
+        if ax.axison:
+            ax.set_xlabel(x_label, fontsize=12)
 
     from matplotlib.lines import Line2D
     legend_handles: list = []
@@ -645,11 +651,15 @@ def _build_learning_curve_panels(
         )
     fig.legend(
         handles=legend_handles,
-        loc="outside upper center",
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.995),
         ncol=min(len(legend_handles), 6),
-        fontsize=11,
+        fontsize=12,
         frameon=False,
+        handlelength=1.4,
+        columnspacing=0.8,
     )
+    fig.subplots_adjust(left=0.075, right=0.99, bottom=0.18, top=0.78, wspace=0.34)
     return fig, True
 
 

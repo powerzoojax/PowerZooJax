@@ -519,12 +519,12 @@ def _plot_policy_compare(task_dir: Path, traces: dict[str, dict]) -> Path:
 
     plt.rcParams.update(
         {
-            "font.size": 10,
-            "axes.labelsize": 10,
-            "axes.titlesize": 10,
-            "xtick.labelsize": 10,
-            "ytick.labelsize": 10,
-            "legend.fontsize": 10,
+            "font.size": 12,
+            "axes.labelsize": 12,
+            "axes.titlesize": 12,
+            "xtick.labelsize": 12,
+            "ytick.labelsize": 12,
+            "legend.fontsize": 12,
             "axes.spines.top": False,
             "axes.spines.right": False,
             "axes.grid": True,
@@ -559,7 +559,7 @@ def _plot_policy_compare(task_dir: Path, traces: dict[str, dict]) -> Path:
     else:
         sun_h0 = sun_h1 = None
 
-    fig, axes = plt.subplots(3, 2, figsize=(10.0, 7.8), sharex=True)
+    fig, axes = plt.subplots(3, 2, figsize=(10.0, 7.2), sharex=True)
     fig.patch.set_facecolor("white")
     axes = axes.reshape(-1)
     for ax in axes:
@@ -591,17 +591,11 @@ def _plot_policy_compare(task_dir: Path, traces: dict[str, dict]) -> Path:
         axes[4].plot(clock_hours, flex_net, color=color, linewidth=2.0)
         axes[5].plot(clock_hours, p_loss, color=color, linewidth=2.0)
 
-    axes[0].set_title("Battery SOC (per-device mean)")
     axes[0].set_ylabel("SOC")
-    axes[1].set_title("Battery Q realized (system total, MVAr)")
     axes[1].set_ylabel("Q  [MVAr]")
-    axes[2].set_title("PV curtailment realized (system total, MW)")
     axes[2].set_ylabel("MW")
-    axes[3].set_title("PV Q realized (system total, MVAr)")
     axes[3].set_ylabel("Q  [MVAr]")
-    axes[4].set_title("Flex net load relief = curtail + shift-out − shift-in (MW)")
     axes[4].set_ylabel("MW")
-    axes[5].set_title("Active loss (system total, MW)")
     axes[5].set_ylabel("MW")
 
     # X-axis is clock hour-of-day in [0, 24]. After the circular shift above,
@@ -626,17 +620,12 @@ def _plot_policy_compare(task_dir: Path, traces: dict[str, dict]) -> Path:
         loc="upper center",
         ncol=len(by_label),
         frameon=False,
-        bbox_to_anchor=(0.5, 0.985),
-        handlelength=2.0,
-        columnspacing=1.2,
+        bbox_to_anchor=(0.5, 0.995),
+        handlelength=1.2,
+        columnspacing=0.6,
+        handletextpad=0.35,
     )
-    fig.suptitle(
-        "DERs Phase-1 policy behavior on the same in-distribution episode "
-        f"(GB in-distribution profile row {episode_start}; x-axis aligned to clock 00:00)",
-        fontsize=10,
-        y=0.945,
-    )
-    fig.tight_layout(rect=[0, 0, 1, 0.91])
+    fig.tight_layout(rect=[0, 0, 1, 0.955])
     out = _figures_dir(task_dir) / "phase1_policy_compare.pdf"
     _save_figure(fig, out)
     plt.close(fig)
