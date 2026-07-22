@@ -1,6 +1,6 @@
 # Physics Overview
 
-PowerZooJax models the integrated electricity system across multiple interconnected layers, from generation through transmission, distribution, end-use loads, and demand response. This page provides a high-level spatial and functional overview of the modeled domains and their relationships.
+PowerZooJax models the integrated electricity system as one grid spanning generation, transmission, distribution, end-use DER, and a data center microgrid. This page gives a high-level spatial and functional overview of these domains and how they connect.
 
 ## System Architecture
 
@@ -12,29 +12,25 @@ PowerZooJax first connects the physical task suite to the JAX training path:
 
 Figure 1 should be read left to right. The labeled physical tasks (GenCos, TSO, DSO, DERs, and DCMG) become a benchmark task family, then fixed-shape JAX code, then GPU-resident batched environments. The right side shows the training loop: batched observations go to the actor, batched actions return to the environments, and the learner updates the policy from CMDP trajectories.
 
-The integrated power system model behind those tasks spans five interconnected layers:
+The physical power system behind those tasks is one grid spanning five domains, from bulk generation down to a data center microgrid:
 
-![PowerZooJax physics overview diagram](../../assets/images/physics/fig2_power_system_model.png){ width="100%" }
+![PowerZooJax power system model](../../assets/images/physics/fig2_power_grid_model.png){ width="100%" }
 
-*Figure 2. Cross-layer overview of the modeled physics domains in PowerZooJax.*
+*Figure 2. Overview of the modeled power system, spanning generation, transmission, distribution, end-use DER, and a data center microgrid.*
 
 ## How to read Figure 2
 
-Figure 2 organizes PowerZooJax into three **physical system models** (transmission, distribution, microgrid), two **resource layers** (generation, end-use DER), and one **coordination layer** (market). Power flows left → right (generation to loads), while information signals (e.g., prices) propagate across layers.
+Figure 2 is a single-line view of one power system, read left to right as power flows from generation to end use. It groups the grid into the five domains that PowerZooJax turns into benchmark tasks:
+
+- **Generation** — wind farms, solar farms, and thermal power plants stepped up through a transformer onto the bulk network (GenCos task).
+- **Transmission network** — the meshed high-voltage network and substations that carry bulk power (TSO task).
+- **Distribution network** — radial medium-/low-voltage feeders, including embedded renewable generation (DSO task).
+- **End-use DER** — user-side flexibility behind the meter: EV charging stations, flexible loads, and storage (DERs task).
+- **Data center microgrid** — a local grid coupling a data center with a switch, back-up generator, on-site storage, and local generation, operable grid-connected or islanded (DCMG task).
+
+Power flows left → right, from generation to loads. Each domain maps to one CMDP task; the code-aligned sections below give each model's boundary.
 
 ## Layer-by-layer model boundaries (code-aligned)
-
-### Market Layer — Coordination & price signals
-
-The market layer is implemented under `powerzoojax.envs.market` as the coordination layer between economic signals and physical constraints. It provides **price and clearing signals** that influence upstream/downstream actions:
-
-- **Upstream**: generator bidding / commitment and dispatch incentives
-- **Grid operation**: system-level congestion and balancing incentives
-- **Downstream**: end-use flexibility and DER response incentives
-
-See [Markets Layer](markets.md) for clearing and pricing abstractions (`cost_based_market.py`, `bid_based_market.py`, `clearing.py`).
-
----
 
 ### Generation — Supply-side resources
 
@@ -114,4 +110,3 @@ See [Microgrid Layer](microgrid.md) and `DataCenterMicrogridEnv`.
 - **Energy coupling**: generation dispatch and DER injections are assembled into net nodal injections before PF/OPF solves.
 - **Constraint coupling**: line thermal limits, voltage bounds, and (3-phase) VUF limits become explicit cost/safety outputs.
 - **Resource coupling**: attached bundles contribute both injections and per-bundle costs through the shared `resources` interface.
-- **Signal coupling**: market outputs and task-level wrappers map economic signals to env actions/rewards without duplicating physics kernels.
