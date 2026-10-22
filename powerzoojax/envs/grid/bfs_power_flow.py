@@ -225,6 +225,8 @@ def backward_sweep(
     p_load_pu: chex.Array,
     q_load_pu: chex.Array,
     v_sq: chex.Array,
+    p_branch_prev: chex.Array,
+    q_branch_prev: chex.Array,
 ) -> Tuple[chex.Array, chex.Array]:
     """Backward sweep: branch flows from downstream loads + losses.
 
@@ -233,6 +235,8 @@ def backward_sweep(
         p_load_pu: (n_nodes,) active load [p.u.].
         q_load_pu: (n_nodes,) reactive load [p.u.].
         v_sq: (n_nodes,) voltage squared from previous iteration.
+        p_branch_prev: (n_lines,) sending-end active flow from previous iteration.
+        q_branch_prev: (n_lines,) sending-end reactive flow from previous iteration.
 
     Returns:
         (p_branch, q_branch) in p.u.
@@ -245,7 +249,8 @@ def backward_sweep(
 
     # Line losses from previous iteration voltages
     v_sending_sq = jnp.maximum(v_sq[topo.sending_node_idx], _MIN_V_SQ_GUARD)
-    i_sq = (p_branch ** 2 + q_branch ** 2) / v_sending_sq
+    i_sq = (p_branch_prev ** 2 + q_branch_prev ** 2) / v_sending_sq
+    i_sq = jnp.minimum(i_sq, v_sending_sq / (topo.r_pu ** 2 + topo.x_pu ** 2))
     p_loss = topo.r_pu * i_sq
     q_loss = topo.x_pu * i_sq
 
@@ -309,7 +314,7 @@ def bfs_power_flow(
         q_load_pu: (n_nodes,) reactive load [p.u.].
         v_slack: Slack bus voltage [p.u.].
         max_iter: Maximum BFS iterations.
-        tol: Convergence tolerance on max|ΔV²|.
+        tol: Convergence tolerance on max|ΔV²| and max branch-flow change.
 
     Returns:
         BFSResult with voltages, branch flows, losses, convergence info.
@@ -328,12 +333,16 @@ def bfs_power_flow(
         return jnp.logical_and(it < max_iter, jnp.logical_not(conv))
 
     def _body(state):
-        v_sq, _p_br, _q_br, it, _conv = state
+        v_sq, p_br, q_br, it, _conv = state
 
-        p_branch, q_branch = backward_sweep(topo, p_load_pu, q_load_pu, v_sq)
+        p_branch, q_branch = backward_sweep(topo, p_load_pu, q_load_pu, v_sq,
+                                            p_br, q_br)
         v_sq_new = forward_sweep(topo, p_branch, q_branch, v_sq, v_slack)
 
-        max_diff = jnp.max(jnp.abs(v_sq_new - v_sq))
+        max_diff = jnp.maximum(
+            jnp.max(jnp.abs(v_sq_new - v_sq)),
+            jnp.maximum(jnp.max(jnp.abs(p_branch - p_br)),
+                        jnp.max(jnp.abs(q_branch - q_br))))
         converged = max_diff < tol_arr
 
         return (v_sq_new, p_branch, q_branch, it + 1, converged)
@@ -344,6 +353,8 @@ def bfs_power_flow(
     # Compute final losses
     v_sending_sq = jnp.maximum(v_sq_f[topo.sending_node_idx], _MIN_V_SQ_GUARD)
     i_sq = (p_br_f ** 2 + q_br_f ** 2) / v_sending_sq
+    conv = jnp.logical_and(
+        conv, jnp.all(i_sq <= v_sending_sq / (topo.r_pu ** 2 + topo.x_pu ** 2)))
     p_loss = topo.r_pu * i_sq
     q_loss = topo.x_pu * i_sq
 
